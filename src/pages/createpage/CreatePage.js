@@ -7,6 +7,7 @@ import CreatePageForm from "./CreatePageForm";
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
+  min-width: 320px;
   max-width: 600px;
   max-height: 900px;
   display: flex;
@@ -39,7 +40,7 @@ const CreatePageMain = styled.div`
   /* background-color: blue; */
   position: relative;
   width: 100%;
-  height: 90%;
+  height: 90vh;
 `;
 
 const CreatePage = () => {
