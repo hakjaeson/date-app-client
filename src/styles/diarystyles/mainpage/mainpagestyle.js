@@ -46,3 +46,20 @@ export const NavigationList = styled.ul`
     }
   }
 `;
+
+export const SelctNotice = styled.div`
+  text-align: center;
+  background-color: ivory;
+`;
+export const WriteingDate = styled.div`
+  float: right;
+`;
+export const SlidePrevBt = styled.button``;
+export const SlideNextBt = styled.button``;
+
+export const ContentSlideImage = styled.div`
+  border: 1px solid black;
+  img {
+    width: 100%;
+  }
+`;

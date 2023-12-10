@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
+import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 import {
   ContentHeader,
   ContentNameTitle,
+  ContentSlideImage,
   MainPageContent,
+  SlideNextBt,
+  SlidePrevBt,
+  WriteingDate,
 } from "../../styles/diarystyles/mainpage/mainpagestyle";
-import { Link } from "react-router-dom";
 
 const MainContents = () => {
+  const swiperRef = useRef();
   return (
     <MainPageContent>
       <ContentHeader>
@@ -24,13 +33,52 @@ const MainContents = () => {
             <span>부싼 바캉스</span>
           </div>
         </ContentNameTitle>
-        {/* Content Date */}
-        <div>
-          <span>2023-12-07</span>
-        </div>
-      </ContentHeader>
 
-      <span>Swiper area 작업이 필요함</span>
+        {/* Content Date */}
+        <WriteingDate>
+          <span>7</span>
+        </WriteingDate>
+      </ContentHeader>
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={0}
+        onSwiper={swiper => {
+          swiperRef.current = swiper;
+        }}
+        modules={{ Navigation }}
+        navigation={{
+          nextEl: "live-slide-wrap .slide-next-bt",
+          prevEl: "live-slide-wrap .slide-prev-bt",
+        }}
+        className="content-slide"
+      >
+        <SwiperSlide>
+          <ContentSlideImage>
+            <img src="https://picsum.photos/300/200" alt=""></img>
+          </ContentSlideImage>
+        </SwiperSlide>
+        <SwiperSlide>
+          <ContentSlideImage>
+            <img src="https://picsum.photos/300/200" alt=""></img>
+          </ContentSlideImage>
+        </SwiperSlide>
+      </Swiper>
+      <SlidePrevBt
+        className="slide-prev-bt"
+        onClick={() => {
+          swiperRef.current.slidePrev();
+        }}
+      >
+        <span>이전</span>
+      </SlidePrevBt>
+      <SlideNextBt
+        className="slide-next-bt"
+        onClick={() => {
+          swiperRef.current.slideNext();
+        }}
+      >
+        다음
+      </SlideNextBt>
 
       <div>
         <div>이모티콘</div>

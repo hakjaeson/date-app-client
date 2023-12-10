@@ -1,22 +1,19 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
 import {
   Anniversary,
-  ContentHeader,
-  ContentNameTitle,
-  MainPageContent,
   MainPageWrapper,
-  NavigationBar,
-  NavigationList,
+  SelctNotice
 } from "../../styles/diarystyles/mainpage/mainpagestyle";
-import Navigation from "./Navigation";
 import MainContents from "./MainContents";
 // 메인페이지
 const MainPage = () => {
   return (
     // Wrapper
     <MainPageWrapper>
+      <SelctNotice>
+        <span></span>
+      </SelctNotice>
       {/* Anniversary area */}
       <Anniversary>
         <span>D+1000</span>
@@ -24,7 +21,7 @@ const MainPage = () => {
 
       {/* Content area */}
       <MainContents />
-      <Navigation />
+      {/* <Navigation /> */}
     </MainPageWrapper>
   );
 };
