@@ -4,6 +4,7 @@ import React from "react";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useForm } from "react-hook-form";
+import FormDrag from "./FormDrag";
 
 const CreatePageFormTag = styled.form`
   position: relative;
@@ -44,74 +45,6 @@ const ImageButton = styled.div`
   border-radius: 20px;
 `;
 
-const FormContents = styled.div`
-  background-color: #fff;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 50%;
-  gap: 10px;
-
-  border: 0.1rem solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.13);
-  border-radius: 50px 50px 0 0;
-`;
-
-const FormButton = styled.button`
-  position: absolute;
-  top: 8%;
-  right: 10%;
-  width: 15%;
-  height: 8%;
-  background-color: #fff;
-
-  border: 0.1rem solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.13);
-  border-radius: 10px;
-`;
-
-const FormTop = styled.div`
-  margin-top: 20%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-`;
-
-const FormEmoji = styled.input`
-  width: 50px;
-  height: 50px;
-
-  border: 0.1rem solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.13);
-  border-radius: 50%;
-  text-align: center;
-`;
-
-const FormTitle = styled.input`
-  width: 70%;
-  height: 20px;
-  border: none;
-  outline: none;
-`;
-
-const FormHashTag = styled.input`
-  width: 60%;
-  height: 20px;
-  border: none;
-  outline: none;
-`;
-
-const FormContentInput = styled.input`
-  width: 90%;
-  height: 100%;
-
-  border: none;
-  outline: none;
-`;
-
 const CreatePageForm = () => {
   const {
     register,
@@ -123,10 +56,10 @@ const CreatePageForm = () => {
     console.log(data);
   };
   return (
-    <CreatePageFormTag>
+    <CreatePageFormTag onSubmit={handleSubmit(onValid)}>
       <ImageContainer>
         <ImageButton>
-          <ImageInput type="file" />
+          <ImageInput type="file" {...register("image")} />
           <FontAwesomeIcon
             icon={faPlus}
             style={{ width: 30, height: 30, color: "#fff" }}
@@ -134,28 +67,7 @@ const CreatePageForm = () => {
           사진을 추가 해주세요.
         </ImageButton>
       </ImageContainer>
-      <FormContents onSubmit={handleSubmit(onValid)}>
-        <FormButton>완료</FormButton>
-        <FormTop>
-          <FormEmoji {...register("emoji")} placeholder="기분" />
-          <FormTitle
-            {...register("title", {
-              required: "제목을 입력해주세요.",
-              minLength: 20,
-            })}
-            placeholder="제목"
-          />
-          <span>{errors?.title?.message}</span>
-        </FormTop>
-        <FormHashTag {...register("hashtag")} placeholder="#해시태그" />
-        <FormContentInput
-          {...register("content", {
-            required: "내용을 입력해주세요.",
-            minLength: 200,
-          })}
-          placeholder="내용"
-        />
-      </FormContents>
+      <FormDrag register={register} errors={errors} />
     </CreatePageFormTag>
   );
 };
