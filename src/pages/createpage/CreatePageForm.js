@@ -44,7 +44,6 @@ const ImageButton = styled.div`
   border: 1px solid #ccc;
   border-radius: 20px;
 `;
-
 const CreatePageForm = () => {
   const {
     register,
@@ -59,7 +58,7 @@ const CreatePageForm = () => {
     <CreatePageFormTag onSubmit={handleSubmit(onValid)}>
       <ImageContainer>
         <ImageButton>
-          <ImageInput type="file" {...register("image")} />
+          <ImageInput type="file" {...register("image")} accept="image/*" />
           <FontAwesomeIcon
             icon={faPlus}
             style={{ width: 30, height: 30, color: "#fff" }}
