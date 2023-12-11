@@ -12,11 +12,14 @@ import {
   ContentNameTitle,
   ContentSlide,
   ContentSlideImage,
+  HashTag,
   MainPageContent,
   SlideNextBt,
   SlidePrevBt,
   WriteingDate,
 } from "../../styles/diarystyles/mainpage/mainpagestyle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 const MainContents = () => {
   const swiperRef = useRef();
@@ -24,7 +27,7 @@ const MainContents = () => {
     <MainPageContent>
       <ContentHeader>
         <div className="profile-image">
-          <img src="https://picsum.photos/56/56" alt="" />
+          <img src="https://picsum.photos/40/40" alt="" />
         </div>
         {/* Content title */}
         <ContentNameTitle>
@@ -52,8 +55,8 @@ const MainContents = () => {
           }}
           modules={{ Navigation }}
           navigation={{
-            nextEl: "live-slide-wrap .slide-next-bt",
-            prevEl: "live-slide-wrap .slide-prev-bt",
+            nextEl: ".slide-next-bt",
+            prevEl: ".slide-prev-bt",
           }}
           className="content-slide"
         >
@@ -74,22 +77,20 @@ const MainContents = () => {
             swiperRef.current.slidePrev();
           }}
         >
-          <span>이전</span>
+          <FontAwesomeIcon icon={faChevronLeft} />
         </SlidePrevBt>
         <SlideNextBt
           className="slide-next-bt"
           onClick={() => {
             swiperRef.current.slideNext();
           }}
-        >
-          다음
-        </SlideNextBt>
+        ></SlideNextBt>
       </ContentSlide>
 
       <ContentBody>
         <ContentData>
           <div>
-            <img src="https://picsum.photos/56/56" alt="" />
+            <img src="https://picsum.photos/40/40" alt="" />
           </div>
           <div>
             <span>
@@ -98,12 +99,12 @@ const MainContents = () => {
               더욱 빛나 별이 되었다고
             </span>
           </div>
-          <ContentMoreView>
-            <Link to="/read-page/${no}">더보기</Link>
-          </ContentMoreView>
         </ContentData>
-        <div className="hash-tag">#부산 #해운대 #달콩이 #광안리</div>
-        <div></div>
+        <ContentMoreView>
+          <Link to="/read-page/${no}">더보기</Link>
+        </ContentMoreView>
+        {/* HashTag */}
+        <HashTag>#부산 #해운대 #달콩이 #광안리</HashTag>
       </ContentBody>
     </MainPageContent>
   );

@@ -4,40 +4,54 @@ export const MainPageWrapper = styled.div`
   display: block;
   /* background-color: skyblue; */
   height: 100%;
+  font-family: Pretendard-Regular;
 `;
 
 export const Anniversary = styled.div`
-  /* float: right; */
-  display: block;
-  /* background: gold; */
+  text-align: center;
+  span {
+    display: block;
+    border-radius: 20px;
+    float: right;
+    border: 2px solid black;
+    margin-right: 20px;
+    background-color: #ffb5b6;
+    padding: 10px 25px;
+    font-weight: 700;
+  }
 `;
 
 export const MainPageContent = styled.div`
-  display: block;
-  /* background: red; */
   border: 2px solid black;
-  margin-top: 50px;
+  margin-top: 70px;
   margin-bottom: 20px;
   margin-left: 10px;
   margin-right: 10px;
-  border-radius: 30px 30px 0px 0px;
+  border-radius: 30px;
 `;
 export const ContentHeader = styled.div`
   position: relative;
+  height: 50px;
   display: flex;
-  border-radius: 30px;
+  align-items: center;
+  border-radius: 30px 30px 0 0;
   background-color: #d2ceff;
+
   img {
+    border: 1px solid black;
+    margin-left: 10px;
     border-radius: 28px;
+    margin-right: 10px;
   }
 `;
 
 export const ContentNameTitle = styled.div`
-  /* display: flex; */
+  line-height: 1.5rem;
+  margin-right: auto;
 `;
 export const WriteingDate = styled.div`
+  margin-right: 10px;
   position: relative;
-  right: 0;
   border: 1px solid black;
   width: 3rem;
   height: 3rem;
@@ -69,17 +83,47 @@ export const FooterList = styled.ul`
   }
 `;
 
-export const SelctNotice = styled.div`
-  text-align: center;
-  background-color: ivory;
+export const SelectMonth = styled.div`
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffdbab;
+  font-weight: 500;
+  height: 50px;
+  border: 2px solid black;
+  font-size: 2rem;
+  span {
+  }
 `;
 
 // Content Slide
 export const ContentSlide = styled.div`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 `;
-export const SlidePrevBt = styled.button``;
-export const SlideNextBt = styled.button``;
+export const SlidePrevBt = styled.button`
+  background: url(../../images/icon_arrow.svg) no-repeat center;
+  transform: rotateY(180deg);
+  position: absolute;
+  left: 10%;
+  top: 37.5%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border: none;
+`;
+export const SlideNextBt = styled.button`
+  background-color: transparent;
+  position: absolute;
+  right: -2.25%;
+  top: 37.5%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+`;
 
 export const ContentSlideImage = styled.div`
   border: 1px solid black;
@@ -90,17 +134,18 @@ export const ContentSlideImage = styled.div`
 
 export const ContentBody = styled.div`
   background-color: white;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 30px 30px;
 `;
 export const ContentData = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  padding-top: 10px;
   margin-bottom: 10px;
   margin-left: 5px;
   line-height: 1.5rem;
   // 줄 끊는거 필요함 ... 요거
   img {
+    border: 1px solid black;
     border-radius: 28px;
     margin-right: 10px;
   }
@@ -112,4 +157,13 @@ export const ContentData = styled.div`
     -webkit-box-orient: vertical;
   }
 `;
-export const ContentMoreView = styled.div``;
+export const ContentMoreView = styled.div`
+  float: right;
+  margin-right: 1rem;
+  margin-top: -1rem;
+  color: #c9c9c9;
+`;
+export const HashTag = styled.div`
+  margin-left: 2rem;
+  padding-bottom: 5px;
+`;
