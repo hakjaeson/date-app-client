@@ -6,13 +6,14 @@ import {
   SelctNotice,
 } from "../../styles/diarystyles/mainpage/mainpagestyle";
 import MainContents from "./MainContents";
+import Footer from "./Footer";
 // 메인페이지
 const MainPage = () => {
   return (
     // Wrapper
     <MainPageWrapper>
       <SelctNotice>
-        <span></span>
+        <span>12월</span>
       </SelctNotice>
       {/* Anniversary area */}
       <Anniversary>
@@ -21,7 +22,8 @@ const MainPage = () => {
 
       {/* Content area */}
       <MainContents />
-      {/* <Navigation /> */}
+      {/* Footer area */}
+      <Footer />
     </MainPageWrapper>
   );
 };
