@@ -3,7 +3,7 @@ import React from "react";
 import {
   Anniversary,
   MainPageWrapper,
-  SelctNotice
+  SelctNotice,
 } from "../../styles/diarystyles/mainpage/mainpagestyle";
 import MainContents from "./MainContents";
 // 메인페이지
