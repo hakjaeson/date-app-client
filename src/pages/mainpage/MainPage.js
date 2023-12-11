@@ -3,18 +3,18 @@ import React from "react";
 import {
   Anniversary,
   MainPageWrapper,
-  SelctNotice,
+  SelectMonth,
 } from "../../styles/diarystyles/mainpage/mainpagestyle";
-import MainContents from "./MainContents";
 import Footer from "./Footer";
+import MainContents from "./MainContents";
 // 메인페이지
 const MainPage = () => {
   return (
     // Wrapper
     <MainPageWrapper>
-      <SelctNotice>
-        <span>12월</span>
-      </SelctNotice>
+      <SelectMonth>
+        <span>DEC</span>
+      </SelectMonth>
       {/* Anniversary area */}
       <Anniversary>
         <span>D+1000</span>
