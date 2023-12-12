@@ -22,7 +22,12 @@ const Footer = () => {
         </li>
 
         <li>
-          <img src={process.env.PUBLIC_URL + "/images/icon_plus.svg"} alt="" />
+          <Link to="/createpage">
+            <img
+              src={process.env.PUBLIC_URL + "/images/icon_plus.svg"}
+              alt=""
+            />
+          </Link>
         </li>
 
         <li>
