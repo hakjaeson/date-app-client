@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useRef, useState } from "react";
-import myImage from "./놀람.jpeg";
 
 const FormContents = styled.div`
   background-color: #fff;
@@ -13,7 +12,7 @@ const FormContents = styled.div`
   max-height: 100%;
   min-height: 50%;
   height: ${props => props.height}px;
-  gap: 10px;
+  padding-left: 15px;
 
   border: 0.1rem solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.13);
@@ -32,16 +31,25 @@ const LineArea = styled.div`
 const Line = styled.div`
   width: 50px;
   height: 1px;
+  margin-right: 15px;
   background-color: black;
   border-color: black;
 `;
 
 const FormTop = styled.div`
-  margin-top: 5%;
   display: flex;
-  justify-content: space-around;
   align-items: center;
   width: 100%;
+  margin-top: 5%;
+`;
+
+const UlEmoji = styled.ul`
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  margin-top: 7%;
+  padding-left: 15px;
 `;
 
 const FormEmoji = styled.input`
@@ -54,24 +62,29 @@ const FormEmoji = styled.input`
 `;
 
 const FormTitle = styled.input`
-  width: 70%;
+  width: 75%;
   height: 20px;
-  border: none;
-  outline: none;
-`;
-
-const FormHashTag = styled.input`
-  width: 60%;
-  height: 20px;
+  margin-left: 15px;
   border: none;
   outline: none;
 `;
 
 const FormContentInput = styled.textarea`
-  width: 90%;
+  width: 100%;
+  margin-top: 10px;
   min-height: 40%;
-  max-height: 70%;
-  height: ${props => props.height - 400}px;
+  max-height: 65%;
+  height: ${props => props.height - 250}px;
+  resize: none;
+  vertical-align: text-top;
+  border: none;
+  outline: none;
+`;
+
+const FormHashTag = styled.textarea`
+  width: 100%;
+  height: 20px;
+  margin-top: 5px;
   resize: none;
   vertical-align: text-top;
   border: none;
@@ -91,10 +104,12 @@ const FormButton = styled.button`
 `;
 
 const FormDrag = ({ register, errors }) => {
-  const [boxHeight, setBoxHeight] = useState("");
+  const [boxHeight, setBoxHeight] = useState(400);
   const [resizing, setResizing] = useState(false);
   const lineAreaRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
+  const EMOJI = ["기쁨", "슬픔", "화남", "놀람", "사랑"];
+  const [emojiName, setEmojiName] = useState("놀람");
 
   useEffect(() => {
     const handleTouchStart = e => {
@@ -137,33 +152,30 @@ const FormDrag = ({ register, errors }) => {
       </LineArea>
       <FormTop>
         {isOpen && (
-          <ul>
-            <li
-              onClick={() => {
-                return;
-              }}
-            >
-              Item 1
-            </li>
-            <li
-              onClick={() => {
-                return;
-              }}
-            >
-              Item 2
-            </li>
-            <li
-              onClick={() => {
-                return;
-              }}
-            >
-              Item 3
-            </li>
-          </ul>
+          <UlEmoji>
+            {EMOJI.map((emoji, id) => {
+              return (
+                <li
+                  key={id}
+                  onClick={() => {
+                    setEmojiName(emoji);
+                    setIsOpen(!isOpen);
+                    console.log(emoji);
+                  }}
+                >
+                  <FormEmoji
+                    type="image"
+                    src={`${process.env.PUBLIC_URL}/images/${emoji}.jpeg`}
+                    alt={emoji}
+                  />
+                </li>
+              );
+            })}
+          </UlEmoji>
         )}
         <FormEmoji
           type="image"
-          src={myImage}
+          src={`${process.env.PUBLIC_URL}/images/${emojiName}.jpeg`}
           alt="Image 1"
           onClick={handleClick}
         />
@@ -175,7 +187,6 @@ const FormDrag = ({ register, errors }) => {
         />
         <span>{errors?.title?.message}</span>
       </FormTop>
-      <FormHashTag {...register("hashtag")} placeholder="#해시태그" />
       <FormContentInput
         height={boxHeight}
         {...register("content", {
@@ -183,6 +194,8 @@ const FormDrag = ({ register, errors }) => {
         })}
         placeholder="내용"
       />
+      <span>{errors?.content?.message}</span>
+      <FormHashTag {...register("hashtag")} placeholder="#해시태그" />
       <FormButton>완료</FormButton>
     </FormContents>
   );
