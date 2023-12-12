@@ -1,40 +1,52 @@
 import React from "react";
 import {
-  Header,
-  Main,
   ProfileImg,
   ProfileInfo,
   ProfilePageWrap,
+  ProfileFooter,
+  ProfileHeader,
+  ProfileMain,
 } from "../../styles/diarystyles/profilepage/profilepagestyle";
 
 const Profile = () => {
   return (
     <ProfilePageWrap>
-      <Header>
-        <button>
-          <a href="">상단 바</a>
-        </button>
-      </Header>
-      <Main>
+      <ProfileHeader>
+        <span>
+          <a href="">
+            <img src={`${process.env.PUBLIC_URL}/images/icon_arrow.svg`} />
+          </a>
+        </span>
+      </ProfileHeader>
+      <ProfileMain>
         <ProfileImg>
-          <img className="profile-img-me" src="https://picsum.photos/300/300" />
-          <img
-            className="profile-img-you"
-            src="https://picsum.photos/100/100"
-          />
+          <div className="profile-img-couple">
+            <img src="https://picsum.photos/300/300" />
+            <div className="profile-img-you">
+              <img src="https://picsum.photos/100/100" />
+            </div>
+          </div>
         </ProfileImg>
         <ProfileInfo>
-          <ul>
+          <div>
             <span>PROFILE</span>
-            <li>이름</li>
-            <li>생년월일</li>
-            <li>상대와 처음 만난 날</li>
-            <button>
-              <a href="#">프로필 수정</a>
-            </button>
-          </ul>
+            <ul className="profile-info">
+              <hr />
+              <li>이름 : 국연수</li>
+              <hr />
+              <li>생년월일 : 2000-02-14</li>
+              <hr />
+              <li>상대와 처음 만난 날 : 2020-05.17</li>
+              <hr />
+            </ul>
+          </div>
         </ProfileInfo>
-      </Main>
+        <ProfileFooter>
+          <span>
+            <a href="#">프로필 수정</a>
+          </span>
+        </ProfileFooter>
+      </ProfileMain>
     </ProfilePageWrap>
   );
 };
