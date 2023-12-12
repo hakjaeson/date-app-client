@@ -1,23 +1,41 @@
-import styled from "@emotion/styled";
 import React from "react";
+import {
+  IdForm,
+  LoginButton,
+  LoginContent,
+  LoginFooter,
+  LoginForm,
+  LoginLabel,
+  LoginLogo,
+  LoginWrapper,
+  PasswordForm,
+  SigninButton,
+} from "../../styles/diarystyles/login/loginstyle";
 
 const Login = () => {
-  const LoginWrapper = styled.div`
-    display: block;
-    width: 100%;
-  `;
   return (
     <LoginWrapper>
-      <div>
-        <div>
-          <img src="https://picsum.photos/300/300"></img>
-        </div>
-        <div>ID/PASSWORD</div>
-        <div>
-          <button>로그인</button>
-          <button>회원가입</button>
-        </div>
-      </div>
+      <LoginContent>
+        <LoginLogo>
+          <img src={`${process.env.PUBLIC_URL}/images/logo.svg`}></img>
+        </LoginLogo>
+        <LoginForm>
+          <div>
+            <IdForm>
+              <LoginLabel>ID</LoginLabel>
+              <input type="text" name="id" />
+            </IdForm>
+            <PasswordForm>
+              <LoginLabel>PASSWORD</LoginLabel>
+              <input type="password" name="password"></input>
+            </PasswordForm>
+          </div>
+        </LoginForm>
+        <LoginFooter>
+          <LoginButton>로그인</LoginButton>
+          <SigninButton>회원가입</SigninButton>
+        </LoginFooter>
+      </LoginContent>
     </LoginWrapper>
   );
 };

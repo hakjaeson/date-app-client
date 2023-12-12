@@ -1,9 +1,9 @@
 import React from "react";
 import {
-  IntroWrapper,
-  Main,
   IntroLogo,
   IntroTitle,
+  IntroWrapper,
+  Main,
 } from "../../styles/diarystyles/intro/introstyle";
 
 const intro = () => {
