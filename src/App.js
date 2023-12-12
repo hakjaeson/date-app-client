@@ -5,6 +5,7 @@ import Login from "./pages/login/Login";
 import MainPage from "./pages/mainpage/MainPage";
 import CreatePage from "./pages/createpage/CreatePage";
 import Profile from "./pages/profile/Profile";
+import NotFound from "./pages/notFound/NotFound";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/" element={<MainPage />} />
       <Route path="/createpage" element={<CreatePage />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/*" element={<NotFound />} />
     </Routes>
   );
 }
