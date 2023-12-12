@@ -1,11 +1,13 @@
 import React from "react";
+import { NotFoundPage } from "../../styles/diarystyles/notfound/notfoundstyle";
 
 const NotFound = () => {
   return (
-    <div>
-      <h2>404 Not Found</h2>
-      <p>Sorry, the page you are looking for does not exist.</p>
-    </div>
+    <NotFoundPage>
+      <div>
+        <img src={process.env.PUBLIC_URL + "/images/not-found.png"} alt="" />
+      </div>
+    </NotFoundPage>
   );
 };
 

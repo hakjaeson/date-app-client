@@ -1,0 +1,92 @@
+[
+  {
+    "nm": "홍길동",
+    "profilepic": "profile_pic_1.jpg",
+    "title": "오늘의 일기",
+    "contents": "오늘은 좋은 날이었다.",
+    "emoji": 1,
+    "diaryPic": "diary_pic_1.jpg",
+    "hashContent": "기분 좋음"
+  },
+  {
+    "nm": "김영희",
+    "profilepic": "profile_pic_2.jpg",
+    "title": "봄날의 기분",
+    "contents": "꽃이 피어나는 봄날이 찾아왔다.",
+    "emoji": 2,
+    "diaryPic": "diary_pic_2.jpg",
+    "hashContent": "봄날"
+  },
+  {
+    "nm": "이승우",
+    "profilepic": "profile_pic_3.jpg",
+    "title": "모험의 시작",
+    "contents": "오늘은 새로운 모험이 시작되는 날이다.",
+    "emoji": 3,
+    "diaryPic": "diary_pic_3.jpg",
+    "hashContent": "모험"
+  },
+  {
+    "nm": "박지연",
+    "profilepic": "profile_pic_4.jpg",
+    "title": "친구와의 만남",
+    "contents": "오랜만에 친구들과 즐거운 시간을 보냈다.",
+    "emoji": 4,
+    "diaryPic": "diary_pic_4.jpg",
+    "hashContent": "친구"
+  },
+  {
+    "nm": "손영민",
+    "profilepic": "profile_pic_5.jpg",
+    "title": "휴식의 날",
+    "contents": "아무것도 하지 않고 푹 쉬는 날이다.",
+    "emoji": 5,
+    "diaryPic": "diary_pic_5.jpg",
+    "hashContent": "휴식"
+  },
+  {
+    "nm": "임수현",
+    "profilepic": "profile_pic_6.jpg",
+    "title": "감사한 순간",
+    "contents": "가족과 함께하는 시간은 언제나 소중하다.",
+    "emoji": 1,
+    "diaryPic": "diary_pic_6.jpg",
+    "hashContent": "가족"
+  },
+  {
+    "nm": "전민석",
+    "profilepic": "profile_pic_7.jpg",
+    "title": "운동의 즐거움",
+    "contents": "운동을 하면서 건강한 삶을 누린다.",
+    "emoji": 2,
+    "diaryPic": "diary_pic_7.jpg",
+    "hashContent": "운동"
+  },
+  {
+    "nm": "신지영",
+    "profilepic": "profile_pic_8.jpg",
+    "title": "여행의 추억",
+    "contents": "새로운 장소에서의 여행은 항상 기억에 남는다.",
+    "emoji": 3,
+    "diaryPic": "diary_pic_8.jpg",
+    "hashContent": "여행"
+  },
+  {
+    "nm": "김태우",
+    "profilepic": "profile_pic_9.jpg",
+    "title": "음악의 세계",
+    "contents": "좋아하는 음악을 들으면 마음이 편안해진다.",
+    "emoji": 4,
+    "diaryPic": "diary_pic_9.jpg",
+    "hashContent": "음악"
+  },
+  {
+    "nm": "이지연",
+    "profilepic": "profile_pic_10.jpg",
+    "title": "비오는 날의 감성",
+    "contents": "비가 내리는 날, 창밖으로 보이는 풍경이 아름답다.",
+    "emoji": 5,
+    "diaryPic": "diary_pic_10.jpg",
+    "hashContent": "비 오는 날"
+  }
+]

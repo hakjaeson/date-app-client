@@ -178,7 +178,7 @@ export const FooterList = styled.ul`
     text-align: center;
     border: 2px solid black;
     background-color: transparent;
-    border-radius: 50%;
+    border-radius: 50%; 
     img {
       width: 25px;
       height: 25px;
