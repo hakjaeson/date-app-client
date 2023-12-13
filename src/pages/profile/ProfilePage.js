@@ -8,7 +8,7 @@ import {
   ProfileMain,
 } from "../../styles/diarystyles/profilepage/profilepagestyle";
 
-const Profile = () => {
+const ProfilePage = () => {
   return (
     <ProfilePageWrap>
       <ProfileHeader>
@@ -51,4 +51,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ProfilePage;
