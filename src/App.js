@@ -7,6 +7,8 @@ import ProfilePage from "./pages/profile/ProfilePage";
 import ReadPage from "./pages/readpage/ReadPage";
 import NotFound from "./pages/notFound/NotFound";
 import CalendarPage from "./pages/calendar/CalendarPage";
+import ProfilePartner from "./pages/profile/ProfilePartner";
+import ProfileModify from "./pages/profile/ProfileModify";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
       <Route path="/createpage" element={<CreatePage />} />
       <Route path="/readpage" element={<ReadPage />} />
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/profile/partner" element={<ProfilePartner />} />
+      <Route path="/profile/modify" element={<ProfileModify />} />
       <Route path="/*" element={<NotFound />} />
     </Routes>
   );

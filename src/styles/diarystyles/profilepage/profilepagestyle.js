@@ -6,13 +6,17 @@ export const ProfilePageWrap = styled.div`
   background-color: #fefdfb;
   height: 100%;
   width: 100%;
+  Link {
+    position: relative;
+  }
 `;
 export const ProfileHeader = styled.header`
   position: relative;
   display: block;
-  width: 100%;
+  width: 390px;
   height: 78px;
-  padding-top: 55px;
+  padding: 20px 5px;
+  margin: 0 auto;
   span {
     background-color: #ffdbab;
     border: 2.5px solid #000;
@@ -34,7 +38,7 @@ export const ProfileImg = styled.div`
   display: flex;
   justify-content: center;
 
-  .profile-img-couple {
+  .profile-img {
     position: relative;
     width: 300px;
     height: 300px;
@@ -42,7 +46,7 @@ export const ProfileImg = styled.div`
       border-radius: 70%;
     }
   }
-  .profile-img-you {
+  .profile-img-partner {
     position: absolute;
     left: 200px;
     top: 200px;
@@ -83,7 +87,7 @@ export const ProfileFooter = styled.footer`
   display: flex;
   justify-content: center;
   padding-top: 20px;
-  span {
+  button {
     background-color: #d2ceff;
     border: 2.5px solid #000;
     border-radius: 20px;

@@ -7,22 +7,21 @@ import {
   ProfileHeader,
   ProfileMain,
 } from "../../styles/diarystyles/profilepage/profilepagestyle";
+import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
   return (
     <ProfilePageWrap>
       <ProfileHeader>
-        <span>
-          <a href="">
-            <img src={`${process.env.PUBLIC_URL}/images/icon_arrow.svg`} />
-          </a>
-        </span>
+        <Link to="/">
+          <img src={`${process.env.PUBLIC_URL}/images/bt_back.svg`} />
+        </Link>
       </ProfileHeader>
       <ProfileMain>
         <ProfileImg>
-          <div className="profile-img-couple">
+          <div className="profile-img">
             <img src="https://picsum.photos/300/300" />
-            <div className="profile-img-you">
+            <div className="profile-img-partner">
               <img src="https://picsum.photos/100/100" />
             </div>
           </div>
@@ -42,9 +41,9 @@ const ProfilePage = () => {
           </div>
         </ProfileInfo>
         <ProfileFooter>
-          <span>
-            <a href="#">프로필 수정</a>
-          </span>
+          <Link to="/profile/modify">
+            <button>프로필 수정</button>
+          </Link>
         </ProfileFooter>
       </ProfileMain>
     </ProfilePageWrap>
