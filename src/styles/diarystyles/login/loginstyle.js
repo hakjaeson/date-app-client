@@ -3,7 +3,8 @@ import styled from "@emotion/styled";
 export const LoginWrapper = styled.div`
   display: block;
   width: 100%;
-  padding-top: 50px;
+  padding-top: 100px;
+  font-family: Pretendard-Regular;
 `;
 
 export const LoginContent = styled.div`
@@ -27,7 +28,7 @@ export const LoginForm = styled.form`
   display: flex;
   width: 100%;
   justify-content: center;
-  margin-bottom: 47px;
+  margin-bottom: 25px;
 `;
 
 export const IdForm = styled.div`
@@ -40,6 +41,7 @@ export const IdForm = styled.div`
     font-size: 15px;
     border: 2.5px solid #000;
     border-radius: 16px;
+    padding-left: 20px;
   }
 `;
 
@@ -52,6 +54,7 @@ export const PasswordForm = styled.div`
     font-size: 15px;
     border: 2.5px solid #000;
     border-radius: 16px;
+    padding-left: 20px;
   }
 `;
 
@@ -67,6 +70,15 @@ export const LoginLabel = styled.label`
   border-radius: 16px;
 `;
 
+export const LoginError = styled.p`
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  color: #ff4244;
+  margin-bottom: 40px;
+`;
+
 export const LoginFooter = styled.footer`
   display: block;
 `;
@@ -74,7 +86,7 @@ export const LoginFooter = styled.footer`
 export const LoginButton = styled.button`
   display: block;
   width: 350px;
-  height: 65px;
+  height: 60px;
   font-size: 20px;
   background-color: #d2ceff;
   border: 2.5px solid #000;
@@ -86,7 +98,7 @@ export const LoginButton = styled.button`
 export const SigninButton = styled.button`
   display: block;
   width: 350px;
-  height: 65px;
+  height: 60px;
   font-size: 20px;
   background-color: #d2ceff;
   border: 2.5px solid #000;
