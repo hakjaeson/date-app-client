@@ -36,5 +36,6 @@ body {
   letter-spacing: -0.23px;
   word-break: keep-all;
   color: #000000;
-  /* background-color: blanchedalmond; */
+  background: #fefdfb;
+  height: 900px;
 }

@@ -5,6 +5,22 @@ export const MainPageWrapper = styled.div`
   /* background-color: skyblue; */
   height: 100%;
   font-family: Pretendard-Regular;
+  padding-bottom: 80px;
+`;
+
+export const SelectMonth = styled.div`
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffdbab;
+  font-weight: 500;
+  height: 50px;
+  border: 2px solid black;
+  font-size: 2rem;
+  span {
+  }
 `;
 
 export const Anniversary = styled.div`
@@ -46,8 +62,12 @@ export const ContentHeader = styled.div`
 `;
 
 export const ContentNameTitle = styled.div`
-  line-height: 1.5rem;
+  line-height: 2rem;
   margin-right: auto;
+  span {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
 `;
 export const WriteingDate = styled.div`
   margin-right: 10px;
@@ -65,65 +85,32 @@ export const WriteingDate = styled.div`
   }
 `;
 
-export const FooterBar = styled.div`
-  position: fixed;
-  width: 90%;
-  padding: 10px;
-  background-color: green;
-  height: 100px;
-  bottom: 0;
-`;
-export const FooterList = styled.ul`
-  display: flex;
-  justify-content: space-between;
-  li {
-    img {
-      border-radius: 25px;
-    }
-  }
-`;
-
-export const SelectMonth = styled.div`
-  display: flex;
-  margin-top: 20px;
-  margin-bottom: 15px;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffdbab;
-  font-weight: 500;
-  height: 50px;
-  border: 2px solid black;
-  font-size: 2rem;
-  span {
-  }
-`;
-
 // Content Slide
 export const ContentSlide = styled.div`
   /* border: 1px solid blue; */
 `;
-export const SlidePrevBt = styled.button`
-  background: url(../../images/icon_arrow.svg) no-repeat center;
-  transform: rotateY(180deg);
-  position: absolute;
-  left: 10%;
-  top: 37.5%;
-  z-index: 2;
-  transform: translate(-50%, -50%);
-  width: 48px;
-  height: 48px;
-  border: none;
-`;
-export const SlideNextBt = styled.button`
-  background-color: transparent;
-  position: absolute;
-  right: -2.25%;
-  top: 37.5%;
-  z-index: 2;
-  transform: translate(-50%, -50%);
-  width: 48px;
-  height: 48px;
-`;
+// export const SlidePrevBt = styled.button`
+//   background: url(../../images/icon_arrow.svg) no-repeat center;
+//   transform: rotateY(180deg);
+//   position: absolute;
+//   left: 10%;
+//   top: 37.5%;
+//   z-index: 2;
+//   transform: translate(-50%, -50%);
+//   width: 48px;
+//   height: 48px;
+//   border: none;
+// `;
+// export const SlideNextBt = styled.button`
+//   background-color: transparent;
+//   position: absolute;
+//   right: -2.25%;
+//   top: 37.5%;
+//   z-index: 2;
+//   transform: translate(-50%, -50%);
+//   width: 48px;
+//   height: 48px;
+// `;
 
 export const ContentSlideImage = styled.div`
   border: 1px solid black;
@@ -166,4 +153,38 @@ export const ContentMoreView = styled.div`
 export const HashTag = styled.div`
   margin-left: 2rem;
   padding-bottom: 5px;
+`;
+
+// Footer(Navigation) area
+export const FooterBar = styled.div`
+  position: fixed;
+  width: 100%;
+  padding: 10px;
+  background-color: #ffdbab;
+  height: 80px;
+  bottom: 0;
+  border: 3px solid black;
+  z-index: 10000;
+`;
+export const FooterList = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border: 2px solid black;
+    background-color: transparent;
+    border-radius: 50%; 
+    img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+  li:nth-child(2) {
+    background: #ffb5b6;
+  }
 `;
