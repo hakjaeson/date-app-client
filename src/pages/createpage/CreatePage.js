@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
 import CreatePageForm from "./CreatePageForm";
+import PrevHeader from "../../components/common/PrevHeader";
 
 const Wrapper = styled.div`
   position: relative;
@@ -24,16 +23,6 @@ const Device = styled.div`
   justify-content: center;
   width: 100%;
   height: 900px;
-`;
-
-const CreatePageHeader = styled.div`
-  /* background-color: red; */
-  position: relative;
-  width: 100%;
-  height: 10%;
-  display: flex;
-  justify-content: left;
-  align-items: center;
 `;
 
 const CreatePageMain = styled.div`
@@ -60,12 +49,7 @@ const CreatePage = () => {
   return (
     <Wrapper>
       <Device>
-        <CreatePageHeader>
-          <FontAwesomeIcon
-            icon={faChevronLeft}
-            style={{ width: 20, height: 20, marginLeft: 20 }}
-          />
-        </CreatePageHeader>
+        <PrevHeader />
         <CreatePageMain>
           <CreatePageForm />
         </CreatePageMain>

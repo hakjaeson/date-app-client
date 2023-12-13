@@ -32,7 +32,7 @@ const ImageInput = styled.input`
 `;
 
 const ImageButton = styled.div`
-  background-color: rgba(120, 120, 120, 0.2);
+  background-color: #eeeeee;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,8 +54,11 @@ const CreatePageForm = () => {
   const onValid = data => {
     console.log(data);
   };
+  const onInValid = data => {
+    alert(`${data?.title?.message}\n${data?.content?.message}`);
+  };
   return (
-    <CreatePageFormTag onSubmit={handleSubmit(onValid)}>
+    <CreatePageFormTag onSubmit={handleSubmit(onValid, onInValid)}>
       <ImageContainer>
         <ImageButton>
           <ImageInput type="file" {...register("image")} accept="image/*" />

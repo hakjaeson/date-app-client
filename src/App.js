@@ -5,6 +5,7 @@ import Login from "./pages/login/Login";
 import MainPage from "./pages/mainpage/MainPage";
 import CreatePage from "./pages/createpage/CreatePage";
 import Profile from "./pages/profile/Profile";
+import ReadPage from "./pages/readpage/ReadPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<MainPage />} />
       <Route path="/createpage" element={<CreatePage />} />
+      <Route path="/readpage" element={<ReadPage />} />
       <Route path="/profile" element={<Profile />} />
     </Routes>
   );
