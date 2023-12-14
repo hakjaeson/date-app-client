@@ -89,28 +89,6 @@ export const WriteingDate = styled.div`
 export const ContentSlide = styled.div`
   /* border: 1px solid blue; */
 `;
-// export const SlidePrevBt = styled.button`
-//   background: url(../../images/icon_arrow.svg) no-repeat center;
-//   transform: rotateY(180deg);
-//   position: absolute;
-//   left: 10%;
-//   top: 37.5%;
-//   z-index: 2;
-//   transform: translate(-50%, -50%);
-//   width: 48px;
-//   height: 48px;
-//   border: none;
-// `;
-// export const SlideNextBt = styled.button`
-//   background-color: transparent;
-//   position: absolute;
-//   right: -2.25%;
-//   top: 37.5%;
-//   z-index: 2;
-//   transform: translate(-50%, -50%);
-//   width: 48px;
-//   height: 48px;
-// `;
 
 export const ContentSlideImage = styled.div`
   border: 1px solid black;
@@ -132,6 +110,8 @@ export const ContentData = styled.div`
   line-height: 1.5rem;
   // 줄 끊는거 필요함 ... 요거
   img {
+    width: 48px;
+    height: 48px;
     border: 1px solid black;
     border-radius: 28px;
     margin-right: 10px;
@@ -163,7 +143,7 @@ export const FooterBar = styled.div`
   background-color: #ffdbab;
   height: 80px;
   bottom: 0;
-  border: 3px solid black;
+  border: 0.25rem solid black;
   z-index: 10000;
 `;
 export const FooterList = styled.ul`
@@ -178,13 +158,13 @@ export const FooterList = styled.ul`
     text-align: center;
     border: 2px solid black;
     background-color: transparent;
-    border-radius: 50%; 
+    border-radius: 50%;
     img {
       width: 25px;
       height: 25px;
     }
   }
-  li:nth-child(2) {
+  li:nth-of-type(2) {
     background: #ffb5b6;
   }
 `;

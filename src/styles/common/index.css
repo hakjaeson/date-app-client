@@ -29,14 +29,16 @@ img {
 html {
   font-size: 10px;
 }
-body {
-  font-family: "Noto Sans KR", sans-serif;
-  font-size: 1rem;
-  line-height: 1.25;
-  letter-spacing: -0.23px;
-  word-break: keep-all;
-  color: #000000;
-  background: #fefdfb;
-  width: 390px;
-  height: 844px;
+@media only screen and (max-width: 390px) {
+  body {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 1rem;
+    line-height: 1.25;
+    letter-spacing: -0.23px;
+    word-break: keep-all;
+    color: #000000;
+    background: #fefdfb;
+    width: 390px;
+    height: 844px;
+  }
 }
