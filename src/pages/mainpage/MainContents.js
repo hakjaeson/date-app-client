@@ -79,7 +79,7 @@ const MainContents = () => {
             </div>
           </ContentData>
           <ContentMoreView>
-            <Link to="/read-page/${no}">더보기</Link>
+            <Link to="/readpage">더보기</Link>
           </ContentMoreView>
           {/* HashTag */}
           <HashTag>#부산 #해운대 #달콩이 #광안리</HashTag>
