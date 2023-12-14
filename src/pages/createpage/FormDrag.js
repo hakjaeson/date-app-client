@@ -73,7 +73,7 @@ const FormTitle = styled.input`
 const FormContentInput = styled.textarea`
   width: 100%;
   margin-top: 10px;
-  min-height: 40%;
+  min-height: 130px;
   max-height: 65%;
   height: ${props => props.height - 250}px;
   font-size: 1.7rem;
@@ -93,24 +93,29 @@ const FormHashTagBox = styled.div`
 
 const FormHashTag = styled.textarea`
   background-color: #ffb5b6;
-  width: 15%; /* 가로폭 100%로 설정 */
-  resize: both; /* 사용자가 크기를 조절할 수 있도록 설정 */
-  overflow: hidden; /* 내용이 넘칠 경우 스크롤바 표시 */
-  text-align: center; /* 텍스트를 좌측 정렬로 설정 */
+  width: 15%;
+  height: 25px;
+  resize: none;
+  overflow: hidden;
+  text-align: center;
+  padding-top: 4px;
   font-size: 1.2rem;
-  border-radius: 15px;
+  border-radius: 10px;
+  border: none;
 `;
 
 const FormButton = styled.button`
   position: absolute;
-  bottom: 20px;
+  bottom: 40px;
   right: 20px;
-  width: 15%;
-  height: 30px;
+  width: 70px;
+  height: 40px;
+  font-size: 1.7rem;
   background-color: #ffdbab;
-  border: 0.1rem solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.13);
-  border-radius: 10px;
+  /* border: 0.1rem solid rgba(0, 0, 0, 0.1); */
+  /* box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.13); */
+  border: 2.5 solid #000;
+  border-radius: 16px;
 `;
 
 const FormDrag = ({ register, errors }) => {

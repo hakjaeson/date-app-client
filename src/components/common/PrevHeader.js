@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 
 const PageHeader = styled.div`
   position: relative;
@@ -13,12 +11,19 @@ const PageHeader = styled.div`
   align-items: center;
 `;
 
+const PrevBtn = styled.img`
+  margin-left: 15px;
+`;
+
 const PrevHeader = () => {
+  const navigate = useNavigate();
   return (
     <PageHeader>
-      <FontAwesomeIcon
-        icon={faChevronLeft}
-        style={{ width: 20, height: 20, marginLeft: 20 }}
+      <PrevBtn
+        src={`${process.env.PUBLIC_URL}/images/bt_prev.svg`}
+        onClick={() => {
+          navigate(-1);
+        }}
       />
     </PageHeader>
   );
