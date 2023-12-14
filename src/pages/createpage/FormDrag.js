@@ -1,5 +1,6 @@
-import styled from "@emotion/styled";
 import React, { useEffect, useRef, useState } from "react";
+import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 
 const FormContents = styled.div`
   background-color: #fff;
@@ -12,7 +13,7 @@ const FormContents = styled.div`
   max-height: 100%;
   min-height: 50%;
   height: ${props => props.height}px;
-  padding-left: 15px;
+  padding: 0 0 15px 15px;
 
   border: 2.5px solid #000;
   box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.13);
@@ -43,13 +44,18 @@ const FormTop = styled.div`
   margin-top: 5%;
 `;
 
-const UlEmoji = styled.ul`
+const UlEmoji = styled(motion.ul)`
   position: absolute;
   display: flex;
   top: 0;
   left: 0;
   margin-top: 7%;
   padding-left: 15px;
+`;
+
+const LlEmoji = styled(motion.li)`
+  list-style: none;
+  opacity: 0;
 `;
 
 const FormEmoji = styled.input`
@@ -73,7 +79,7 @@ const FormTitle = styled.input`
 const FormContentInput = styled.textarea`
   width: 100%;
   margin-top: 10px;
-  min-height: 130px;
+  min-height: 110px;
   max-height: 65%;
   height: ${props => props.height - 250}px;
   font-size: 1.7rem;
@@ -93,8 +99,11 @@ const FormHashTagBox = styled.div`
 
 const FormHashTag = styled.textarea`
   background-color: #ffb5b6;
-  width: 15%;
-  height: 25px;
+  max-width: 350px;
+  min-width: 60px;
+  max-height: 50px;
+  width: ${props => (props.resizing == 60 ? 60 : props.resizing)}px;
+  height: ${({ width }) => (width === "350px" ? "50px" : "25px")};
   resize: none;
   overflow: hidden;
   text-align: center;
@@ -118,13 +127,29 @@ const FormButton = styled.button`
   border-radius: 16px;
 `;
 
+const EmojiBoxMotion = {
+  open: {
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+  close: {},
+};
+
+const EmojiMotion = {
+  open: { opacity: 1, transition: { duration: 1 } },
+  close: { opacity: 0 },
+};
+
 const FormDrag = ({ register, errors }) => {
-  const [boxHeight, setBoxHeight] = useState(400);
-  const [resizing, setResizing] = useState(false);
-  const lineAreaRef = useRef(null);
-  const [isOpen, setIsOpen] = useState(false);
   const EMOJI = ["기쁨", "슬픔", "화남", "놀람", "사랑"];
+  const [boxHeight, setBoxHeight] = useState(300);
+  const [hashTagResize, setHashTagResize] = useState(60);
+  const [resizing, setResizing] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [emojiName, setEmojiName] = useState("놀람");
+  const lineAreaRef = useRef(null);
 
   useEffect(() => {
     const handleTouchStart = e => {
@@ -156,13 +181,14 @@ const FormDrag = ({ register, errors }) => {
 
   const handleClick = event => {
     event.preventDefault();
-    // 여기에 원하는 동작을 추가하세요
-    console.log("Image clicked!");
     setIsOpen(!isOpen);
   };
 
-  const onCLicked = (e, errors) => {
-    console.log(errors?.title);
+  const HashTaghandleChange = event => {
+    event.preventDefault();
+    let hash = event.target.value;
+
+    setHashTagResize(60 + hash.length * 10);
   };
   return (
     <FormContents height={boxHeight}>
@@ -171,23 +197,27 @@ const FormDrag = ({ register, errors }) => {
       </LineArea>
       <FormTop>
         {isOpen && (
-          <UlEmoji>
+          <UlEmoji
+            variants={EmojiBoxMotion}
+            animate={isOpen ? "open" : "closed"}
+          >
             {EMOJI.map((emoji, id) => {
               return (
-                <li
+                <LlEmoji
                   key={id}
                   onClick={() => {
                     setEmojiName(emoji);
                     setIsOpen(!isOpen);
-                    console.log(emoji);
+                    // console.log(emoji);
                   }}
+                  variants={EmojiMotion}
                 >
                   <FormEmoji
                     type="image"
                     src={`${process.env.PUBLIC_URL}/images/${emoji}.jpeg`}
                     alt={emoji}
                   />
-                </li>
+                </LlEmoji>
               );
             })}
           </UlEmoji>
@@ -213,7 +243,12 @@ const FormDrag = ({ register, errors }) => {
         placeholder="내용"
       />
       <FormHashTagBox>
-        <FormHashTag {...register("hashtag")} placeholder="#해시태그" />
+        <FormHashTag
+          {...register("hashtag")}
+          resizing={hashTagResize}
+          placeholder="#해시태그"
+          onChange={HashTaghandleChange}
+        />
       </FormHashTagBox>
       <FormButton>저장</FormButton>
     </FormContents>
