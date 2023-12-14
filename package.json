@@ -17,6 +17,7 @@
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-calendar": "^4.7.0",
+    "react-datepicker": "^4.24.0",
     "react-dnd": "^16.0.1",
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.6",

@@ -16,75 +16,120 @@ import {
   WriteingDate,
 } from "../../styles/diarystyles/mainpage/mainpagestyle";
 
-const MainContents = () => {
+const MainContents = ({ data }) => {
   const swiperRef = useRef();
-  const [data, setData] = useState();
+
+  // 데이터 emoji 값에 따라 이모지(기분) 그림 출력
+  const EmojiFuc = emoji => {
+    let result;
+    if (emoji == 1) {
+      result = "images/기쁨.jpeg";
+    } else if (emoji == 2) {
+      result = "images/놀람.jpeg";
+    } else if (emoji == 3) {
+      result = "images/사랑.jpeg";
+    } else if (emoji == 4) {
+      result = "images/슬픔.jpeg";
+    } else if (emoji == 5) {
+      result = "images/화남.jpeg";
+    } else {
+      console.log("not-found-emoji");
+    }
+    return result;
+  };
+
+  // hashTag에 따른 필터링
+  const [hashFilter, setHashFilter] = useState("");
+  const handleHashClick = hash => {
+    setHashFilter(hash);
+  };
+  const filterData = hashFilter
+    ? data.hashFilter(item => item.content.include(hashFilter))
+    : data;
+  console.log(filterData);
+  const hashContents = data.hashContent;
+  console.log([hashContents]);
+  // 날짜에 따른 필터링
   return (
     <div>
-      <MainPageContent>
-        <ContentHeader>
-          <div className="profile-image">
-            <img src="https://picsum.photos/40/40" alt="" />
-          </div>
-          {/* Content title */}
-          <ContentNameTitle>
-            {/* User name */}
-            <div>
-              <span>알콩이</span>
+      {data.map(item => (
+        <MainPageContent key={item.idx}>
+          <ContentHeader>
+            <div className="profile-image">
+              <img src="https://picsum.photos/40/40" alt="" />
             </div>
+            {/* Content title */}
+            <ContentNameTitle>
+              {/* User name */}
+              <div>
+                <span>{item.nm}</span>
+              </div>
 
-            <div>
-              <span>부싼 바캉스</span>
-            </div>
-          </ContentNameTitle>
+              <div>
+                <span>{item.title}</span>
+              </div>
+            </ContentNameTitle>
 
-          {/* Content Date */}
-          <WriteingDate>
-            <span>7</span>
-          </WriteingDate>
-        </ContentHeader>
-        <ContentSlide>
-          <Swiper
-            slidesPerView={1}
-            spaceBetween={0}
-            onSwiper={swiper => {
-              swiperRef.current = swiper;
-            }}
-            className="content-slide"
-          >
-            <SwiperSlide>
-              <ContentSlideImage>
-                <img src="https://picsum.photos/300/200" alt=""></img>
-              </ContentSlideImage>
-            </SwiperSlide>
-            <SwiperSlide>
-              <ContentSlideImage>
-                <img src="https://picsum.photos/300/200" alt=""></img>
-              </ContentSlideImage>
-            </SwiperSlide>
-          </Swiper>
-        </ContentSlide>
-
-        <ContentBody>
-          <ContentData>
-            <div>
-              <img src={DataTransfer.image} alt="" />
-            </div>
-            <div>
+            {/* Content Date */}
+            <WriteingDate>
               <span>
-                지난여름 바닷가 너와 나 단둘이 파도에 취해서 노래하며 같은 꿈을
-                꾸었지 다시 여기 바닷가 이제는 말하 고 싶어 네가 있었기에 내가
-                더욱 빛나 별이 되었다고
+                {item.date.split("-")[2].startsWith("0")
+                  ? item.date.split("-")[2].slice(1)
+                  : item.date.split("-")[2]}
               </span>
-            </div>
-          </ContentData>
-          <ContentMoreView>
-            <Link to="/readpage">더보기</Link>
-          </ContentMoreView>
-          {/* HashTag */}
-          <HashTag>#부산 #해운대 #달콩이 #광안리</HashTag>
-        </ContentBody>
-      </MainPageContent>
+            </WriteingDate>
+          </ContentHeader>
+          <ContentSlide>
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={0}
+              onSwiper={swiper => {
+                swiperRef.current = swiper;
+              }}
+              className="content-slide"
+            >
+              <SwiperSlide>
+                <ContentSlideImage>
+                  <img
+                    src="https://m.betanews.net/imagedb/orig/2021/0105/ab677e71.jpg"
+                    alt=""
+                  ></img>
+                </ContentSlideImage>
+              </SwiperSlide>
+              <SwiperSlide>
+                <ContentSlideImage>
+                  <img src="https://picsum.photos/300/200" alt=""></img>
+                </ContentSlideImage>
+              </SwiperSlide>
+            </Swiper>
+          </ContentSlide>
+
+          <ContentBody>
+            <ContentData>
+              <div>
+                <img src={EmojiFuc(item.emoji)} alt="" />
+              </div>
+              <div>
+                <span>{item.contents}</span>
+              </div>
+            </ContentData>
+            <ContentMoreView>
+              <Link to="/readpage/${no}">더보기</Link>
+            </ContentMoreView>
+            <HashTag>
+              {/* {item.mainContents.map((hash, index) => (
+                <a
+                  key={index}
+                  href={`#${hash}`}
+                  onClick={() => handleHashClick(hash)}
+                >
+                  #{hash}{" "}
+                </a>
+              ))} */}
+            </HashTag>
+          </ContentBody>
+        </MainPageContent>
+      ))}
     </div>
   );
 };
