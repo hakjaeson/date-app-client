@@ -25,13 +25,13 @@ const MainContents = ({ data }) => {
     if (emoji == 1) {
       result = "images/기쁨.jpeg";
     } else if (emoji == 2) {
-      result = "images/놀람.jpeg";
-    } else if (emoji == 3) {
-      result = "images/사랑.jpeg";
-    } else if (emoji == 4) {
       result = "images/슬픔.jpeg";
-    } else if (emoji == 5) {
+    } else if (emoji == 3) {
       result = "images/화남.jpeg";
+    } else if (emoji == 4) {
+      result = "images/놀람.jpeg";
+    } else if (emoji == 5) {
+      result = "images/사랑.jpeg";
     } else {
       console.log("not-found-emoji");
     }
