@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+import axios from "axios";
 import {
   Anniversary,
   MainPageWrapper,
@@ -7,10 +8,9 @@ import {
 } from "../../styles/diarystyles/mainpage/mainpagestyle";
 import Footer from "./Footer";
 import MainContents from "./MainContents";
-import axios from "axios";
 //DatePicker
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import MonthSelect from "./MonthSelect";
 
 // 메인페이지
 const MainPage = () => {
@@ -29,18 +29,12 @@ const MainPage = () => {
     };
     fetchData();
   }, []);
-  const [startDate, setStartDate] = useState(new Date());
+
   return (
     // Wrapper
     <MainPageWrapper>
-      <SelectMonth>
-        {/* Custom : https://doooodle932.tistory.com/150 */}
-        <DatePicker
-          selected={startDate}
-          onChange={date => setStartDate(date)}
-          showMonthYearPicker
-          dateFormat="MM/yyyy"
-        />
+      <SelectMonth data={data}>
+        <MonthSelect />
       </SelectMonth>
       {/* Anniversary area */}
       <Anniversary>
@@ -50,7 +44,7 @@ const MainPage = () => {
       {/* Content area */}
       <MainContents data={data} />
       {/* Footer area */}
-      <Footer />
+      <Footer  />
     </MainPageWrapper>
   );
 };

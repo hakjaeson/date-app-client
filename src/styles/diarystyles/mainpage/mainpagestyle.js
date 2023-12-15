@@ -168,3 +168,50 @@ export const FooterList = styled.ul`
     background: #ffb5b6;
   }
 `;
+
+// Month-select
+
+export const MonthDropDown = styled.div`
+  position: relative;
+  display: inline-block;
+  z-index: 10000000;
+`;
+export const NowMonthBt = styled.button`
+  background-color: transparent;
+  color: black;
+  padding: 16px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  border: none;
+  letter-spacing: 0.2rem;
+  cursor: pointer;
+  &:hover {
+  }
+  &:focus {
+    /* background-color: red; */
+  }
+`;
+export const DropDownYearMonth = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  position: absolute;
+  top: 80px;
+  left: 50px;
+  transform: translate(-50%, -6.5%);
+  line-height: 2;
+  background-color: white;
+  border: 0.1rem solid black;
+  min-width: 300px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 2rem;
+  padding: 2rem;
+  z-index: 1;
+`;
+export const NowYearBt = styled.button`
+  padding: 0.5rem;
+`;
+export const YearWrapper = styled.button`
+  float: right;
+`;
