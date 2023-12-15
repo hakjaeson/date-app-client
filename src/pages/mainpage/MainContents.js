@@ -114,7 +114,7 @@ const MainContents = ({ data }) => {
               </div>
             </ContentData>
             <ContentMoreView>
-              <Link to="/readpage/${no}">더보기</Link>
+              <Link to={`/readpage?id=${item.idx}`}>더보기</Link>
             </ContentMoreView>
             <HashTag>
               {/* {item.mainContents.map((hash, index) => (

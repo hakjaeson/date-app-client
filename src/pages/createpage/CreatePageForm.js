@@ -41,7 +41,7 @@ const ImageButton = styled.div`
   height: 70%;
   color: grey;
 
-  border: 1px solid #ccc;
+  border: 2.5px solid #000;
   border-radius: 20px;
 `;
 const CreatePageForm = () => {
