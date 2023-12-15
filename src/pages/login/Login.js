@@ -12,17 +12,21 @@ import {
   PasswordForm,
   SigninButton,
 } from "../../styles/diarystyles/login/loginstyle";
+import { postUserLogin } from "../../api/user/userloginapi";
 
 const Login = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
   const [errorMg, setErrorMg] = useState("");
+
   const handleChangeId = e => {
     setId(e.target.value);
   };
+
   const handleChangePw = e => {
     setPw(e.target.value);
   };
+
   const handleClickLogin = () => {
     if (id === "") {
       setErrorMg("올바른 아이디를 입력하세요.");
@@ -35,8 +39,10 @@ const Login = () => {
     if (pw.length >= 9) {
       setErrorMg("비밀번호는 8글자 이하로 입력하세요.");
     }
-    console.log("화면이동");
+    postUserLogin({ uid: id, upw: pw });
+    // dummydata 데이터와 일치했을 때만 onclick 이벤트가 실행되는 조건식 추가해보기
   };
+
   return (
     <LoginWrapper>
       <LoginContent>
