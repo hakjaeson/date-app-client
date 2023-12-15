@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
 import PrevHeader from "../../components/common/PrevHeader";
+import { getReadPage } from "../../api/read-page/readPageApi";
 
 const Wrapper = styled.div`
   position: relative;
@@ -27,6 +30,7 @@ const PageMain = styled.div`
   position: relative;
   width: 100%;
   height: 80%;
+  overflow-y: scroll;
 `;
 
 const ReadTitle = styled.div`
@@ -51,25 +55,23 @@ const ReadContentbox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 50%;
-  border-bottom: 2.5px solid #000;
+  min-height: 50%;
 `;
 
 const ReadContent = styled.div`
-  background-color: saddlebrown;
   width: 360px;
-  height: 300px;
+  min-height: 300px;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
 `;
 
 const ReadTop = styled.div`
-  background-color: greenyellow;
   width: 100%;
-  height: 25%;
+  height: 100px;
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ReadEmoji = styled.img`
@@ -82,22 +84,31 @@ const ReadEmoji = styled.img`
 `;
 
 const ReadDate = styled.div`
-  background-color: darkorange;
   width: 100%;
+  line-height: 70px;
+  font-size: 1.7rem;
+  padding-left: 15px;
 `;
 
 const ReadMid = styled.div`
-  background-color: greenyellow;
-  width: 100%;
-  height: 50%;
   display: flex;
+  width: 100%;
+  font-size: 1.7rem;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
 `;
 
 const ReadBottom = styled.div`
-  background-color: darkblue;
-  width: 100%;
-  height: 25%;
-  display: flex;
+  background-color: #ffb5b6;
+  max-width: 100%;
+  width: ${props => props.width}px;
+  margin: 20px 0 20px 0;
+  padding: 0 10px 0 10px;
+  line-height: 50px;
+  font-size: 1.7rem;
+  border-radius: 16px;
+
+  white-space: pre-line;
 `;
 
 const ReadFooter = styled.div`
@@ -106,6 +117,8 @@ const ReadFooter = styled.div`
   display: flex;
   justify-content: right;
   padding: 10px 10px 0 0;
+
+  border-top: 2.5px solid #000;
 `;
 
 const ReadPageButton = styled.button`
@@ -119,27 +132,60 @@ const ReadPageButton = styled.button`
 `;
 
 const ReadPage = () => {
-  const emoji = "놀람";
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const diaryId = searchParams.get("id");
+  const EMOJI = ["기쁨", "슬픔", "화남", "놀람", "사랑"];
+  const [data, setData] = useState();
+  let today = new Date();
+
+  let year = today.getFullYear(); // 년도
+  let month = today.getMonth() + 1; // 월
+  let date = today.getDate(); // 날짜
+  let day = today.getDay(); // 요일
+  const daystr = [
+    "일요일",
+    "월요일",
+    "화요일",
+    "수요일",
+    "목요일",
+    "금요일",
+    "토요일",
+  ];
+
+  useEffect(() => {
+    getReadPage(setData, diaryId - 1);
+  }, []);
 
   return (
     <Wrapper>
       <Device>
         <PrevHeader />
         <PageMain>
-          <ReadTitle>제목</ReadTitle>
+          <ReadTitle>{data?.title}</ReadTitle>
           <ReadImage src="https://picsum.photos/300/300" />
           <ReadContentbox>
             <ReadContent>
               <ReadTop>
                 <ReadEmoji
                   type="image"
-                  src={`${process.env.PUBLIC_URL}/images/${emoji}.jpeg`}
-                  alt={emoji}
+                  src={`${process.env.PUBLIC_URL}/images/${
+                    EMOJI?.[parseInt(data?.emoji)]
+                  }.jpeg`}
+                  alt={EMOJI}
                 />
-                <ReadDate></ReadDate>
+                <ReadDate>{`${year}/${month}/${date}/${daystr[day]}`}</ReadDate>
               </ReadTop>
-              <ReadMid></ReadMid>
-              <ReadBottom></ReadBottom>
+              <ReadMid>{data?.contents}</ReadMid>
+              <ReadBottom
+                width={
+                  data?.hashContents.length === undefined
+                    ? 300
+                    : data?.hashContents.length * 55
+                }
+              >
+                {data?.hashContents}
+              </ReadBottom>
             </ReadContent>
           </ReadContentbox>
         </PageMain>
