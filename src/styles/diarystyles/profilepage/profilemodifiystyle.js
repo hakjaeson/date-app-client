@@ -21,6 +21,11 @@ export const ProfileModifyImg = styled.div`
   .profileimg {
     position: relative;
     border-radius: 70%;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
   }
   .profileimgpartner {
     position: absolute;
@@ -29,6 +34,11 @@ export const ProfileModifyImg = styled.div`
     left: 245px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
     filter: brightness(30%);
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
   }
 `;
 
