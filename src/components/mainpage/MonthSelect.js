@@ -5,17 +5,19 @@ import {
   MonthDropDown,
   NowMonthBt,
   NowYearBt,
+  YearDropDown,
+  YearDropDownContent,
   YearWrapper,
 } from "../../styles/diarystyles/mainpage/mainpagestyle";
 
-const MonthSelect = () => {
-  // 예시 데이터
-  const data = [
-    { id: 1, date: "2023-01-01", value: "A" },
-    { id: 2, date: "2023-02-15", value: "B" },
-    { id: 3, date: "2023-03-30", value: "C" },
-    { id: 4, date: "2023-01-22", value: "D" },
-  ];
+const MonthSelect = ({ data }) => {
+  // dummy-data
+  // const data = [
+  //   { id: 1, date: "2023-01-01", value: "A" },
+  //   { id: 2, date: "2023-02-15", value: "B" },
+  //   { id: 3, date: "2023-03-30", value: "C" },
+  //   { id: 4, date: "2023-01-22", value: "D" },
+  // ];
 
   // 월을 영어로 표현하기 위한 배열
   const monthNames = [
@@ -35,10 +37,13 @@ const MonthSelect = () => {
 
   // 필터링된 데이터와 선택된 년도 및 월을 저장하는 state
   const [filteredData, setFilteredData] = useState([]);
+  // 현재시점기준에서 연, 월 저장 JS에서는 default가 0이므로
+  // Date().getMonth + 1
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
 
   // 드롭다운 메뉴가 열려 있는지 여부를 저장하는 state
+  // 첫 상태가 닫힌 상태이므로 false
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
 
@@ -142,25 +147,22 @@ const MonthSelect = () => {
         {dropdownOpen && (
           // dropdown content
           <DropDownYearMonth>
-            <div
-              className="dropdown"
-              onClick={toggleYearDropdown}
-              ref={yearDropdownRef}
-            >
+            <YearDropDown onClick={toggleYearDropdown} ref={yearDropdownRef}>
               {/* dropbtn */}
               <YearWrapper>
                 <NowYearBt>{selectedYear}</NowYearBt>
               </YearWrapper>
+
               {yearDropdownOpen && (
-                <div className="dropdown-content">
+                <YearDropDownContent>
                   {Array.from({ length: 11 }, (_, i) => (
                     <div key={i} onClick={() => selectYear(2020 + i)}>
                       {2020 + i}
                     </div>
                   ))}
-                </div>
+                </YearDropDownContent>
               )}
-            </div>
+            </YearDropDown>
             {monthNames.map((month, i) => (
               <div key={i} onClick={() => selectMonth(i + 1)}>
                 {month}
@@ -174,12 +176,12 @@ const MonthSelect = () => {
         <img src={process.env.PUBLIC_URL + "/images/icon_arrow.svg"} />
       </button>
       {/* filtering content */}
-      {filteredData.map(item => (
+      {/* {filteredData.map(item => (
         <div key={item.id}>
           <p>{item.date}</p>
           <p>{item.value}</p>
         </div>
-      ))}
+      ))} */}
     </>
   );
 };

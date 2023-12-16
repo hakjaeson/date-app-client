@@ -6,11 +6,9 @@ import {
   MainPageWrapper,
   SelectMonth,
 } from "../../styles/diarystyles/mainpage/mainpagestyle";
-import Footer from "./Footer";
-import MainContents from "./MainContents";
-//DatePicker
-import "react-datepicker/dist/react-datepicker.css";
-import MonthSelect from "./MonthSelect";
+import Footer from "../../components/mainpage/Footer";
+import MainContents from "../../components/mainpage/MainContents";
+import MonthSelect from "../../components/mainpage/MonthSelect";
 
 // 메인페이지
 const MainPage = () => {
@@ -33,18 +31,18 @@ const MainPage = () => {
   return (
     // Wrapper
     <MainPageWrapper>
-      <SelectMonth data={data}>
-        <MonthSelect />
+      <SelectMonth>
+        <MonthSelect data={data} />
       </SelectMonth>
       {/* Anniversary area */}
       <Anniversary>
-        <span>D+1000</span>
+        <span>D + {data.birth}</span>
       </Anniversary>
 
       {/* Content area */}
       <MainContents data={data} />
       {/* Footer area */}
-      <Footer  />
+      <Footer />
     </MainPageWrapper>
   );
 };

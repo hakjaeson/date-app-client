@@ -174,7 +174,7 @@ export const FooterList = styled.ul`
 export const MonthDropDown = styled.div`
   position: relative;
   display: inline-block;
-  z-index: 10000000;
+  z-index: 10;
 `;
 export const NowMonthBt = styled.button`
   background-color: transparent;
@@ -197,7 +197,7 @@ export const DropDownYearMonth = styled.div`
   /* align-items: center; */
   /* justify-content: center; */
   position: absolute;
-  top: 80px;
+  top: 100px;
   left: 50px;
   transform: translate(-50%, -6.5%);
   line-height: 2;
@@ -214,4 +214,22 @@ export const NowYearBt = styled.button`
 `;
 export const YearWrapper = styled.button`
   float: right;
+`;
+export const YearDropDown = styled.div`
+  position: relative;
+  display: inline-block;
+  z-index: 10;
+`;
+export const YearDropDownContent = styled.div`
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background-color: #f6f6f6;
+  min-width: 80px;
+  text-align: center;
+  /* max-height: 100px;
+  text-overflow: inherit; */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 `;
