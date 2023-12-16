@@ -5,6 +5,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useForm } from "react-hook-form";
 import FormDrag from "./FormDrag";
+import { postCreatePage } from "../../api/create-page/createPageApi";
 
 const CreatePageFormTag = styled.form`
   position: relative;
@@ -53,6 +54,7 @@ const CreatePageForm = () => {
 
   const onValid = data => {
     console.log(data);
+    // postCreatePage(data);
   };
   const onInValid = data => {
     alert(`${data?.title?.message}\n${data?.content?.message}`);

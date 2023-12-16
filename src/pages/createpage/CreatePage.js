@@ -29,18 +29,15 @@ const CreatePageMain = styled.div`
   /* background-color: blue; */
   position: relative;
   width: 100%;
-  height: 90vh;
+  height: 100%;
 `;
 
 const CreatePage = () => {
   useEffect(() => {
-    // 컴포넌트가 마운트될 때 실행되는 코드
     // 전체 어플리케이션의 body에 스크롤을 없애는 스타일을 추가
     document.body.style.overflow = "hidden";
 
-    // 컴포넌트가 언마운트될 때 cleanup 함수
     return () => {
-      // 컴포넌트가 언마운트될 때 실행되는 코드
       // 스타일을 초기 상태로 복구
       document.body.style.overflow = "auto";
     };

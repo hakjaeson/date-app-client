@@ -66,6 +66,9 @@ const FormEmoji = styled.input`
   box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.13);
   border-radius: 50%;
 `;
+const FormEmojiValue = styled.input`
+  /* display: none; */
+`;
 
 const FormTitle = styled.input`
   width: 75%;
@@ -81,7 +84,7 @@ const FormContentInput = styled.textarea`
   margin-top: 10px;
   min-height: 110px;
   max-height: 65%;
-  height: ${props => props.height - 250}px;
+  height: ${props => props.height - 300}px;
   font-size: 1.7rem;
   resize: none;
   vertical-align: text-top;
@@ -103,7 +106,7 @@ const FormHashTag = styled.textarea`
   min-width: 60px;
   max-height: 50px;
   width: ${props => (props.resizing == 60 ? 60 : props.resizing)}px;
-  height: ${({ width }) => (width === "350px" ? "50px" : "25px")};
+  height: ${props => (props.resizing >= 350 ? "50" : "25")}px;
   resize: none;
   overflow: hidden;
   text-align: center;
@@ -115,7 +118,7 @@ const FormHashTag = styled.textarea`
 
 const FormButton = styled.button`
   position: absolute;
-  bottom: 40px;
+  bottom: 70px;
   right: 20px;
   width: 70px;
   height: 40px;
@@ -150,7 +153,6 @@ const FormDrag = ({ register, errors }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [emojiName, setEmojiName] = useState("놀람");
   const lineAreaRef = useRef(null);
-
   useEffect(() => {
     const handleTouchStart = e => {
       if (e.target === lineAreaRef.current) {
@@ -228,6 +230,10 @@ const FormDrag = ({ register, errors }) => {
           alt="Image 1"
           onClick={handleClick}
         />
+        {/* <FormEmojiValue
+          {...register("emoji")}
+          Value={EMOJI.indexOf(emojiName)}
+        /> */}
         <FormTitle
           {...register("title", {
             required: "제목은 필수사항입니다.",
