@@ -1,14 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./test.css";
 import {
+  BlankTest,
   DropDownYearMonth,
+  MonthArray,
+  MonthArrayWrapper,
   MonthDropDown,
   NowMonthBt,
   NowYearBt,
   YearDropDown,
   YearDropDownContent,
   YearWrapper,
-} from "../../styles/diarystyles/mainpage/mainpagestyle";
+} from "../../styles/diarystyles/mainpage/selectdatestyle";
 
 const MonthSelect = ({ data }) => {
   // dummy-data
@@ -54,9 +57,15 @@ const MonthSelect = ({ data }) => {
   // 선택된 년도와 월에 따라 데이터를 필터링하는 함수
   const filterByMonthAndYear = (year, month) => {
     const filtered = data.filter(item => {
-      const itemDate = new Date(item.date);
+      const itemDate = new Date(item.date); // item.date 배열이 다담긴다. itemDate
+      //Sat Dec 16 2023 09:00:00 GMT+0900 (한국 표준시)
+      // console.log(itemDate);
+      // 2023
       const itemYear = itemDate.getFullYear();
+      // console.log(itemYear);
+      // 12
       const itemMonth = itemDate.getMonth() + 1;
+      // console.log(itemMonth);
       return itemYear === year && itemMonth === month;
     });
     setFilteredData(filtered);
@@ -147,11 +156,11 @@ const MonthSelect = ({ data }) => {
         {dropdownOpen && (
           // dropdown content
           <DropDownYearMonth>
-            <YearDropDown onClick={toggleYearDropdown} ref={yearDropdownRef}>
+            <YearDropDown>
               {/* dropbtn */}
-              <YearWrapper>
-                <NowYearBt>{selectedYear}</NowYearBt>
-              </YearWrapper>
+              <NowYearBt onClick={toggleYearDropdown} ref={yearDropdownRef}>
+                {selectedYear}
+              </NowYearBt>
 
               {yearDropdownOpen && (
                 <YearDropDownContent>
@@ -163,11 +172,13 @@ const MonthSelect = ({ data }) => {
                 </YearDropDownContent>
               )}
             </YearDropDown>
-            {monthNames.map((month, i) => (
-              <div key={i} onClick={() => selectMonth(i + 1)}>
-                {month}
-              </div>
-            ))}
+            <MonthArrayWrapper>
+              {monthNames.map((month, i) => (
+                <MonthArray key={i} onClick={() => selectMonth(i + 1)}>
+                  <span>{month}</span>
+                </MonthArray>
+              ))}
+            </MonthArrayWrapper>
           </DropDownYearMonth>
         )}
       </MonthDropDown>

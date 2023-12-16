@@ -14,7 +14,7 @@ import {
   HashTag,
   MainPageContent,
   WriteingDate,
-} from "../../styles/diarystyles/mainpage/mainpagestyle";
+} from "../../styles/diarystyles/mainpage/maincontentstyle";
 
 const MainContents = ({ data }) => {
   const swiperRef = useRef();
