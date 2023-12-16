@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 
 import PrevHeader from "../../components/common/PrevHeader";
 import { getReadPage } from "../../api/read-page/readPageApi";
+import { motion } from "framer-motion";
 
 const Wrapper = styled.div`
   position: relative;
@@ -51,9 +52,9 @@ const ReadImage = styled.img`
 `;
 
 const ReadContentbox = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   min-height: 50%;
 `;
@@ -74,7 +75,30 @@ const ReadTop = styled.div`
   align-items: center;
 `;
 
+const UlEmoji = styled(motion.ul)`
+  position: absolute;
+  transform: translateY(-50%);
+  display: flex;
+  top: 0;
+  left: 0;
+  padding-left: 15px;
+`;
+
+const LlEmoji = styled(motion.li)`
+  list-style: none;
+  opacity: 0;
+`;
+
 const ReadEmoji = styled.img`
+  width: 50px;
+  height: 50px;
+
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.13);
+  border-radius: 50%;
+`;
+
+const FormEmoji = styled.input`
   width: 50px;
   height: 50px;
 
@@ -99,16 +123,19 @@ const ReadMid = styled.div`
 `;
 
 const ReadBottom = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-top: 50px;
+  margin-bottom: 50px;
+`;
+
+const ReadHashTag = styled.span`
   background-color: #ffb5b6;
-  max-width: 100%;
-  width: ${props => props.width}px;
-  margin: 20px 0 20px 0;
-  padding: 0 10px 0 10px;
-  line-height: 50px;
+  padding: 10px;
   font-size: 1.7rem;
   border-radius: 16px;
-
-  white-space: pre-line;
 `;
 
 const ReadFooter = styled.div`
@@ -131,14 +158,32 @@ const ReadPageButton = styled.button`
   margin-right: 5px;
 `;
 
+const EmojiBoxMotion = {
+  open: {
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+  close: {},
+};
+
+const EmojiMotion = {
+  open: { opacity: 1, transition: { duration: 1 } },
+  close: { opacity: 0 },
+};
+
 const ReadPage = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const diaryId = searchParams.get("id");
   const EMOJI = ["기쁨", "슬픔", "화남", "놀람", "사랑"];
+  const [isOpen, setIsOpen] = useState(false);
+  const [emojiName, setEmojiName] = useState();
   const [data, setData] = useState();
-  let today = new Date();
+  const [edit, setEdit] = useState(true);
 
+  let today = new Date();
   let year = today.getFullYear(); // 년도
   let month = today.getMonth() + 1; // 월
   let date = today.getDate(); // 날짜
@@ -154,9 +199,21 @@ const ReadPage = () => {
   ];
 
   useEffect(() => {
-    getReadPage(setData, diaryId - 1);
+    getReadPage(setData, diaryId - 1, setEmojiName);
   }, []);
 
+  const ClickEdit = () => {
+    setEdit(!edit);
+  };
+
+  const ClickSave = () => {
+    setEdit(!edit);
+  };
+
+  const handleClick = event => {
+    event.preventDefault();
+    setIsOpen(!isOpen);
+  };
   return (
     <Wrapper>
       <Device>
@@ -165,33 +222,81 @@ const ReadPage = () => {
           <ReadTitle>{data?.title}</ReadTitle>
           <ReadImage src="https://picsum.photos/300/300" />
           <ReadContentbox>
-            <ReadContent>
-              <ReadTop>
-                <ReadEmoji
-                  type="image"
-                  src={`${process.env.PUBLIC_URL}/images/${
-                    EMOJI?.[parseInt(data?.emoji)]
-                  }.jpeg`}
-                  alt={EMOJI}
-                />
-                <ReadDate>{`${year}/${month}/${date}/${daystr[day]}`}</ReadDate>
-              </ReadTop>
-              <ReadMid>{data?.contents}</ReadMid>
-              <ReadBottom
-                width={
-                  data?.hashContents.length === undefined
-                    ? 300
-                    : data?.hashContents.length * 55
-                }
-              >
-                {data?.hashContents}
-              </ReadBottom>
-            </ReadContent>
+            {edit ? (
+              <ReadContent>
+                <ReadTop>
+                  <ReadEmoji
+                    type="image"
+                    src={`${process.env.PUBLIC_URL}/images/${
+                      EMOJI?.[parseInt(data?.emoji - 1)]
+                    }.jpeg`}
+                    alt={EMOJI}
+                  />
+                  <ReadDate>{`${year}/${month}/${date}/${daystr[day]}`}</ReadDate>
+                </ReadTop>
+                <ReadMid>{data?.contents}</ReadMid>
+                <ReadBottom>
+                  {data?.hashContents.map(item => (
+                    <ReadHashTag key={item}>{`#${item}`}</ReadHashTag>
+                  ))}
+                </ReadBottom>
+              </ReadContent>
+            ) : (
+              <ReadContent>
+                <ReadTop>
+                  {isOpen && (
+                    <UlEmoji
+                      variants={EmojiBoxMotion}
+                      animate={isOpen ? "open" : "closed"}
+                    >
+                      {EMOJI.map((emoji, id) => {
+                        return (
+                          <LlEmoji
+                            key={id}
+                            onClick={() => {
+                              setEmojiName(emoji);
+                              setIsOpen(!isOpen);
+                              // console.log(emoji);
+                            }}
+                            variants={EmojiMotion}
+                          >
+                            <FormEmoji
+                              type="image"
+                              src={`${process.env.PUBLIC_URL}/images/${emoji}.jpeg`}
+                              alt={emoji}
+                            />
+                          </LlEmoji>
+                        );
+                      })}
+                    </UlEmoji>
+                  )}
+                  <ReadEmoji
+                    type="image"
+                    src={`${process.env.PUBLIC_URL}/images/${EMOJI[emojiName]}.jpeg`}
+                    alt={EMOJI}
+                    onClick={handleClick}
+                  />
+                  <ReadDate>{`${year}/${month}/${date}/${daystr[day]}`}</ReadDate>
+                </ReadTop>
+                <ReadMid>{data?.contents}</ReadMid>
+                <ReadBottom>
+                  {data?.hashContents.map(item => (
+                    <ReadHashTag key={item}>{`#${item}`}</ReadHashTag>
+                  ))}
+                </ReadBottom>
+              </ReadContent>
+            )}
           </ReadContentbox>
         </PageMain>
         <ReadFooter>
-          <ReadPageButton>수정</ReadPageButton>
-          <ReadPageButton>삭제</ReadPageButton>
+          {edit ? (
+            <>
+              <ReadPageButton onClick={ClickEdit}>수정</ReadPageButton>
+              <ReadPageButton>삭제</ReadPageButton>
+            </>
+          ) : (
+            <ReadPageButton onClick={ClickSave}>완료</ReadPageButton>
+          )}
         </ReadFooter>
       </Device>
     </Wrapper>
