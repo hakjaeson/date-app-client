@@ -6,6 +6,8 @@ import {
   MonthArray,
   MonthArrayWrapper,
   MonthDropDown,
+  MonthNextBt,
+  MonthPrevBt,
   NowMonthBt,
   NowYearBt,
   YearDropDown,
@@ -142,13 +144,13 @@ const MonthSelect = ({ data }) => {
       return prevMonth + 1;
     });
   };
-
   return (
     <>
       {/* prev button */}
-      <button onClick={prevMonth}>
+      <MonthPrevBt onClick={prevMonth}>
         <img src={process.env.PUBLIC_URL + "/images/icon_arrow.svg"} />
-      </button>
+      </MonthPrevBt>
+
       {/* dropdown */}
       <MonthDropDown onClick={toggleDropdown} ref={monthDropdownRef}>
         {/* dropbtn */}
@@ -156,11 +158,10 @@ const MonthSelect = ({ data }) => {
         {dropdownOpen && (
           // dropdown content
           <DropDownYearMonth>
-            <YearDropDown>
+            {/* year button problem -> solution ... */}
+            <YearDropDown onClick={toggleYearDropdown} ref={yearDropdownRef}>
               {/* dropbtn */}
-              <NowYearBt onClick={toggleYearDropdown} ref={yearDropdownRef}>
-                {selectedYear}
-              </NowYearBt>
+              <NowYearBt>{selectedYear}</NowYearBt>
 
               {yearDropdownOpen && (
                 <YearDropDownContent>
@@ -182,10 +183,9 @@ const MonthSelect = ({ data }) => {
           </DropDownYearMonth>
         )}
       </MonthDropDown>
-      <button onClick={nextMonth}>
-        {" "}
+      <MonthNextBt onClick={nextMonth}>
         <img src={process.env.PUBLIC_URL + "/images/icon_arrow.svg"} />
-      </button>
+      </MonthNextBt>
       {/* filtering content */}
       {/* {filteredData.map(item => (
         <div key={item.id}>

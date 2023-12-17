@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
-  ProfileModifyHeader,
-  ProfileModifyImg,
-  ProfileModifyInfo,
-  ProfileModifyMain,
-  ProfileModifyWrap,
+  ProfileDetailForm,
+  ProfileForm,
+  ProfileSummitBt,
 } from "../../styles/diarystyles/profilepage/profilemodifiystyle";
 import {
   getUserProfile,
   patchUserProfile,
 } from "../../api/user/userprofileapi";
+import {
+  ProfileContent,
+  ProfileDetail,
+  ProfileMain,
+  ProfilePic,
+  ProfileVisual,
+  ProfileWrapper,
+} from "../../styles/diarystyles/profilepage/profilepagestyle";
+import ProfileHeader from "../../components/profile/ProfileHeader";
 
 // 사용자 정보 데이터 형식
 const initialProfie = {
@@ -19,24 +26,26 @@ const initialProfie = {
   birth: "",
   startedAt: "",
   partnerPic: "",
+  partnerNm: "",
+  partnerBirth: "",
 };
 
 const ProfileModify = () => {
   // 처음 사용자 프로필 정보 초기값에 담기
   const [profileData, setProfileData] = useState(initialProfie);
-  const Navigate = useNavigate();
+
+  const navigate = useNavigate();
 
   const [pic, setPic] = useState("");
-
   const [name, setName] = useState("");
   const [birth, setBirth] = useState("");
-  const [anniversary, setAnnversary] = useState("");
+  const [startedAt, setStartedAt] = useState("");
 
   // 프로필 정보 수정
   const patchUserProfileAction = result => {
     if (result === 1) {
       alert("수정 완료");
-      Navigate(-1);
+      navigate(-1);
       return;
     }
     if (result === 0) {
@@ -52,25 +61,32 @@ const ProfileModify = () => {
   // 입력 값 보내기
   const handleSumitProfileForm = () => {
     const item = {
-      nm: name,
       pic: pic,
+      nm: name,
       birth: birth,
-      startedAt: anniversary,
+      startedAt: startedAt,
     };
     patchUserProfile(item, patchUserProfileAction);
   };
 
+  const handleChangePic = e => {
+    setPic(e.target.value);
+  };
   const handleChangeName = e => {
     setName(e.target.value);
   };
   const handleChangeBirth = e => {
     setBirth(e.target.value);
   };
+  const handleChangeStartedAt = e => {
+    setStartedAt(e.target.value);
+  };
 
   useEffect(() => {
-    console.log(profileData);
+    setPic(profileData.pic);
     setName(profileData.nm);
     setBirth(profileData.birth);
+    setStartedAt(profileData.startedAt);
   }, [profileData]);
 
   // 처음 사용자 프로필 가져오기
@@ -78,88 +94,96 @@ const ProfileModify = () => {
     getUserProfile(setProfileData);
   };
 
+  // 초기 화면 불러오기
   useEffect(() => {
     getUserInfo();
   }, []);
 
   return (
-    <ProfileModifyWrap>
-      {/* 상단 영역 */}
-      <ProfileModifyHeader>
-        <Link to="/profile">
-          <img src={`${process.env.PUBLIC_URL}/images/bt_back.svg`} />
-        </Link>
-      </ProfileModifyHeader>
+    <ProfileWrapper>
+      <ProfileContent>
+        {/* 상단 영역 */}
+        <ProfileHeader />
 
-      {/* 메인 영역 */}
-      <ProfileModifyMain>
-        {/* 이미지 영역 */}
-        <ProfileModifyImg>
-          <img
-            className="profileimg"
-            // src={"https://picsum.photos/300/300"}
-            src={profileData.pic}
-            alt="myimg"
-          />
-          <div>
-            <img
-              className="profileimgpartner"
-              // src="https://picsum.photos/100/100"
-              src={profileData.partnerPic}
-              alt="partnerimg"
-            />
-          </div>
-        </ProfileModifyImg>
+        {/* 메인 영역 */}
+        <ProfileMain>
+          {/* 사진 영역 */}
+          <ProfileVisual>
+            <ProfilePic src={profileData.pic} />
+          </ProfileVisual>
 
-        {/* 정보 수정 영역 */}
-        <ProfileModifyInfo>
-          <form>
-            {/* <label>img url</label>
-            <input type="text"></input> */}
-            <hr />
-            <label>이름 : </label>
-            <input
-              type="text"
-              name="name"
-              defaultValue={profileData.nm}
-              placeholder="이름을 입력하세요"
-              value={name}
-              onChange={e => {
-                handleChangeName(e);
-              }}
-            ></input>
-            <hr />
+          {/* 정보 수정 영역 */}
+          <ProfileForm>
+            <ProfileDetail>
+              <ProfileDetailForm>
+                <label>사진 : </label>
+                <input
+                  type="text"
+                  name="pic"
+                  defaultValue={profileData.pic}
+                  value={pic}
+                  placeholder="이미지 경로를 입력하세요."
+                  onChange={e => {
+                    handleChangePic(e);
+                  }}
+                ></input>
+              </ProfileDetailForm>
 
-            <label>생년월일 : </label>
-            <input
-              type="date"
-              name="birth"
-              value={birth}
-              onChange={e => {
-                handleChangeBirth(e);
-              }}
-            ></input>
-            <hr />
+              <ProfileDetailForm>
+                <label>이름 : </label>
+                <input
+                  type="text"
+                  name="name"
+                  defaultValue={profileData.nm}
+                  placeholder="이름을 입력하세요."
+                  value={name}
+                  onChange={e => {
+                    handleChangeName(e);
+                  }}
+                ></input>
+              </ProfileDetailForm>
 
-            <label>처음 만난 날 : </label>
-            <input
-              type="date"
-              name="anniversary"
-              value={profileData.startedAt}
-            ></input>
-            <hr />
-            <button
-              type="button"
-              onClick={() => {
-                handleSumitProfileForm();
-              }}
-            >
-              프로필 수정 완료
-            </button>
-          </form>
-        </ProfileModifyInfo>
-      </ProfileModifyMain>
-    </ProfileModifyWrap>
+              <ProfileDetailForm>
+                <label>생년월일 : </label>
+                <input
+                  type="date"
+                  name="birth"
+                  defaultValue={profileData.birth}
+                  value={birth}
+                  onChange={e => {
+                    handleChangeBirth(e);
+                  }}
+                ></input>
+              </ProfileDetailForm>
+
+              <ProfileDetailForm>
+                <label>함께한 날 : </label>
+                <input
+                  type="date"
+                  name="startedAt"
+                  defaultValue={profileData.startedAt}
+                  value={startedAt}
+                  onChange={e => {
+                    handleChangeStartedAt(e);
+                  }}
+                ></input>
+              </ProfileDetailForm>
+            </ProfileDetail>
+
+            <ProfileSummitBt>
+              <button
+                type="button"
+                onClick={e => {
+                  handleSumitProfileForm(e);
+                }}
+              >
+                프로필 수정 완료
+              </button>
+            </ProfileSummitBt>
+          </ProfileForm>
+        </ProfileMain>
+      </ProfileContent>
+    </ProfileWrapper>
   );
 };
 
