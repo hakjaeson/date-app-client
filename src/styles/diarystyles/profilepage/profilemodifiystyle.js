@@ -1,48 +1,42 @@
 import styled from "@emotion/styled";
 
-export const ProfileModifyWrap = styled.div`
+export const ProfileForm = styled.form`
   position: relative;
-  height: 100%;
   width: 100%;
+  padding-top: 35px;
 `;
 
-export const ProfileModifyHeader = styled.header`
-  position: relative;
-`;
-
-export const ProfileModifyMain = styled.main`
-  position: relative;
-`;
-
-export const ProfileModifyImg = styled.div`
+export const ProfileDetailForm = styled.div`
   position: relative;
   display: flex;
-  justify-content: center;
-  .profileimg {
-    position: relative;
-    border-radius: 70%;
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    object-position: center;
-    overflow: hidden;
+  flex-direction: row;
+  width: 100%;
+  padding: 18px 0px;
+  font-size: 17px;
+  label {
+    padding-right: 5px;
+    // background: #d2ceff;
   }
-  .profileimgpartner {
-    position: absolute;
-    border-radius: 70%;
-    top: 200px;
-    left: 245px;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-    filter: brightness(30%);
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    object-position: center;
-    overflow: hidden;
+  input {
+    flex: 1;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: #ffdbab;
   }
 `;
 
-export const ProfileModifyInfo = styled.div`
+export const ProfileSummitBt = styled.div`
   position: relative;
-  display: flex;
+  padding-top: 58px;
+
+  button {
+    background-color: #d2ceff;
+    border: 2.5px solid #000;
+    border-radius: 30px;
+    padding: 18px 105px;
+    font-size: 20px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
 `;
