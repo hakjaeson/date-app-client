@@ -66,6 +66,11 @@ const ProfileModify = () => {
       birth: birth,
       startedAt: startedAt,
     };
+    if (name === "") {
+      alert("이름은 필수 항목입니다.");
+      return;
+    }
+
     patchUserProfile(item, patchUserProfileAction);
   };
 

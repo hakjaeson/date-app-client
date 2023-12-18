@@ -23,6 +23,7 @@ export const ProfileDetailForm = styled.div`
     border: none;
     outline: none;
     background: #ffdbab;
+    /* user-select: all; */
   }
 `;
 
