@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 
 export const LoginWrapper = styled.div`
-  display: block;
-  width: 100%;
-  padding-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
   font-family: Pretendard-Regular;
 `;
 
@@ -17,10 +18,10 @@ export const LoginLogo = styled.div`
   display: block;
   width: 100%;
   text-align: center;
-  margin-bottom: 70px;
+  margin-bottom: 55px;
   img {
-    width: 250px;
-    height: 250px;
+    width: 230px;
+    height: 230px;
   }
 `;
 
@@ -74,12 +75,12 @@ export const LoginError = styled.p`
   display: block;
   width: 100%;
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
   color: #ff4244;
   margin-bottom: 40px;
 `;
 
-export const LoginFooter = styled.footer`
+export const LoginBt = styled.footer`
   display: block;
 `;
 
@@ -92,6 +93,7 @@ export const LoginButton = styled.button`
   border: 2.5px solid #000;
   border-radius: 30px;
   margin-bottom: 15px;
+  letter-spacing: 4px;
   cursor: pointer;
 `;
 
@@ -103,5 +105,6 @@ export const SigninButton = styled.button`
   background-color: #d2ceff;
   border: 2.5px solid #000;
   border-radius: 30px;
+  letter-spacing: 2px;
   cursor: pointer;
 `;

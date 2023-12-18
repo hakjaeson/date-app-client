@@ -1,22 +1,32 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   IntroLogo,
   IntroTitle,
   IntroWrapper,
-  Main,
+  IntroMain,
 } from "../../styles/diarystyles/intro/introstyle";
 
 const intro = () => {
+  const navigate = useNavigate();
+  const handleClickIntro = () => {
+    navigate("/login");
+  };
+
   return (
     <IntroWrapper>
-      <Main>
+      <IntroMain
+        onClick={() => {
+          handleClickIntro();
+        }}
+      >
         <IntroLogo>
-          <img src="https://picsum.photos/300/300"></img>
+          <img src={`${process.env.PUBLIC_URL}/images/logo.svg`}></img>
         </IntroLogo>
         <IntroTitle>
           <h2>찌리릿</h2>
         </IntroTitle>
-      </Main>
+      </IntroMain>
     </IntroWrapper>
   );
 };
