@@ -1,7 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
-import "./test.css";
+import React, { useEffect, useRef, useState } from "react";
 import {
-  BlankTest,
   DropDownYearMonth,
   MonthArray,
   MonthArrayWrapper,
@@ -12,18 +10,10 @@ import {
   NowYearBt,
   YearDropDown,
   YearDropDownContent,
-  YearWrapper,
 } from "../../styles/diarystyles/mainpage/selectdatestyle";
+// import "./test.css";
 
-const MonthSelect = ({ data }) => {
-  // dummy-data
-  // const data = [
-  //   { id: 1, date: "2023-01-01", value: "A" },
-  //   { id: 2, date: "2023-02-15", value: "B" },
-  //   { id: 3, date: "2023-03-30", value: "C" },
-  //   { id: 4, date: "2023-01-22", value: "D" },
-  // ];
-
+const MonthSelect = ({ data, setFilteredData }) => {
   // 월을 영어로 표현하기 위한 배열
   const monthNames = [
     "Jan",
@@ -41,7 +31,7 @@ const MonthSelect = ({ data }) => {
   ];
 
   // 필터링된 데이터와 선택된 년도 및 월을 저장하는 state
-  const [filteredData, setFilteredData] = useState([]);
+  // const [filteredData, setFilteredData] = useState([]);
   // 현재시점기준에서 연, 월 저장 JS에서는 default가 0이므로
   // Date().getMonth + 1
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
@@ -71,7 +61,9 @@ const MonthSelect = ({ data }) => {
       return itemYear === year && itemMonth === month;
     });
     setFilteredData(filtered);
+    // console.log("filterByMonthAndYear", filtered);
   };
+  // console.log("day:", filteredData);
 
   // 선택된 년도 또는 월이 변경될 때마다 데이터를 필터링
   useEffect(() => {
@@ -144,6 +136,11 @@ const MonthSelect = ({ data }) => {
       return prevMonth + 1;
     });
   };
+  // YearSelectContent 를 선택하였을 때 year 드롭다운을 막는 용도
+  // Month Dropdown까지 가기전에 막는 역할
+  const handleYearDropdownContentClick = e => {
+    e.stopPropagation();
+  };
   return (
     <>
       {/* prev button */}
@@ -158,10 +155,15 @@ const MonthSelect = ({ data }) => {
         {dropdownOpen && (
           // dropdown content
           <DropDownYearMonth>
-            {/* year button problem -> solution ... */}
-            <YearDropDown onClick={toggleYearDropdown} ref={yearDropdownRef}>
+            <YearDropDown
+              onClick={handleYearDropdownContentClick}
+              ref={yearDropdownRef}
+            >
               {/* dropbtn */}
-              <NowYearBt>{selectedYear}</NowYearBt>
+              <NowYearBt onClick={toggleYearDropdown}>
+                {selectedYear}{" "}
+                <img src={process.env.PUBLIC_URL + "/images/icon_arrow.svg"} />
+              </NowYearBt>
 
               {yearDropdownOpen && (
                 <YearDropDownContent>
@@ -186,13 +188,6 @@ const MonthSelect = ({ data }) => {
       <MonthNextBt onClick={nextMonth}>
         <img src={process.env.PUBLIC_URL + "/images/icon_arrow.svg"} />
       </MonthNextBt>
-      {/* filtering content */}
-      {/* {filteredData.map(item => (
-        <div key={item.id}>
-          <p>{item.date}</p>
-          <p>{item.value}</p>
-        </div>
-      ))} */}
     </>
   );
 };
