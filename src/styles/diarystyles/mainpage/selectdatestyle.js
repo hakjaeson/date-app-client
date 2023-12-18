@@ -94,9 +94,11 @@ export const MonthArrayWrapper = styled.div`
   padding-top: 7rem;
 `;
 
+// Prev, Next month button
 export const MonthPrevBt = styled.button`
   border: none;
   background: transparent;
+  margin-right: 1rem;
   img {
     transform: rotate(90deg);
   }
@@ -104,6 +106,7 @@ export const MonthPrevBt = styled.button`
 export const MonthNextBt = styled.button`
   border: none;
   background: transparent;
+  margin-left: 10px;
   img {
     transform: rotate(270deg);
   }

@@ -93,7 +93,16 @@ export const ContentMoreView = styled.div`
   margin-top: -1rem;
   color: #c9c9c9;
 `;
+
+// hashTag CSS
 export const HashTag = styled.div`
   margin-left: 2rem;
   padding-bottom: 5px;
+`;
+
+export const HashTagBt = styled.button`
+  margin-right: 0.5rem;
+  background-color: transparent;
+  border: none;
+  font-size: 1.3rem;
 `;

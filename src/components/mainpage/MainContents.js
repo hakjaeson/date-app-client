@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useRef } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,12 +12,14 @@ import {
   ContentSlide,
   ContentSlideImage,
   HashTag,
+  HashTagBt,
   MainPageContent,
   WriteingDate,
 } from "../../styles/diarystyles/mainpage/maincontentstyle";
 
 const MainContents = ({ data }) => {
   const swiperRef = useRef();
+  // console.log("maincontent :", data);
 
   // 데이터 emoji 값에 따라 이모지(기분) 그림 출력
   const EmojiFuc = emoji => {
@@ -37,19 +39,10 @@ const MainContents = ({ data }) => {
     }
     return result;
   };
-
-  // hashTag에 따른 필터링
-  const [hashFilter, setHashFilter] = useState("");
+  let hashNavigator = useNavigate();
   const handleHashClick = hash => {
-    setHashFilter(hash);
+    hashNavigator(`/hash/${hash}`);
   };
-  const filterData = hashFilter
-    ? data.hashFilter(item => item.content.include(hashFilter))
-    : data;
-  console.log(filterData);
-  const hashContents = data.hashContent;
-  console.log([hashContents]);
-  // 날짜에 따른 필터링
   return (
     <div>
       {data.map(item => (
@@ -76,6 +69,7 @@ const MainContents = ({ data }) => {
                 {item.date.split("-")[2].startsWith("0")
                   ? item.date.split("-")[2].slice(1)
                   : item.date.split("-")[2]}
+                일
               </span>
             </WriteingDate>
           </ContentHeader>
@@ -117,15 +111,12 @@ const MainContents = ({ data }) => {
               <Link to={`/readpage?id=${item.idx}`}>더보기</Link>
             </ContentMoreView>
             <HashTag>
-              {/* {item.mainContents.map((hash, index) => (
-                <a
-                  key={index}
-                  href={`#${hash}`}
-                  onClick={() => handleHashClick(hash)}
-                >
-                  #{hash}{" "}
-                </a>
-              ))} */}
+              {/* 해시태그 출력 */}
+              {item.hashContents.map((hash, index) => (
+                <HashTagBt key={index} onClick={() => handleHashClick(hash)}>
+                  #{hash}
+                </HashTagBt>
+              ))}
             </HashTag>
           </ContentBody>
         </MainPageContent>

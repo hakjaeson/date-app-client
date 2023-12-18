@@ -9,6 +9,7 @@ import ProfileModify from "./pages/profile/ProfileModify";
 import ProfilePage from "./pages/profile/ProfilePage";
 import ProfilePartner from "./pages/profile/ProfilePartner";
 import ReadPage from "./pages/readpage/ReadPage";
+import HashContents from "./pages/mainpage/HashContents";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/profile/partner" element={<ProfilePartner />} />
       <Route path="/profile/modify" element={<ProfileModify />} />
+      <Route path="/hash/:hash" element={<HashContents />} />
       <Route path="/*" element={<NotFound />} />
     </Routes>
   );

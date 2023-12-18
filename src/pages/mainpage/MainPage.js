@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from "react";
 
 import axios from "axios";
+// Emotion JS
 import {
-  Anniversary,
   MainPageWrapper,
   SelectMonth,
 } from "../../styles/diarystyles/mainpage/mainpagestyle";
+// Call Components
+import AnniversaryContent from "../../components/mainpage/AnniversaryContent";
 import Footer from "../../components/mainpage/Footer";
 import MainContents from "../../components/mainpage/MainContents";
 import MonthSelect from "../../components/mainpage/MonthSelect";
 
 // 메인페이지
 const MainPage = () => {
-  // Axios setting
+  // axios setting
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get("mainPage.json");
         setData(res.data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
         console.error("Error response data:", error.response.data);
@@ -28,20 +33,27 @@ const MainPage = () => {
     fetchData();
   }, []);
 
+  const [filteredData, setFilteredData] = useState([]);
+  useEffect(() => {
+    // console.log("MainPage:", filteredData);
+  }, [filteredData]);
+
   return (
     // Wrapper
     <MainPageWrapper>
       <SelectMonth>
-        <MonthSelect data={data} />
+        {!loading && (
+          <MonthSelect
+            data={data}
+            // filteredData={filteredData}
+            setFilteredData={setFilteredData}
+          />
+        )}
       </SelectMonth>
       {/* Anniversary area */}
-      <Anniversary>
-        <span>D + {data.birth}</span>
-      </Anniversary>
-
+      <AnniversaryContent data={data} />
       {/* Content area */}
-      <MainContents data={data} />
-      {/* Footer area */}
+      <MainContents data={filteredData} />ㄴ{/* Footer area */}
       <Footer />
     </MainPageWrapper>
   );
