@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { postUserLogin } from "../../api/user/userloginapi";
+import { useNavigate } from "react-router-dom";
 import {
   IdForm,
   LoginButton,
   LoginContent,
   LoginError,
-  LoginFooter,
+  LoginBt,
   LoginForm,
   LoginLabel,
   LoginLogo,
@@ -12,9 +14,9 @@ import {
   PasswordForm,
   SigninButton,
 } from "../../styles/diarystyles/login/loginstyle";
-import { postUserLogin } from "../../api/user/userloginapi";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
   const [errorMg, setErrorMg] = useState("");
@@ -27,20 +29,40 @@ const Login = () => {
     setPw(e.target.value);
   };
 
+  const usersPassword = pw => {
+    const passwordRegex = /^(?=.*[!@#$%^&*()])(?=.{4,8}$)/;
+    return passwordRegex.test(pw);
+  };
+
   const handleClickLogin = () => {
     if (id === "") {
-      setErrorMg("올바른 아이디를 입력하세요.");
+      setErrorMg("아이디는 필수 입력 사항입니다.");
       return false;
     }
     if (pw === "") {
-      setErrorMg("올바른 비밀번호를 입력하세요.");
+      setErrorMg("비밀번호는 필수 입력 사항입니다.");
       return false;
     }
-    if (pw.length >= 9) {
-      setErrorMg("비밀번호는 8글자 이하로 입력하세요.");
+
+    // 비밀번호 조건
+    if (usersPassword(pw) === false) {
+      setErrorMg("비밀번호는 특수문자 포함, 4~8자여야 합니다.");
+      return false;
     }
-    postUserLogin({ uid: id, upw: pw });
-    // dummydata 데이터와 일치했을 때만 onclick 이벤트가 실행되는 조건식 추가해보기
+
+    // 서버로 전달
+    postUserLogin({ id, pw }, successFN, failFN);
+  };
+
+  const successFN = () => {
+    console.log("로그인 성공!");
+    navigate("/");
+  };
+
+  const failFN = () => {
+    console.log("서버 에러");
+    // 메인페이지 이동 위해 우선 navigate 넣어둠
+    navigate("/");
   };
 
   return (
@@ -76,7 +98,7 @@ const Login = () => {
           </div>
         </LoginForm>
         <LoginError>{errorMg}</LoginError>
-        <LoginFooter>
+        <LoginBt>
           <LoginButton
             onClick={() => {
               handleClickLogin();
@@ -85,7 +107,7 @@ const Login = () => {
             로그인
           </LoginButton>
           <SigninButton>회원가입</SigninButton>
-        </LoginFooter>
+        </LoginBt>
       </LoginContent>
     </LoginWrapper>
   );
