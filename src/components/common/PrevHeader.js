@@ -22,7 +22,7 @@ const PrevHeader = () => {
       <PrevBtn
         src={`${process.env.PUBLIC_URL}/images/bt_prev.svg`}
         onClick={() => {
-          navigate(-1);
+          navigate("/");
         }}
       />
     </PageHeader>
