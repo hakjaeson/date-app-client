@@ -31,7 +31,7 @@ const MainContents = ({ data }) => {
     } else if (emoji == 3) {
       result = "images/angry.jpeg";
     } else if (emoji == 4) {
-      result = "images/surpise.jpeg";
+      result = "images/surprise.jpeg";
     } else if (emoji == 5) {
       result = "images/love.jpeg";
     } else {
