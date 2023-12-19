@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   ProfileDetailForm,
   ProfileForm,
@@ -21,13 +21,10 @@ import ProfileHeader from "../../components/profile/ProfileHeader";
 
 // 사용자 정보 데이터 형식
 const initialProfie = {
-  nm: "",
   pic: "",
+  nm: "",
   birth: "",
   startedAt: "",
-  partnerPic: "",
-  partnerNm: "",
-  partnerBirth: "",
 };
 
 const ProfileModify = () => {
@@ -94,12 +91,12 @@ const ProfileModify = () => {
     setStartedAt(profileData.startedAt);
   }, [profileData]);
 
-  // 처음 사용자 프로필 가져오기
+  // 2. 사용자 프로필 가져오기
   const getUserInfo = () => {
     getUserProfile(setProfileData);
   };
 
-  // 초기 화면 불러오기
+  // 1. 초기 화면 불러오기
   useEffect(() => {
     getUserInfo();
   }, []);

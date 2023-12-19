@@ -16,7 +16,7 @@ import {
   UlEmoji,
 } from "../../styles/diarystyles/readpage/readpagestyle";
 
-const PageMainForm = styled.form`
+const PageMainForm = styled.div`
   position: relative;
   width: 100%;
   height: 80%;
@@ -45,6 +45,13 @@ const ReadMidInput = styled.textarea`
   resize: none;
   padding: 5px;
   word-break: break-all;
+`;
+
+const ReadHashTagInput = styled.input`
+  background-color: #ffb5b6;
+  padding: 10px;
+  font-size: 1.7rem;
+  border-radius: 16px;
 `;
 
 const EmojiBoxMotion = {
@@ -155,9 +162,7 @@ const ReadForm = ({
             defaultValue={data?.contents}
           />
           <ReadBottom>
-            {data?.hashContents.map(item => (
-              <ReadHashTag key={item}>{`#${item}`}</ReadHashTag>
-            ))}
+            <ReadHashTagInput type="text" defaultValue={data?.hashContents} />
           </ReadBottom>
         </ReadContent>
       </ReadContentbox>

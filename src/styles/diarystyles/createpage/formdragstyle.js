@@ -65,9 +65,6 @@ export const FormEmoji = styled.input`
   box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.13);
   border-radius: 50%;
 `;
-export const FormEmojiValue = styled.input`
-  /* display: none; */
-`;
 
 export const FormTitle = styled.input`
   width: 75%;
@@ -102,9 +99,9 @@ export const FormHashTagBox = styled.div`
 export const FormHashTag = styled.textarea`
   background-color: #ffb5b6;
   max-width: 350px;
-  min-width: 60px;
+  min-width: 250px;
   max-height: 50px;
-  width: ${props => (props.resizing == 60 ? 60 : props.resizing)}px;
+  width: ${props => props.resizing}px;
   height: ${props => (props.resizing >= 350 ? "50" : "25")}px;
   resize: none;
   overflow: hidden;
