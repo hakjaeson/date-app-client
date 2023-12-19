@@ -38,6 +38,13 @@ const MainPage = () => {
     // console.log("MainPage:", filteredData);
   }, [filteredData]);
 
+  const handleHashClick = hashContents => {
+    const filtered = data.filter(item =>
+      item.hashContents.includes(hashContents),
+    );
+    setFilteredData(filtered);
+  };
+
   return (
     // Wrapper
     <MainPageWrapper>
@@ -53,7 +60,8 @@ const MainPage = () => {
       {/* Anniversary area */}
       <AnniversaryContent data={data} />
       {/* Content area */}
-      <MainContents data={filteredData} />ㄴ{/* Footer area */}
+      <MainContents data={filteredData} onHashClick={handleHashClick} />
+      {/* Footer area */}
       <Footer />
     </MainPageWrapper>
   );

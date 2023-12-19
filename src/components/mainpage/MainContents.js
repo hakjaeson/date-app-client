@@ -39,10 +39,7 @@ const MainContents = ({ data }) => {
     }
     return result;
   };
-  let hashNavigator = useNavigate();
-  const handleHashClick = hash => {
-    hashNavigator(`/hash/${hash}`);
-  };
+
   return (
     <div>
       {data.map(item => (
@@ -112,10 +109,8 @@ const MainContents = ({ data }) => {
             </ContentMoreView>
             <HashTag>
               {/* 해시태그 출력 */}
-              {item.hashContents.map((hash, index) => (
-                <HashTagBt key={index} onClick={() => handleHashClick(hash)}>
-                  #{hash}
-                </HashTagBt>
+              {item.hashContents.map((hashContents, index) => (
+                <HashTagBt key={index}>#{hashContents}</HashTagBt>
               ))}
             </HashTag>
           </ContentBody>

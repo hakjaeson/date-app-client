@@ -11,7 +11,6 @@ import {
   YearDropDown,
   YearDropDownContent,
 } from "../../styles/diarystyles/mainpage/selectdatestyle";
-// import "./test.css";
 
 const MonthSelect = ({ data, setFilteredData }) => {
   // 월을 영어로 표현하기 위한 배열
