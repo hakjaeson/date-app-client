@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import FormDrag from "./FormDrag";
 import {
   CreatePageFormTag,
@@ -13,6 +14,7 @@ import { postCreatePage } from "../../api/create-page/createPageApi";
 
 const CreatePageForm = () => {
   const EMOJI = ["joy", "sadness", "angry", "surprise", "love"];
+  const navigate = useNavigate();
   const [emojiName, setEmojiName] = useState("joy");
   const {
     register,
@@ -26,8 +28,8 @@ const CreatePageForm = () => {
     //해쉬태그 구분
     const hashTag = data.hashtag.split("#").filter(Boolean);
     // 폼태그 전송
-    console.log(data, emojiIdx, hashTag);
-    // postCreatePage(data, emojiIdx, hashTag);
+    postCreatePage(data, emojiIdx, hashTag);
+    navigate("/");
   };
   const onInValid = data => {
     alert(`${data?.title?.message}\n${data?.content?.message}`);

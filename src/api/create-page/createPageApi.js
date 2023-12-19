@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const postCreatePage = async (data, emojiIdx, hashTag) => {
   await axios
-    .post("http://localhost:4000/diary", {
+    .post("/api/diary", {
       title: data.title,
       contents: data.content,
       emoji: emojiIdx,

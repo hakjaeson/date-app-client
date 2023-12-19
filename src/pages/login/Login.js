@@ -17,16 +17,17 @@ import {
 
 const Login = () => {
   const navigate = useNavigate();
-  const [uid, setuId] = useState("");
-  const [upw, setuPw] = useState("");
+  const [uid, setUid] = useState("");
+  const [upw, setUpw] = useState("");
   const [errorMg, setErrorMg] = useState("");
 
   const handleChangeId = e => {
-    setuId(e.target.value);
+    setUid(e.target.value);
   };
 
   const handleChangePw = e => {
-    setuPw(e.target.value);
+    setUpw(e.target.value);
+
   };
 
   const usersPassword = pw => {
@@ -45,10 +46,12 @@ const Login = () => {
     }
 
     // 비밀번호 조건
-    // if (usersPassword(pw) === false) {
-    //   setErrorMg("비밀번호는 특수문자 포함, 4~8자여야 합니다.");
-    //   return false;
-    // }
+
+    if (usersPassword(upw) === false) {
+      setErrorMg("비밀번호는 특수문자 포함, 4~8자여야 합니다.");
+      return false;
+    }
+
 
     // 서버로 전달
     postUserLogin({ uid, upw }, successFN, failFN);
