@@ -1,13 +1,13 @@
 import axios from "axios";
 
-export const postCreatePage = async data => {
+export const postCreatePage = async (data, emojiIdx, hashTag) => {
   await axios
     .post("http://localhost:4000/diary", {
       title: data.title,
-      diaryPics: data.img,
-      emoji: data.emoji,
       contents: data.content,
-      hashContents: [data.hashContents, "tag2", "tag3"],
+      emoji: emojiIdx,
+      pics: [data.image[0].name],
+      hashContents: [...hashTag],
     })
     .then(response => {
       console.log("서버 응답:", response.data);
