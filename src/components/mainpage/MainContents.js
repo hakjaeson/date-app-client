@@ -25,15 +25,15 @@ const MainContents = ({ data }) => {
   const EmojiFuc = emoji => {
     let result;
     if (emoji == 1) {
-      result = "images/기쁨.jpeg";
+      result = "images/joy.jpeg";
     } else if (emoji == 2) {
-      result = "images/슬픔.jpeg";
+      result = "images/sadness.jpeg";
     } else if (emoji == 3) {
-      result = "images/화남.jpeg";
+      result = "images/angry.jpeg";
     } else if (emoji == 4) {
-      result = "images/놀람.jpeg";
+      result = "images/surpise.jpeg";
     } else if (emoji == 5) {
-      result = "images/사랑.jpeg";
+      result = "images/love.jpeg";
     } else {
       console.log("not-found-emoji");
     }
