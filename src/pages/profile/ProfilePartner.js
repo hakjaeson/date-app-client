@@ -11,15 +11,16 @@ import {
   ProfileWrapper,
 } from "../../styles/diarystyles/profilepage/profilepagestyle";
 import { Link } from "react-router-dom";
-import { getUserProfile } from "../../api/user/userprofileapi";
-import Header from "../../components/profile/ProfileHeader";
+import { getUserProfilePartner } from "../../api/user/userprofileapi";
 import ProfileHeader from "../../components/profile/ProfileHeader";
 
 // 사용자 정보 데이터 형식
 const initialProfie = {
   partnerPic: "",
+  pic: "",
   partnerNm: "",
   partnerBirth: "",
+  startedAt: "",
 };
 
 const ProfilePartner = () => {
@@ -28,7 +29,7 @@ const ProfilePartner = () => {
 
   // 처음 사용자 프로필 가져오기
   const getUserInfo = () => {
-    getUserProfile(setProfileData);
+    getUserProfilePartner(setProfileData);
   };
 
   // 1. 화면 초기 불러오기
