@@ -21,8 +21,9 @@ const MainPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("mainPage.json");
+        const res = await axios.get(`/api/diary`);
         setData(res.data);
+        console.log(res.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);

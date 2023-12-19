@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -24,15 +24,15 @@ const MainContents = ({ data }) => {
   // 데이터 emoji 값에 따라 이모지(기분) 그림 출력
   const EmojiFuc = emoji => {
     let result;
-    if (emoji == 1) {
+    if (emoji == 0) {
       result = "images/joy.jpeg";
-    } else if (emoji == 2) {
+    } else if (emoji == 1) {
       result = "images/sadness.jpeg";
-    } else if (emoji == 3) {
+    } else if (emoji == 2) {
       result = "images/angry.jpeg";
-    } else if (emoji == 4) {
+    } else if (emoji == 3) {
       result = "images/surprise.jpeg";
-    } else if (emoji == 5) {
+    } else if (emoji == 4) {
       result = "images/love.jpeg";
     } else {
       console.log("not-found-emoji");
@@ -43,7 +43,7 @@ const MainContents = ({ data }) => {
   return (
     <div>
       {data.map(item => (
-        <MainPageContent key={item.idx}>
+        <MainPageContent key={item.diaryId}>
           <ContentHeader>
             <div className="profile-image">
               <img src="https://picsum.photos/40/40" alt="" />
@@ -51,9 +51,7 @@ const MainContents = ({ data }) => {
             {/* Content title */}
             <ContentNameTitle>
               {/* User name */}
-              <div>
-                <span>{item.nm}</span>
-              </div>
+              <div>{/* <span>{item.nm}</span> */}</div>
 
               <div>
                 <span>{item.title}</span>
@@ -62,12 +60,12 @@ const MainContents = ({ data }) => {
 
             {/* Content Date */}
             <WriteingDate>
-              <span>
-                {item.date.split("-")[2].startsWith("0")
-                  ? item.date.split("-")[2].slice(1)
-                  : item.date.split("-")[2]}
-                일
-              </span>
+              {/* <span>
+                  {item.createdAt.split("-")[2].startsWith("0")
+                    ? item.createdAt.split("-")[2].slice(1)
+                    : item.createdAt.split("-")[2]}
+                  일
+                </span> */}
             </WriteingDate>
           </ContentHeader>
           <ContentSlide>
@@ -105,7 +103,7 @@ const MainContents = ({ data }) => {
               </div>
             </ContentData>
             <ContentMoreView>
-              <Link to={`/readpage?id=${item.idx}`}>더보기</Link>
+              <Link to={`/readpage?id=${item.diaryId}`}>더보기</Link>
             </ContentMoreView>
             <HashTag>
               {/* 해시태그 출력 */}
