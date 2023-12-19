@@ -29,7 +29,7 @@ const ReadPage = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const diaryId = searchParams.get("id");
-  const EMOJI = ["기쁨", "슬픔", "화남", "놀람", "사랑"];
+  const EMOJI = ["joy", "sadness", "angry", "surprise", "love"];
   const [isOpen, setIsOpen] = useState(false);
   const [emojiName, setEmojiName] = useState();
   const [data, setData] = useState();

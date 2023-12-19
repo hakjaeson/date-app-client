@@ -30,7 +30,7 @@ const EmojiMotion = {
 };
 
 const FormDrag = ({ register, emojiName, setEmojiName }) => {
-  const EMOJI = ["기쁨", "슬픔", "화남", "놀람", "사랑"];
+  const EMOJI = ["joy", "sadness", "angry", "surprise", "love"];
   const [boxHeight, setBoxHeight] = useState(300);
   const [hashTagResize, setHashTagResize] = useState(250);
   const [resizing, setResizing] = useState(false);
