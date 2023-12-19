@@ -12,8 +12,8 @@ import {
 import { postCreatePage } from "../../api/create-page/createPageApi";
 
 const CreatePageForm = () => {
-  const EMOJI = ["기쁨", "슬픔", "화남", "놀람", "사랑"];
-  const [emojiName, setEmojiName] = useState("놀람");
+  const EMOJI = ["joy", "sadness", "angry", "surprise", "love"];
+  const [emojiName, setEmojiName] = useState("joy");
   const {
     register,
     handleSubmit,
