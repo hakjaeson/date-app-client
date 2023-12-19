@@ -29,13 +29,12 @@ const EmojiMotion = {
   close: { opacity: 0 },
 };
 
-const FormDrag = ({ register, errors }) => {
+const FormDrag = ({ register, emojiName, setEmojiName }) => {
   const EMOJI = ["기쁨", "슬픔", "화남", "놀람", "사랑"];
   const [boxHeight, setBoxHeight] = useState(300);
-  const [hashTagResize, setHashTagResize] = useState(60);
+  const [hashTagResize, setHashTagResize] = useState(250);
   const [resizing, setResizing] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [emojiName, setEmojiName] = useState("놀람");
   const lineAreaRef = useRef(null);
   useEffect(() => {
     const handleTouchStart = e => {
@@ -136,7 +135,7 @@ const FormDrag = ({ register, errors }) => {
         <FormHashTag
           {...register("hashtag")}
           resizing={hashTagResize}
-          placeholder="#해시태그"
+          placeholder="#해시태그 띄어쓰기 없이 적어주세요. #해쉬#태그"
           onChange={HashTaghandleChange}
         />
       </FormHashTagBox>
