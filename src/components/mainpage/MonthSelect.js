@@ -48,14 +48,16 @@ const MonthSelect = ({ data, setFilteredData }) => {
   // 선택된 년도와 월에 따라 데이터를 필터링하는 함수
   const filterByMonthAndYear = (year, month) => {
     const filtered = data.filter(item => {
-      const itemDate = new Date(item.date); // item.date 배열이 다담긴다. itemDate
+      const itemDate = item.createdAt.split(" ")[0]; // item.date 배열이 다담긴다. itemDate
       //Sat Dec 16 2023 09:00:00 GMT+0900 (한국 표준시)
-      // console.log(itemDate);
+      console.log(itemDate);
       // 2023
-      const itemYear = itemDate.getFullYear();
+      const itemYear = parseInt(itemDate.split("-")[0]); // 년도를 정수로 변환
+      const itemMonth = parseInt(itemDate.split("-")[1]); // 월을 정수로 변환
+      // const itemYear = itemDate.getFullYear();
       // console.log(itemYear);
-      // 12
-      const itemMonth = itemDate.getMonth() + 1;
+      // // 12
+      // const itemMonth = itemDate.getMonth() + 1;
       // console.log(itemMonth);
       return itemYear === year && itemMonth === month;
     });
