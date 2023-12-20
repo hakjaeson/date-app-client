@@ -19,17 +19,19 @@ const Login = () => {
   const navigate = useNavigate();
   const [uid, setUid] = useState("");
   const [upw, setUpw] = useState("");
+
   const [errorMg, setErrorMg] = useState("");
 
-  const handleChangeUid = e => {
+  const handleChangeId = e => {
     setUid(e.target.value);
   };
 
-  const handleChangeUpw = e => {
+  const handleChangePw = e => {
     setUpw(e.target.value);
+
   };
 
-  // 비밀번호 형식 조건 (특수문자 포함, 4~8자)
+
   const usersPassword = upw => {
     const passwordRegex = /^(?=.*[!@#$%^&*()])(?=.{4,8}$)/;
     return passwordRegex.test(upw);
@@ -41,19 +43,18 @@ const Login = () => {
       setErrorMg("아이디는 필수 입력 사항입니다.");
       return false;
     }
-
-    // 비밀번호 조건 (비밀번호 공백 금지)
     if (upw === "") {
       setErrorMg("비밀번호는 필수 입력 사항입니다.");
       return false;
     }
+
 
     if (usersPassword(upw) === false) {
       setErrorMg("비밀번호는 특수문자 포함, 4~8자여야 합니다.");
       return false;
     }
 
-    // 서버로 로그인 유저 정보 전달
+
     postUserLogin({ uid, upw }, successFN, failFN);
   };
 

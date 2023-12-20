@@ -23,7 +23,7 @@ function App() {
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/profile/partner" element={<ProfilePartner />} />
       <Route path="/profile/modify" element={<ProfileModify />} />
-      <Route path="/hash/:hash" element={<HashContents />} />
+
       <Route path="/*" element={<NotFound />} />
     </Routes>
   );

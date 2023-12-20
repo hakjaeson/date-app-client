@@ -37,11 +37,13 @@ const ProfilePartner = () => {
     getUserInfo();
   }, []);
 
+  const linkValue = `/profile`;
+
   return (
     <ProfileWrapper>
       <ProfileContent>
         {/* 상단 영역 */}
-        <ProfileHeader />
+        <ProfileHeader link={linkValue} />
 
         {/* 메인 영역 */}
         <ProfileMain>

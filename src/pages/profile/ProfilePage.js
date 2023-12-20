@@ -13,7 +13,6 @@ import {
 } from "../../styles/diarystyles/profilepage/profilepagestyle";
 import { Link } from "react-router-dom";
 import { getUserProfile } from "../../api/user/userprofileapi";
-import Header from "../../components/profile/ProfileHeader";
 import ProfileHeader from "../../components/profile/ProfileHeader";
 
 // 사용자 정보 데이터 형식
@@ -39,11 +38,13 @@ const ProfilePage = () => {
     getUserInfo();
   }, []);
 
+  const linkValue = `/`;
+
   return (
     <ProfileWrapper>
       <ProfileContent>
         {/* 상단 영역 */}
-        <ProfileHeader />
+        <ProfileHeader link={linkValue} />
 
         {/* 메인 영역 */}
         <ProfileMain>

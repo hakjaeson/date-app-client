@@ -21,10 +21,12 @@ export const getUserProfile = async setProfileData => {
 };
 
 // 파트너 프로필 정보 불러오기
-export const getUserProfilePartner = async setProfileData => {
+export const getUserProfilePartner = async (setProfileData, partner_id) => {
   console.log("겟 실행");
   try {
-    const res = await axios.get(`/api/user/profile?partner_id=1`);
+
+    const res = await axios.get(`/api/user/profile?partner_id=${partner_id}`);
+
     setProfileData(res.data);
   } catch (error) {
     console.log(error);
@@ -41,13 +43,13 @@ export const getUserProfilePartner = async setProfileData => {
 };
 
 // 프로필 수정하기
-export const patchUserProfile = async ({ pic, nm, birth, startedAt }, fn) => {
+export const patchUserProfile = async ({ nm, pic, birth, startedAt }, fn) => {
   console.log("패치 실행");
   try {
     const res = await axios.patch(
       `/api/user/profile?nm=${nm}&pic=${pic}&birth=${birth}&startedAt=${startedAt}`,
     );
-    console.log("res.data");
+    console.log(res.data);
     fn(res.data);
   } catch (error) {
     console.log(error);
