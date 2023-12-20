@@ -31,7 +31,13 @@ const ProfileModify = () => {
   // 처음 사용자 프로필 정보 초기값에 담기
   const [profileData, setProfileData] = useState(initialProfie);
 
+  // 미리보기 이미지 초기값
+  const initPreview = profileData.pic;
+
   const navigate = useNavigate();
+
+  // 미리보기 이미지
+  const [previewImg, setPreviewImg] = useState(initPreview);
 
   const [pic, setPic] = useState("");
   const [name, setName] = useState("");
@@ -42,7 +48,7 @@ const ProfileModify = () => {
   const patchUserProfileAction = result => {
     if (result === 1) {
       alert("수정 완료");
-      navigate(-1);
+      navigate("/profile");
       return;
     }
     if (result === 0) {

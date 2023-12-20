@@ -41,13 +41,13 @@ export const getUserProfilePartner = async (setProfileData, partner_id) => {
 };
 
 // 프로필 수정하기
-export const patchUserProfile = async ({ pic, nm, birth, startedAt }, fn) => {
+export const patchUserProfile = async ({ nm, pic, birth, startedAt }, fn) => {
   console.log("패치 실행");
   try {
     const res = await axios.patch(
       `/api/user/profile?nm=${nm}&pic=${pic}&birth=${birth}&startedAt=${startedAt}`,
     );
-    console.log("res.data");
+    console.log(res.data);
     fn(res.data);
   } catch (error) {
     console.log(error);
