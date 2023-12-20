@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "@emotion/styled";
 import {
@@ -69,38 +69,16 @@ const EmojiMotion = {
   close: { opacity: 0 },
 };
 
-const ReadForm = ({
-  data,
-  isOpen,
-  EMOJI,
-  setIsOpen,
-  setEmojiName,
-  emojiName,
-}) => {
+const ReadForm = ({ data, isOpen, EMOJI, setIsOpen }) => {
+  const [emojiName, setEmojiName] = useState(data.emoji);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  let today = new Date();
-  let year = today.getFullYear(); // 년도
-  let month = today.getMonth() + 1; // 월
-  let date = today.getDate(); // 날짜
-  let day = today.getDay(); // 요일
-  const daystr = [
-    "일요일",
-    "월요일",
-    "화요일",
-    "수요일",
-    "목요일",
-    "금요일",
-    "토요일",
-  ];
-
   const onValid = data => {
     console.log(data);
-    // postCreatePage(data);
   };
   const onInValid = data => {
     alert(`${data?.title?.message}\n${data?.content?.message}`);
@@ -133,7 +111,7 @@ const ReadForm = ({
                       key={id}
                       onClick={() => {
                         setIsOpen(!isOpen);
-                        setEmojiName(emoji);
+                        setEmojiName(id);
                       }}
                       variants={EmojiMotion}
                     >
@@ -149,11 +127,11 @@ const ReadForm = ({
             )}
             <ReadEmoji
               type="image"
-              src={`${process.env.PUBLIC_URL}/images/${emojiName}.jpeg`}
+              src={`${process.env.PUBLIC_URL}/images/${EMOJI[emojiName]}.jpeg`}
               alt={emojiName}
               onClick={handleClick}
             />
-            <ReadDate>{`${year}/${month}/${date}/${daystr[day]}`}</ReadDate>
+            <ReadDate>{`${data.createdAt}`}</ReadDate>
           </ReadTop>
           <ReadMidInput
             {...register("content", {
