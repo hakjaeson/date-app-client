@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css/pagination";
 import {
   ContentBody,
   ContentData,
@@ -19,7 +21,6 @@ import {
 
 const MainContents = ({ data }) => {
   const swiperRef = useRef();
-  // console.log("maincontent :", data);
 
   // 데이터 emoji 값에 따라 이모지(기분) 그림 출력
   const EmojiFuc = emoji => {
@@ -39,7 +40,10 @@ const MainContents = ({ data }) => {
     }
     return result;
   };
-
+  const filteredDay = result => {
+    let fDay = result.split("-")[2].split(" ")[0];
+    return fDay.startsWith("0") ? fDay.slice(1) : fDay;
+  };
   return (
     <div>
       {data.map(item => (
@@ -60,21 +64,19 @@ const MainContents = ({ data }) => {
 
             {/* Content Date */}
             <WriteingDate>
-              {/* <span>
-                  {item.createdAt.split("-")[2].startsWith("0")
-                    ? item.createdAt.split("-")[2].slice(1)
-                    : item.createdAt.split("-")[2]}
-                  일
-                </span> */}
+              <span>{filteredDay(item.createdAt)}</span>
             </WriteingDate>
           </ContentHeader>
+          {/* swiper */}
           <ContentSlide>
             <Swiper
               slidesPerView={1}
               spaceBetween={0}
+              modules={[Pagination]}
               onSwiper={swiper => {
                 swiperRef.current = swiper;
               }}
+              pagination={true}
               className="content-slide"
             >
               <SwiperSlide>
