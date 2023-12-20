@@ -17,7 +17,6 @@ import {
 
 const Login = () => {
   const navigate = useNavigate();
-
   const [uid, setUid] = useState("");
   const [upw, setUpw] = useState("");
 
@@ -32,11 +31,13 @@ const Login = () => {
 
   };
 
+
   const usersPassword = upw => {
     const passwordRegex = /^(?=.*[!@#$%^&*()])(?=.{4,8}$)/;
     return passwordRegex.test(upw);
   };
 
+  // 비밀번호 조건 (아이디 공백 금지)
   const handleClickLogin = () => {
     if (uid === "") {
       setErrorMg("아이디는 필수 입력 사항입니다.");
@@ -47,26 +48,24 @@ const Login = () => {
       return false;
     }
 
-    // 비밀번호 조건
+
     if (usersPassword(upw) === false) {
       setErrorMg("비밀번호는 특수문자 포함, 4~8자여야 합니다.");
       return false;
     }
 
 
-    // 서버로 전달
     postUserLogin({ uid, upw }, successFN, failFN);
   };
 
   const successFN = () => {
     console.log("로그인 성공!");
+    // 메인페이지 이동
     navigate("/");
   };
 
   const failFN = () => {
     console.log("서버 에러");
-    // 메인페이지 이동 위해 우선 navigate 넣어둠
-    navigate("/");
   };
 
   return (
@@ -84,7 +83,7 @@ const Login = () => {
                 name="id"
                 value={uid}
                 onChange={e => {
-                  handleChangeId(e);
+                  handleChangeUid(e);
                 }}
               />
             </IdForm>
@@ -95,7 +94,7 @@ const Login = () => {
                 name="password"
                 value={upw}
                 onChange={e => {
-                  handleChangePw(e);
+                  handleChangeUpw(e);
                 }}
               ></input>
             </PasswordForm>

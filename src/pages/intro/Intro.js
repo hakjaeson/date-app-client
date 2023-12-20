@@ -7,6 +7,7 @@ import {
   IntroMain,
 } from "../../styles/diarystyles/intro/introstyle";
 
+// 로그인 페이지 이동
 const intro = () => {
   const navigate = useNavigate();
   const handleClickIntro = () => {

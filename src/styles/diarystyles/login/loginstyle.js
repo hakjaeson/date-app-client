@@ -86,8 +86,8 @@ export const LoginBt = styled.footer`
 
 export const LoginButton = styled.button`
   display: block;
-  width: 350px;
-  height: 60px;
+  width: 320px;
+  height: 50px;
   font-size: 20px;
   background-color: #d2ceff;
   border: 2.5px solid #000;
@@ -99,8 +99,8 @@ export const LoginButton = styled.button`
 
 export const SigninButton = styled.button`
   display: block;
-  width: 350px;
-  height: 60px;
+  width: 320px;
+  height: 50px;
   font-size: 20px;
   background-color: #d2ceff;
   border: 2.5px solid #000;

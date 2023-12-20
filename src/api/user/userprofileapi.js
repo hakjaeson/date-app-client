@@ -24,7 +24,9 @@ export const getUserProfile = async setProfileData => {
 export const getUserProfilePartner = async (setProfileData, partner_id) => {
   console.log("겟 실행");
   try {
+
     const res = await axios.get(`/api/user/profile?partner_id=${partner_id}`);
+
     setProfileData(res.data);
   } catch (error) {
     console.log(error);
