@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "@emotion/styled";
 import {
@@ -69,27 +69,25 @@ const EmojiMotion = {
   close: { opacity: 0 },
 };
 
-const ReadForm = ({ data, isOpen, EMOJI, setIsOpen }) => {
-  const [emojiName, setEmojiName] = useState(data.emoji);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+const ReadForm = ({
+  data,
+  isOpen,
+  EMOJI,
+  setUpdateEmojiNum,
+  setIsOpen,
+  register,
+}) => {
+  const [emojiNum, setEmojiNum] = useState(data.emoji);
 
-  const onValid = data => {
-    console.log(data);
-  };
-  const onInValid = data => {
-    alert(`${data?.title?.message}\n${data?.content?.message}`);
-  };
-
+  useEffect(() => {
+    setUpdateEmojiNum(data.emoji);
+  });
   const handleClick = event => {
     event.preventDefault();
     setIsOpen(!isOpen);
   };
   return (
-    <PageMainForm onSubmit={handleSubmit(onValid, onInValid)}>
+    <PageMainForm>
       <ReadTitleInput
         {...register("title", {
           required: "제목은 필수사항입니다.",
@@ -111,7 +109,8 @@ const ReadForm = ({ data, isOpen, EMOJI, setIsOpen }) => {
                       key={id}
                       onClick={() => {
                         setIsOpen(!isOpen);
-                        setEmojiName(id);
+                        setEmojiNum(id);
+                        setUpdateEmojiNum(id);
                       }}
                       variants={EmojiMotion}
                     >
@@ -127,8 +126,8 @@ const ReadForm = ({ data, isOpen, EMOJI, setIsOpen }) => {
             )}
             <ReadEmoji
               type="image"
-              src={`${process.env.PUBLIC_URL}/images/${EMOJI[emojiName]}.jpeg`}
-              alt={emojiName}
+              src={`${process.env.PUBLIC_URL}/images/${EMOJI[emojiNum]}.jpeg`}
+              alt={emojiNum}
               onClick={handleClick}
             />
             <ReadDate>{`${data.createdAt}`}</ReadDate>
@@ -140,7 +139,12 @@ const ReadForm = ({ data, isOpen, EMOJI, setIsOpen }) => {
             defaultValue={data?.contents}
           />
           <ReadBottom>
-            <ReadHashTagInput type="text" defaultValue={data?.hashContents} />
+            <ReadHashTagInput
+              {...register("hashTag", {
+                required: "해쉬태그는 필수사항입니다.",
+              })}
+              defaultValue={data?.hashContents}
+            />
           </ReadBottom>
         </ReadContent>
       </ReadContentbox>

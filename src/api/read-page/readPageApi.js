@@ -18,6 +18,34 @@ export const getReadPage = async (setData, diaryId, setEmojiName) => {
   }
 };
 
+// 해당 게시물 상세페이지 데이터 수정
+export const updateReadPage = async (
+  data,
+  diaryId,
+  updateEmojiNum,
+  hashTag,
+) => {
+  try {
+    const res = await axios.patch(`/api/diary`, {
+      diaryId: diaryId,
+      title: data.title,
+      contents: data.content,
+      diaryPics: ["수정더미.jpg"],
+      hashContents: [...hashTag],
+      emoji: updateEmojiNum,
+    });
+
+    if (res.status === 200 && res.data) {
+      alert("수정이 완료 되었습니다.");
+    } else {
+      // 서버 응답이 성공하였지만 데이터가 없는 경우
+      console.error("데이터가 없습니다.");
+    }
+  } catch (error) {
+    console.error("에러");
+  }
+};
+
 // 해당 게시물 상세페이지 데이터 삭제
 export const deleteReadPage = async diaryId => {
   try {

@@ -139,8 +139,6 @@ export const ReadFooter = styled.div`
   display: flex;
   justify-content: right;
   padding: 10px 10px 0 0;
-
-  border-top: 2.5px solid #000;
 `;
 
 export const ReadPageButton = styled.button`

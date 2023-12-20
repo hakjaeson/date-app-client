@@ -9,6 +9,9 @@ import {
 
 const CreatePage = () => {
   useEffect(() => {
+    // 스크롤 맨위로 올리기
+    window.scrollTo(0, 0);
+
     // 전체 어플리케이션의 body에 스크롤을 없애는 스타일을 추가
     document.body.style.overflow = "hidden";
 
