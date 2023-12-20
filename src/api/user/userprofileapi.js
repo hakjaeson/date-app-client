@@ -24,16 +24,16 @@ export const getUserProfile = async setProfileData => {
 export const getUserProfilePartner = async setProfileData => {
   console.log("겟 실행");
   try {
-    const res = await axios.get(`/api/user/partner_profile`);
+    const res = await axios.get(`/api/user/profile?partner_id=1`);
     setProfileData(res.data);
   } catch (error) {
     console.log(error);
     alert("서버가 불안정합니다.");
     const fakeData = {
+      nm: "최웅",
       pic: `${process.env.PUBLIC_URL}/images/girl.png`,
       partnerPic: `${process.env.PUBLIC_URL}/images/boy.png`,
-      partnerNm: "최웅",
-      partnerBirth: "1990-03-26",
+      birth: "1990-03-26",
       startedAt: "2021-12-06",
     };
     setProfileData(fakeData);

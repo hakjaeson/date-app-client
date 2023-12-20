@@ -17,52 +17,54 @@ import {
 
 const Login = () => {
   const navigate = useNavigate();
-  const [id, setId] = useState("");
-  const [pw, setPw] = useState("");
+  const [uid, setUid] = useState("");
+  const [upw, setUpw] = useState("");
   const [errorMg, setErrorMg] = useState("");
 
-  const handleChangeId = e => {
-    setId(e.target.value);
+  const handleChangeUid = e => {
+    setUid(e.target.value);
   };
 
-  const handleChangePw = e => {
-    setPw(e.target.value);
+  const handleChangeUpw = e => {
+    setUpw(e.target.value);
   };
 
-  const usersPassword = pw => {
+  // 비밀번호 형식 조건 (특수문자 포함, 4~8자)
+  const usersPassword = upw => {
     const passwordRegex = /^(?=.*[!@#$%^&*()])(?=.{4,8}$)/;
-    return passwordRegex.test(pw);
+    return passwordRegex.test(upw);
   };
 
+  // 비밀번호 조건 (아이디 공백 금지)
   const handleClickLogin = () => {
-    if (id === "") {
+    if (uid === "") {
       setErrorMg("아이디는 필수 입력 사항입니다.");
       return false;
     }
-    if (pw === "") {
+
+    // 비밀번호 조건 (비밀번호 공백 금지)
+    if (upw === "") {
       setErrorMg("비밀번호는 필수 입력 사항입니다.");
       return false;
     }
 
-    // 비밀번호 조건
-    if (usersPassword(pw) === false) {
+    if (usersPassword(upw) === false) {
       setErrorMg("비밀번호는 특수문자 포함, 4~8자여야 합니다.");
       return false;
     }
 
-    // 서버로 전달
-    postUserLogin({ id, pw }, successFN, failFN);
+    // 서버로 로그인 유저 정보 전달
+    postUserLogin({ uid, upw }, successFN, failFN);
   };
 
   const successFN = () => {
     console.log("로그인 성공!");
+    // 메인페이지 이동
     navigate("/");
   };
 
   const failFN = () => {
     console.log("서버 에러");
-    // 메인페이지 이동 위해 우선 navigate 넣어둠
-    navigate("/");
   };
 
   return (
@@ -78,9 +80,9 @@ const Login = () => {
               <input
                 type="text"
                 name="id"
-                value={id}
+                value={uid}
                 onChange={e => {
-                  handleChangeId(e);
+                  handleChangeUid(e);
                 }}
               />
             </IdForm>
@@ -89,9 +91,9 @@ const Login = () => {
               <input
                 type="password"
                 name="password"
-                value={pw}
+                value={upw}
                 onChange={e => {
-                  handleChangePw(e);
+                  handleChangeUpw(e);
                 }}
               ></input>
             </PasswordForm>
