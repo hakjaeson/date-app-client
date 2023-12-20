@@ -3,7 +3,11 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import PrevHeader from "../../components/common/PrevHeader";
-import { getReadPage, deleteReadPage } from "../../api/read-page/readPageApi";
+import {
+  getReadPage,
+  deleteReadPage,
+  updateReadPage,
+} from "../../api/read-page/readPageApi";
 import {
   Device,
   PageMain,
@@ -23,6 +27,7 @@ import {
   Wrapper,
 } from "../../styles/diarystyles/readpage/readpagestyle";
 import ReadForm from "../../components/readpage/ReadForm";
+import { useForm } from "react-hook-form";
 
 const ReadPage = () => {
   const location = useLocation();
@@ -31,18 +36,34 @@ const ReadPage = () => {
   const navigate = useNavigate();
   const EMOJI = ["joy", "sadness", "angry", "surprise", "love"];
   const [isOpen, setIsOpen] = useState(false);
-  const [emojiName, setEmojiName] = useState();
+  const [emojiNum, setEmojiNum] = useState();
+  const [updateEmojiNum, setUpdateEmojiNum] = useState();
   const [data, setData] = useState(null);
   const [edit, setEdit] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
-    getReadPage(setData, diaryId, setEmojiName);
+    getReadPage(setData, diaryId, setEmojiNum);
   }, []);
-  const ClickEdit = () => {
-    setEdit(!edit);
+
+  const onValid = data => {
+    // console.log(data, diaryId, updateEmojiNum);
+    const hashTag = data.hashTag.split("#").filter(Boolean);
+    updateReadPage(data, diaryId, updateEmojiNum, hashTag);
+
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
+  };
+  const onInValid = data => {
+    alert(`${data?.title?.message}\n${data?.content?.message}`);
   };
 
-  const ClickSave = () => {
+  const ClickEdit = () => {
     setEdit(!edit);
   };
 
@@ -51,7 +72,10 @@ const ReadPage = () => {
 
     if (check) {
       deleteReadPage(diaryId);
-      navigate("/");
+      //서버 업데이트 시간 주기
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     }
   };
 
@@ -64,7 +88,9 @@ const ReadPage = () => {
             data={data}
             isOpen={isOpen}
             EMOJI={EMOJI}
+            setUpdateEmojiNum={setUpdateEmojiNum}
             setIsOpen={setIsOpen}
+            register={register}
           />
         ) : (
           data && (
@@ -76,15 +102,15 @@ const ReadPage = () => {
                   <ReadTop>
                     <ReadEmoji
                       type="image"
-                      src={`${process.env.PUBLIC_URL}/images/${EMOJI[emojiName]}.jpeg`}
-                      alt={EMOJI[emojiName]}
+                      src={`${process.env.PUBLIC_URL}/images/${EMOJI[emojiNum]}.jpeg`}
+                      alt={EMOJI[emojiNum]}
                     />
                     <ReadDate>{data?.createdAt}</ReadDate>
                   </ReadTop>
                   <ReadMid>{data?.contents}</ReadMid>
                   <ReadBottom>
-                    {data?.hashContents.map(item => (
-                      <ReadHashTag key={item}>{`#${item}`}</ReadHashTag>
+                    {data?.hashContents.map((item, idx) => (
+                      <ReadHashTag key={idx}>{`#${item}`}</ReadHashTag>
                     ))}
                   </ReadBottom>
                 </ReadContent>
@@ -94,7 +120,9 @@ const ReadPage = () => {
         )}
         <ReadFooter>
           {edit ? (
-            <ReadPageButton onClick={ClickSave}>완료</ReadPageButton>
+            <ReadPageButton onClick={handleSubmit(onValid, onInValid)}>
+              완료
+            </ReadPageButton>
           ) : (
             <>
               <ReadPageButton onClick={ClickEdit}>수정</ReadPageButton>
