@@ -17,8 +17,8 @@ import {
 
 const Login = () => {
   const navigate = useNavigate();
-  const [id, setId] = useState("");
-  const [pw, setPw] = useState("");
+  const [uid, setId] = useState("");
+  const [upw, setPw] = useState("");
   const [errorMg, setErrorMg] = useState("");
 
   const handleChangeId = e => {
@@ -29,29 +29,29 @@ const Login = () => {
     setPw(e.target.value);
   };
 
-  const usersPassword = pw => {
+  const usersPassword = upw => {
     const passwordRegex = /^(?=.*[!@#$%^&*()])(?=.{4,8}$)/;
-    return passwordRegex.test(pw);
+    return passwordRegex.test(upw);
   };
 
   const handleClickLogin = () => {
-    if (id === "") {
+    if (uid === "") {
       setErrorMg("아이디는 필수 입력 사항입니다.");
       return false;
     }
-    if (pw === "") {
+    if (upw === "") {
       setErrorMg("비밀번호는 필수 입력 사항입니다.");
       return false;
     }
 
     // 비밀번호 조건
-    if (usersPassword(pw) === false) {
+    if (usersPassword(upw) === false) {
       setErrorMg("비밀번호는 특수문자 포함, 4~8자여야 합니다.");
       return false;
     }
 
     // 서버로 전달
-    postUserLogin({ id, pw }, successFN, failFN);
+    postUserLogin({ uid, upw }, successFN, failFN);
   };
 
   const successFN = () => {
@@ -78,7 +78,7 @@ const Login = () => {
               <input
                 type="text"
                 name="id"
-                value={id}
+                value={uid}
                 onChange={e => {
                   handleChangeId(e);
                 }}
@@ -89,7 +89,7 @@ const Login = () => {
               <input
                 type="password"
                 name="password"
-                value={pw}
+                value={upw}
                 onChange={e => {
                   handleChangePw(e);
                 }}

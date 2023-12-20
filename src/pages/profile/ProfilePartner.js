@@ -49,7 +49,7 @@ const ProfilePartner = () => {
           <ProfileVisual>
             <ProfilePic src={profileData.partnerPic} />
             <ProfilePicPartner>
-              <Link to="/profile/partner">
+              <Link to="/profile?partner_id=1">
                 <img src={profileData.pic} />
               </Link>
             </ProfilePicPartner>
@@ -62,9 +62,9 @@ const ProfilePartner = () => {
             </ProfileTitle>
             <ProfileDetail>
               <hr />
-              <li>이름 : {profileData.partnerNm}</li>
+              <li>이름 : {profileData.nm}</li>
               <hr />
-              <li>생년월일 : {profileData.partnerBirth}</li>
+              <li>생년월일 : {profileData.birth}</li>
               <hr />
               <li>함께한 날 : {profileData.startedAt}</li>
               <hr />
