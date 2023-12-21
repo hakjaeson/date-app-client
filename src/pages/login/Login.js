@@ -15,22 +15,20 @@ import {
   SigninButton,
 } from "../../styles/diarystyles/login/loginstyle";
 
-const Login = () => {
+const Login = ({ setUser }) => {
   const navigate = useNavigate();
   const [uid, setUid] = useState("");
   const [upw, setUpw] = useState("");
 
   const [errorMg, setErrorMg] = useState("");
 
-  const handleChangeId = e => {
+  const handleChangeUid = e => {
     setUid(e.target.value);
   };
 
-  const handleChangePw = e => {
+  const handleChangeUpw = e => {
     setUpw(e.target.value);
-
   };
-
 
   const usersPassword = upw => {
     const passwordRegex = /^(?=.*[!@#$%^&*()])(?=.{4,8}$)/;
@@ -48,14 +46,12 @@ const Login = () => {
       return false;
     }
 
-
     if (usersPassword(upw) === false) {
       setErrorMg("비밀번호는 특수문자 포함, 4~8자여야 합니다.");
       return false;
     }
 
-
-    postUserLogin({ uid, upw }, successFN, failFN);
+    postUserLogin({ uid, upw }, successFN, failFN, setUser);
   };
 
   const successFN = () => {
