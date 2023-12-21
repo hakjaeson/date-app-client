@@ -24,15 +24,13 @@ const PageMainForm = styled.div`
 `;
 
 const ReadTitleInput = styled.input`
-  background-color: #d2ceff;
   width: 100%;
-  height: 10%;
+  height: 45px;
   display: flex;
-  padding-left: 25px;
+  padding-left: 15px;
   align-items: center;
   font-size: 25px;
-  border-top: 2.5px solid #000;
-  border-bottom: 2.5px solid #000;
+  border: none;
 `;
 
 const ReadMidInput = styled.textarea`
@@ -88,12 +86,6 @@ const ReadForm = ({
   };
   return (
     <PageMainForm>
-      <ReadTitleInput
-        {...register("title", {
-          required: "제목은 필수사항입니다.",
-        })}
-        defaultValue={data?.title}
-      />
       <ReadImage src="https://picsum.photos/300/300" />
       <ReadContentbox>
         <ReadContent>
@@ -130,8 +122,14 @@ const ReadForm = ({
               alt={emojiNum}
               onClick={handleClick}
             />
-            <ReadDate>{`${data.createdAt}`}</ReadDate>
+            <ReadTitleInput
+              {...register("title", {
+                required: "제목은 필수사항입니다.",
+              })}
+              defaultValue={data?.title}
+            />
           </ReadTop>
+          <ReadDate>{`${data.createdAt}`}</ReadDate>
           <ReadMidInput
             {...register("content", {
               required: "내용은 필수사항입니다.",

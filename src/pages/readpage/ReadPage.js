@@ -95,7 +95,6 @@ const ReadPage = () => {
         ) : (
           data && (
             <PageMain>
-              <ReadTitle>{data?.title}</ReadTitle>
               <ReadImage src="https://picsum.photos/300/300" />
               <ReadContentbox>
                 <ReadContent>
@@ -105,8 +104,9 @@ const ReadPage = () => {
                       src={`${process.env.PUBLIC_URL}/images/${EMOJI[emojiNum]}.jpeg`}
                       alt={EMOJI[emojiNum]}
                     />
-                    <ReadDate>{data?.createdAt}</ReadDate>
+                    <ReadTitle>{data?.title}</ReadTitle>
                   </ReadTop>
+                  <ReadDate>{data?.createdAt}</ReadDate>
                   <ReadMid>{data?.contents}</ReadMid>
                   <ReadBottom>
                     {data?.hashContents.map((item, idx) => (
