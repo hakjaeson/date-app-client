@@ -38,8 +38,7 @@ export const ProfileMain = styled.main`
 export const ProfileVisual = styled.div`
   position: relative;
   width: 300px;
-  heigth: 300px;
-  }
+  height: 300px;
 `;
 
 export const ProfilePic = styled.img`

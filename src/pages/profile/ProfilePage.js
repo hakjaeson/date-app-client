@@ -33,6 +33,14 @@ const ProfilePage = () => {
     getUserProfile(setProfileData);
   };
 
+  //YYYY/MM/DD
+  const filterDate = result => {
+    // console.log(result);
+    let filterData = result.split(" ")[0];
+    // console.log(filterData);
+    return filterData;
+  };
+
   // 1. 화면 초기 불러오기
   useEffect(() => {
     getUserInfo();
@@ -67,9 +75,9 @@ const ProfilePage = () => {
               <hr />
               <li>이름 : {profileData.nm}</li>
               <hr />
-              <li>생년월일 : {profileData.birth}</li>
+              <li>생년월일 : {filterDate(profileData.birth)}</li>
               <hr />
-              <li>함께한 날 : {profileData.startedAt}</li>
+              <li>함께한 날 : {filterDate(profileData.startedAt)}</li>
               <hr />
             </ProfileDetail>
           </ProfileInfo>

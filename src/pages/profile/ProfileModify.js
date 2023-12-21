@@ -38,14 +38,20 @@ const ProfileModify = () => {
 
   // 미리보기 이미지
   const [previewImg, setPreviewImg] = useState(initPreview);
+  // 파이어베이스 업로드된 이미지
+  const [firebaseUploadImg, setFirbaseUploadImg] = useState(null);
 
   const [pic, setPic] = useState("");
   const [name, setName] = useState("");
   const [birth, setBirth] = useState("");
   const [startedAt, setStartedAt] = useState("");
 
+  // 상단바 뒤로가기
+  const linkValue = `/profile`;
+
   // 프로필 정보 수정
   const patchUserProfileAction = result => {
+    console.log("왜 안되니", result);
     if (result === 1) {
       alert("수정 완료");
       navigate("/profile");
@@ -93,8 +99,8 @@ const ProfileModify = () => {
   useEffect(() => {
     setPic(profileData.pic);
     setName(profileData.nm);
-    setBirth(profileData.birth);
-    setStartedAt(profileData.startedAt);
+    // setBirth(filterDate(profileData.birth));
+    // setStartedAt(filterDate(profileData.startedAt));
   }, [profileData]);
 
   // 2. 사용자 프로필 가져오기
@@ -102,12 +108,32 @@ const ProfileModify = () => {
     getUserProfile(setProfileData);
   };
 
+  //YYYY/MM/DD
+  const filterDate = result => {
+    // console.log(result);
+    let filterData = result.split(" ")[0];
+    // console.log(filterData);
+    return filterData;
+  };
+
+  // 이미지 파일 선택 미리보기
+  const handleChangeFile = e => {
+    // 파일을 변수에 담아서 코드 를 수월하게 보려고
+    const file = e.target.files[0];
+    if (file) {
+      // 나의 웹브라우저에서 URL 을 임시로 생성
+      const tempUrl = URL.createObjectURL(file);
+      // 미리보기 state
+      setPreviewImg(tempUrl);
+      // FB 파일 보관
+      setFirbaseUploadImg(file);
+    }
+  };
+
   // 1. 초기 화면 불러오기
   useEffect(() => {
     getUserInfo();
   }, []);
-
-  const linkValue = `/profile`;
 
   return (
     <ProfileWrapper>
@@ -119,7 +145,12 @@ const ProfileModify = () => {
         <ProfileMain>
           {/* 사진 영역 */}
           <ProfileVisual>
-            <ProfilePic src={profileData.pic} />
+            {/* 기존 이미지 불러오기 및 업로드하는 이미지 미리보기 */}
+            {previewImg ? (
+              <ProfilePic src={previewImg} alt="미리보기" />
+            ) : (
+              <ProfilePic src={profileData.pic} alt="기존이미지" />
+            )}
           </ProfileVisual>
 
           {/* 정보 수정 영역 */}
@@ -128,6 +159,13 @@ const ProfileModify = () => {
               <ProfileDetailForm>
                 <label>사진 : </label>
                 <input
+                  type="file"
+                  accept="image/png, image/gif, image/jpeg"
+                  onChange={e => {
+                    handleChangeFile(e);
+                  }}
+                />
+                {/* <input
                   type="text"
                   name="pic"
                   defaultValue={profileData.pic}
@@ -136,7 +174,7 @@ const ProfileModify = () => {
                   onChange={e => {
                     handleChangePic(e);
                   }}
-                ></input>
+                ></input> */}
               </ProfileDetailForm>
 
               <ProfileDetailForm>

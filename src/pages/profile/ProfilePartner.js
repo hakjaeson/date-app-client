@@ -11,7 +11,7 @@ import {
   ProfileWrapper,
 } from "../../styles/diarystyles/profilepage/profilepagestyle";
 import { Link } from "react-router-dom";
-import { getUserProfilePartner } from "../../api/user/userprofileapi";
+import { getUserProfile } from "../../api/user/userprofileapi";
 import ProfileHeader from "../../components/profile/ProfileHeader";
 
 // 사용자 정보 데이터 형식
@@ -29,7 +29,15 @@ const ProfilePartner = () => {
 
   // 처음 사용자 프로필 가져오기
   const getUserInfo = () => {
-    getUserProfilePartner(setProfileData);
+    getUserProfile(setProfileData);
+  };
+
+  //YYYY/MM/DD
+  const filterDate = result => {
+    // console.log(result);
+    let filterData = result.split(" ")[0];
+    // console.log(filterData);
+    return filterData;
   };
 
   // 1. 화면 초기 불러오기
@@ -51,7 +59,7 @@ const ProfilePartner = () => {
           <ProfileVisual>
             <ProfilePic src={profileData.partnerPic} />
             <ProfilePicPartner>
-              <Link to="/profile?partner_id=1">
+              <Link to="/profile">
                 <img src={profileData.pic} />
               </Link>
             </ProfilePicPartner>
@@ -64,11 +72,11 @@ const ProfilePartner = () => {
             </ProfileTitle>
             <ProfileDetail>
               <hr />
-              <li>이름 : {profileData.nm}</li>
+              <li>이름 : {profileData.partnerNm}</li>
               <hr />
-              <li>생년월일 : {profileData.birth}</li>
+              <li>생년월일 : {filterDate(profileData.partnerBirth)}</li>
               <hr />
-              <li>함께한 날 : {profileData.startedAt}</li>
+              <li>함께한 날 : {filterDate(profileData.startedAt)}</li>
               <hr />
             </ProfileDetail>
           </ProfileInfo>
