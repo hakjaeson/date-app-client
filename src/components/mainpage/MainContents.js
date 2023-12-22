@@ -79,19 +79,13 @@ const MainContents = ({ data }) => {
               pagination={true}
               className="content-slide"
             >
-              <SwiperSlide>
-                <ContentSlideImage>
-                  <img
-                    src="https://m.betanews.net/imagedb/orig/2021/0105/ab677e71.jpg"
-                    alt=""
-                  ></img>
-                </ContentSlideImage>
-              </SwiperSlide>
-              <SwiperSlide>
-                <ContentSlideImage>
-                  <img src="https://picsum.photos/300/200" alt=""></img>
-                </ContentSlideImage>
-              </SwiperSlide>
+              {item.pics.map((pics, index) => (
+                <SwiperSlide key={index}>
+                  <ContentSlideImage>
+                    <img src={pics} alt="" />
+                  </ContentSlideImage>
+                </SwiperSlide>
+              ))}
             </Swiper>
           </ContentSlide>
 

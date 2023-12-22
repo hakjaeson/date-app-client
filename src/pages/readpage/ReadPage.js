@@ -1,6 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css/pagination";
+
+import { storage, ref } from "../../DB/firebase";
+import { deleteObject } from "firebase/storage";
 
 import PrevHeader from "../../components/common/PrevHeader";
 import {
@@ -36,6 +45,7 @@ const ReadPage = () => {
   const navigate = useNavigate();
   const EMOJI = ["joy", "sadness", "angry", "surprise", "love"];
   const [isOpen, setIsOpen] = useState(false);
+  const [saved, setSaved] = useState(false);
   const [emojiNum, setEmojiNum] = useState();
   const [updateEmojiNum, setUpdateEmojiNum] = useState();
   const [data, setData] = useState(null);
@@ -45,6 +55,7 @@ const ReadPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const swiperRef = useRef();
 
   useEffect(() => {
     getReadPage(setData, diaryId, setEmojiNum);
@@ -52,26 +63,56 @@ const ReadPage = () => {
 
   const onValid = data => {
     // console.log(data, diaryId, updateEmojiNum);
-    const hashTag = data.hashTag.split("#").filter(Boolean);
-    updateReadPage(data, diaryId, updateEmojiNum, hashTag);
 
-    setTimeout(() => {
-      navigate("/");
-    }, 1000);
+    if (saved === false) {
+      alert("이미지 저장을 눌러주세요.");
+    } else {
+      //해쉬태그 구분
+      const hashTag = data.hashtag.split("#").filter(Boolean);
+      // 폼태그 전송
+      updateReadPage(data, diaryId, updateEmojiNum, hashTag);
+
+      //서버 업데이트 시간 주기
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
+    }
   };
   const onInValid = data => {
-    alert(`${data?.title?.message}\n${data?.content?.message}`);
+    let title = "";
+    let content = "";
+    let hashTag = "";
+    if (data?.title?.message !== undefined) {
+      title = data?.title?.message;
+    }
+    if (data?.content?.message !== undefined) {
+      content = data?.content?.message;
+    }
+    if (data?.hashtag?.message !== undefined) {
+      hashTag = data?.hashtag?.message;
+    }
+    alert(`${title}\n${content}\n${hashTag}`);
   };
 
   const ClickEdit = () => {
     setEdit(!edit);
   };
 
-  const ClickDelete = () => {
+  const ClickDelete = async () => {
     const check = confirm("정말로 삭제하시겠습니까?");
 
     if (check) {
       deleteReadPage(diaryId);
+      try {
+        for (let i = 0; i < data.pics.length; i++) {
+          const picName = data.pics[i];
+          const desertRef = ref(storage, picName);
+          await deleteObject(desertRef);
+          console.log("삭제성공");
+        }
+      } catch (error) {
+        console.log(error);
+      }
       //서버 업데이트 시간 주기
       setTimeout(() => {
         navigate("/");
@@ -89,34 +130,50 @@ const ReadPage = () => {
             isOpen={isOpen}
             EMOJI={EMOJI}
             setUpdateEmojiNum={setUpdateEmojiNum}
+            setSaved={setSaved}
             setIsOpen={setIsOpen}
             register={register}
           />
+        ) : data ? (
+          <PageMain>
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={0}
+              modules={[Pagination]}
+              onSwiper={swiper => {
+                swiperRef.current = swiper;
+              }}
+              pagination={true}
+              className="content-slide"
+            >
+              {data.pics.map((pics, index) => (
+                <SwiperSlide key={index}>
+                  <ReadImage src={pics} alt="" />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <ReadContentbox>
+              <ReadContent>
+                <ReadTop>
+                  <ReadEmoji
+                    type="image"
+                    src={`${process.env.PUBLIC_URL}/images/${EMOJI[emojiNum]}.jpeg`}
+                    alt={EMOJI[emojiNum]}
+                  />
+                  <ReadTitle>{data?.title}</ReadTitle>
+                </ReadTop>
+                <ReadDate>{data?.createdAt}</ReadDate>
+                <ReadMid>{data?.contents}</ReadMid>
+                <ReadBottom>
+                  {data?.hashContents.map((item, idx) => (
+                    <ReadHashTag key={idx}>{`#${item}`}</ReadHashTag>
+                  ))}
+                </ReadBottom>
+              </ReadContent>
+            </ReadContentbox>
+          </PageMain>
         ) : (
-          data && (
-            <PageMain>
-              <ReadImage src="https://picsum.photos/300/300" />
-              <ReadContentbox>
-                <ReadContent>
-                  <ReadTop>
-                    <ReadEmoji
-                      type="image"
-                      src={`${process.env.PUBLIC_URL}/images/${EMOJI[emojiNum]}.jpeg`}
-                      alt={EMOJI[emojiNum]}
-                    />
-                    <ReadTitle>{data?.title}</ReadTitle>
-                  </ReadTop>
-                  <ReadDate>{data?.createdAt}</ReadDate>
-                  <ReadMid>{data?.contents}</ReadMid>
-                  <ReadBottom>
-                    {data?.hashContents.map((item, idx) => (
-                      <ReadHashTag key={idx}>{`#${item}`}</ReadHashTag>
-                    ))}
-                  </ReadBottom>
-                </ReadContent>
-              </ReadContentbox>
-            </PageMain>
-          )
+          <h1>데이터받아오는중</h1>
         )}
         <ReadFooter>
           {edit ? (
