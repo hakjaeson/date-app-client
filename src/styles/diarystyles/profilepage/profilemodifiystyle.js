@@ -15,6 +15,7 @@ export const ProfileDetailForm = styled.div`
   font-size: 17px;
   label {
     padding-right: 5px;
+    color: #49454f;
     // background: #d2ceff;
   }
   input {
@@ -23,6 +24,7 @@ export const ProfileDetailForm = styled.div`
     border: none;
     outline: none;
     background: #ffdbab;
+    color: #49454f;
     /* user-select: all; */
   }
 `;
@@ -33,11 +35,12 @@ export const ProfileSummitBt = styled.div`
 
   button {
     background-color: #d2ceff;
-    border: 2.5px solid #000;
+    border: 2.5px none #000;
     border-radius: 30px;
     padding: 18px 105px;
     font-size: 20px;
     white-space: nowrap;
     cursor: pointer;
+    color: #fff;
   }
 `;

@@ -18,6 +18,13 @@ import {
   ProfileWrapper,
 } from "../../styles/diarystyles/profilepage/profilepagestyle";
 import ProfileHeader from "../../components/profile/ProfileHeader";
+import moment from "moment/moment";
+import {
+  getDownloadURL,
+  ref,
+  storage,
+  uploadBytes,
+} from "../../api/firebase/firebase";
 
 // 사용자 정보 데이터 형식
 const initialProfie = {
@@ -30,28 +37,23 @@ const initialProfie = {
 const ProfileModify = () => {
   // 처음 사용자 프로필 정보 초기값에 담기
   const [profileData, setProfileData] = useState(initialProfie);
-
-  // 미리보기 이미지 초기값
-  const initPreview = profileData.pic;
-
   const navigate = useNavigate();
-
-  // 미리보기 이미지
-  const [previewImg, setPreviewImg] = useState(initPreview);
-  // 파이어베이스 업로드된 이미지
-  const [firebaseUploadImg, setFirbaseUploadImg] = useState(null);
-
   const [pic, setPic] = useState("");
   const [name, setName] = useState("");
   const [birth, setBirth] = useState("");
   const [startedAt, setStartedAt] = useState("");
 
-  // 상단바 뒤로가기
-  const linkValue = `/profile`;
+  // 미리보기 이미지 초기값
+  const initPreview = profileData.pic;
+
+  // 미리보기 이미지 state
+  const [previewImg, setPreviewImg] = useState(initPreview);
+
+  // 파이어베이스 업로드된 이미지
+  const [selectFile, setSelectFile] = useState(null);
 
   // 프로필 정보 수정
   const patchUserProfileAction = result => {
-    console.log("왜 안되니", result);
     if (result === 1) {
       alert("수정 완료");
       navigate("/profile");
@@ -67,22 +69,6 @@ const ProfileModify = () => {
     }
   };
 
-  // 입력 값 보내기
-  const handleSumitProfileForm = () => {
-    const item = {
-      pic: pic,
-      nm: name,
-      birth: birth,
-      startedAt: startedAt,
-    };
-    if (name === "") {
-      alert("이름은 필수 항목입니다.");
-      return;
-    }
-
-    patchUserProfile(item, patchUserProfileAction);
-  };
-
   const handleChangePic = e => {
     setPic(e.target.value);
   };
@@ -96,19 +82,7 @@ const ProfileModify = () => {
     setStartedAt(e.target.value);
   };
 
-  useEffect(() => {
-    setPic(profileData.pic);
-    setName(profileData.nm);
-    // setBirth(filterDate(profileData.birth));
-    // setStartedAt(filterDate(profileData.startedAt));
-  }, [profileData]);
-
-  // 2. 사용자 프로필 가져오기
-  const getUserInfo = () => {
-    getUserProfile(setProfileData);
-  };
-
-  //YYYY/MM/DD
+  // 날짜 필터링
   const filterDate = result => {
     // console.log(result);
     let filterData = result.split(" ")[0];
@@ -116,17 +90,91 @@ const ProfileModify = () => {
     return filterData;
   };
 
-  // 이미지 파일 선택 미리보기
+  useEffect(() => {
+    setPic(profileData.pic);
+    setName(profileData.nm);
+    setBirth(filterDate(profileData.birth));
+    setStartedAt(filterDate(profileData.startedAt));
+  }, [profileData]);
+
+  // 2. 사용자 프로필 가져오기
+  const getUserInfo = () => {
+    getUserProfile(setProfileData);
+  };
+
+  // 선택된 이미지 파일 미리보기
   const handleChangeFile = e => {
-    // 파일을 변수에 담아서 코드 를 수월하게 보려고
     const file = e.target.files[0];
     if (file) {
-      // 나의 웹브라우저에서 URL 을 임시로 생성
+      // 나의 웹브라우저에서 URL을 임시로 생성
       const tempUrl = URL.createObjectURL(file);
       // 미리보기 state
       setPreviewImg(tempUrl);
       // FB 파일 보관
-      setFirbaseUploadImg(file);
+      setSelectFile(file);
+    }
+  };
+
+  // 파이어베이스에 업로드 및 정보 관리
+  const [fbImgUrl, setFbImgUrl] = useState("");
+
+  // 입력 값 보내기
+  const handleSumitProfileForm = () => {
+    if (name === "") {
+      alert("이름은 필수 항목입니다.");
+      return;
+    }
+
+    // 실제 업로드
+    const tempFileName = upload();
+    // 2. 담긴 이름을 FB 의 이름으로 사용한다.
+    uploadImage(tempFileName);
+  };
+
+  const patchProfile = _url => {
+    console.log("주소보기 : ", _url);
+    const reUrl = _url.replace("&", "^");
+    const item = {
+      pic: reUrl,
+      nm: name,
+      birth: birth,
+      startedAt: startedAt,
+    };
+    console.log(item);
+    patchUserProfile(item, patchUserProfileAction);
+  };
+
+  const upload = () => {
+    if (!selectFile) {
+      // 이미지 선택하지 않다면 안내창 출력
+      alert("이미지를 선택해주세요.");
+      return;
+    }
+    // 중복되지 않는 파일명을 생성
+    const tempName = moment().format("YYYYMMDDhhmmss");
+    const fileName = `profile/${tempName}_${selectFile.name}`;
+    // 1. 이름을 리턴했다.
+    return fileName;
+  };
+
+  // 실제 이미지 업로드를 실행 함수
+  const uploadImage = async _fileName => {
+    // 3. 시도한다.
+    try {
+      //https://firebase.google.com/docs/storage/web/upload-files?hl=ko
+      const imageRef = ref(storage, _fileName);
+      const fbRes = await uploadBytes(imageRef, selectFile);
+      console.log("업로드 성공", fbRes);
+
+      // 백엔드에서 이미지 주소를 주세요. 요청
+      // 파이어베이스 이미지 url 을 파악
+      const url = await getDownloadURL(fbRes.ref);
+      setFbImgUrl(url);
+
+      // 4. 실제 데이터 받아서 백엔드 전달
+      patchProfile(url);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -139,7 +187,7 @@ const ProfileModify = () => {
     <ProfileWrapper>
       <ProfileContent>
         {/* 상단 영역 */}
-        <ProfileHeader link={linkValue} />
+        <ProfileHeader link="/profile">PROFILE MODIFY</ProfileHeader>
 
         {/* 메인 영역 */}
         <ProfileMain>
@@ -149,7 +197,7 @@ const ProfileModify = () => {
             {previewImg ? (
               <ProfilePic src={previewImg} alt="미리보기" />
             ) : (
-              <ProfilePic src={profileData.pic} alt="기존이미지" />
+              <ProfilePic src={profileData.pic} alt="기존 이미지" />
             )}
           </ProfileVisual>
 

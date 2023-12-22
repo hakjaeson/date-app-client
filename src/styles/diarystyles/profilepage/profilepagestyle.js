@@ -7,7 +7,6 @@ export const ProfileWrapper = styled.div`
   width: 390px;
   height: 844px;
   font-family: Pretendard-Regular;
-  // background-color: yellowgreen;
 `;
 
 export const ProfileContent = styled.div`
@@ -15,15 +14,6 @@ export const ProfileContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-`;
-
-export const ProfileTop = styled.header`
-  position: relative;
-  display: block;
-  width: 100%;
-  padding-top: 55px;
-  padding-left: 23px;
-  padding-bottom: 9px;
 `;
 
 export const ProfileMain = styled.main`
@@ -72,19 +62,6 @@ export const ProfileInfo = styled.div`
   padding-top: 37px;
 `;
 
-export const ProfileTitle = styled.div`
-  position: relative;
-  text-align: right;
-  padding-bottom: 27px;
-  span {
-    padding: 8px 25px;
-    border: 2.5px solid #000;
-    border-radius: 16px;
-    background-color: #d2ceff;
-    font-size: 17px;
-  }
-`;
-
 export const ProfileDetail = styled.div`
   position: relative;
   hr {
@@ -95,6 +72,7 @@ export const ProfileDetail = styled.div`
   li {
     padding: 16px 0px;
     font-size: 17px;
+    color: #49454f;
   }
 `;
 
@@ -103,11 +81,12 @@ export const ProfileModifyBt = styled.div`
   padding-top: 58px;
   button {
     background-color: #d2ceff;
-    border: 2.5px solid #000;
+    border: 2.5px none #000;
     border-radius: 30px;
     padding: 18px 125px;
     font-size: 20px;
     white-space: nowrap;
     cursor: pointer;
+    color: #fff;
   }
 `;

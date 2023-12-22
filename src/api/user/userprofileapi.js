@@ -5,6 +5,7 @@ export const getUserProfile = async setProfileData => {
   console.log("겟 실행");
   try {
     const res = await axios.get(`/api/user/profile`);
+    res.data.pic.replace("^", "&");
     setProfileData(res.data);
   } catch (error) {
     console.log(error);
@@ -50,7 +51,7 @@ export const patchUserProfile = async ({ nm, pic, birth, startedAt }, fn) => {
       `/api/user/profile?nm=${nm}&pic=${pic}&birth=${birth}&startedAt=${startedAt}`,
     );
     console.log(res.data);
-    fn(res.data);
+    fn(res.data.result);
   } catch (error) {
     console.log(error);
     fn(-500);
