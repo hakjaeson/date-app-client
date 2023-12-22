@@ -1,10 +1,12 @@
 import styled from "@emotion/styled";
 
 export const MainPageWrapper = styled.div`
+  position: relative;
   display: block;
-  height: 100%;
+  margin: 0 auto;
+  width: 390px;
+  height: 844px;
   font-family: Pretendard-Regular;
-  padding-bottom: 80px;
 `;
 
 export const SelectMonth = styled.div`
@@ -37,13 +39,13 @@ export const Anniversary = styled.div`
 // Footer(Navigation) area
 export const FooterBar = styled.div`
   position: fixed;
-  width: 100%;
+  width: 390px;
   padding: 10px;
   background-color: #ffdbab;
   height: 80px;
   bottom: 0;
   border: 0.25rem solid black;
-  z-index: 10000;
+  z-index: 10;
 `;
 export const FooterList = styled.ul`
   display: flex;
