@@ -6,7 +6,6 @@ import {
   ProfileMain,
   ProfilePic,
   ProfilePicPartner,
-  ProfileTitle,
   ProfileVisual,
   ProfileWrapper,
 } from "../../styles/diarystyles/profilepage/profilepagestyle";
@@ -45,13 +44,11 @@ const ProfilePartner = () => {
     getUserInfo();
   }, []);
 
-  const linkValue = `/profile`;
-
   return (
     <ProfileWrapper>
       <ProfileContent>
         {/* 상단 영역 */}
-        <ProfileHeader link={linkValue} />
+        <ProfileHeader link="/profile">PROFILE PARTNER</ProfileHeader>
 
         {/* 메인 영역 */}
         <ProfileMain>
@@ -67,9 +64,6 @@ const ProfilePartner = () => {
 
           {/* 정보 영역 */}
           <ProfileInfo>
-            <ProfileTitle>
-              <span>PROFILE</span>
-            </ProfileTitle>
             <ProfileDetail>
               <hr />
               <li>이름 : {profileData.partnerNm}</li>

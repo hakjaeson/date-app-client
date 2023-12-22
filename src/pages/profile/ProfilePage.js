@@ -7,7 +7,6 @@ import {
   ProfileModifyBt,
   ProfilePic,
   ProfilePicPartner,
-  ProfileTitle,
   ProfileVisual,
   ProfileWrapper,
 } from "../../styles/diarystyles/profilepage/profilepagestyle";
@@ -33,7 +32,7 @@ const ProfilePage = () => {
     getUserProfile(setProfileData);
   };
 
-  //YYYY/MM/DD
+  // 날짜 필터링
   const filterDate = result => {
     // console.log(result);
     let filterData = result.split(" ")[0];
@@ -46,18 +45,17 @@ const ProfilePage = () => {
     getUserInfo();
   }, []);
 
-  const linkValue = `/`;
-
   return (
     <ProfileWrapper>
       <ProfileContent>
         {/* 상단 영역 */}
-        <ProfileHeader link={linkValue} />
+        <ProfileHeader link="/">PROFILE</ProfileHeader>
 
         {/* 메인 영역 */}
         <ProfileMain>
           <ProfileVisual>
             {/* 사진 영역 */}
+            {/* <p>{profileData.pic}</p> */}
             <ProfilePic src={profileData.pic} />
             <ProfilePicPartner>
               <Link to="/profile/partner">
@@ -68,9 +66,6 @@ const ProfilePage = () => {
 
           {/* 정보 영역 */}
           <ProfileInfo>
-            <ProfileTitle>
-              <span>PROFILE</span>
-            </ProfileTitle>
             <ProfileDetail>
               <hr />
               <li>이름 : {profileData.nm}</li>

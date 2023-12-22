@@ -1,16 +1,28 @@
 import { Link } from "react-router-dom";
-import { ProfileTop } from "../../styles/diarystyles/profilepage/profilepagestyle";
+import {
+  BtBack,
+  BtHome,
+  Header,
+  HeaderTitle,
+  HeaderWapper,
+} from "../../styles/diarystyles/profilepage/headerstyle";
 
 const ProfileHeader = props => {
   return (
-    <>
-      {/* 상단 영역 */}
-      <ProfileTop>
+    <HeaderWapper>
+      <Header>
+        {/* 이전 페이지 버튼 */}
         <Link to={props.link}>
-          <img src={`${process.env.PUBLIC_URL}/images/bt_back.svg`} />
+          <BtBack src={`${process.env.PUBLIC_URL}/images/bt_back.svg`} />
         </Link>
-      </ProfileTop>
-    </>
+        {/* 각 페이지 타이틀 */}
+        <HeaderTitle>{props.children}</HeaderTitle>
+        {/* 홈 버튼 */}
+        <Link to="/">
+          <BtHome src={`${process.env.PUBLIC_URL}/images/bt_home.svg`} />
+        </Link>
+      </Header>
+    </HeaderWapper>
   );
 };
 
