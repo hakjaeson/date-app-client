@@ -47,6 +47,8 @@ const MainPage = ({ user }) => {
   return (
     // Wrapper
     <MainPageWrapper>
+      {/* Anniversary area */}
+      <AnniversaryContent user={user} />
       <SelectMonth>
         {!loading && (
           <MonthSelect
@@ -56,8 +58,7 @@ const MainPage = ({ user }) => {
           />
         )}
       </SelectMonth>
-      {/* Anniversary area */}
-      <AnniversaryContent user={user} />
+
       {/* Content area */}
       <MainContents data={filteredData} onHashClick={handleHashClick} />
       {/* Footer area */}
