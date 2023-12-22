@@ -1,11 +1,24 @@
 import styled from "@emotion/styled";
+import { keyframes } from "@emotion/react";
+
+// 자동 화면 전환시 키프레임 조절 (부드러운 전환 효과)
+const fadeInOut = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
 
 export const LoginWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  font-family: Pretendard-Regular;
+  font-family: Dovemayo_gothic;
+  // 화면 전환 부드러운 애니메이션 적용
+  animation: ${fadeInOut} 0.7s ease-in-out;
 `;
 
 export const LoginContent = styled.div`
@@ -35,12 +48,12 @@ export const LoginForm = styled.form`
 export const IdForm = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 350px;
+  width: 340px;
   margin-bottom: 15px;
   input {
     width: 235px;
     font-size: 15px;
-    border: 2.5px solid #000;
+    border: 2px solid #000;
     border-radius: 16px;
     padding-left: 20px;
   }
@@ -49,11 +62,11 @@ export const IdForm = styled.div`
 export const PasswordForm = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 350px;
+  width: 340px;
   input {
     width: 235px;
     font-size: 15px;
-    border: 2.5px solid #000;
+    border: 2px solid #000;
     border-radius: 16px;
     padding-left: 20px;
   }
@@ -63,11 +76,11 @@ export const LoginLabel = styled.label`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 110px;
-  height: 50px;
+  width: 95px;
+  height: 43px;
   font-size: 15px;
+  letter-spacing: 1px;
   background-color: #ffdbab;
-  border: 2.5px solid #000;
   border-radius: 16px;
 `;
 
@@ -77,7 +90,7 @@ export const LoginError = styled.p`
   text-align: center;
   font-size: 14px;
   color: #ff4244;
-  margin-bottom: 40px;
+  margin-bottom: 37px;
 `;
 
 export const LoginBt = styled.footer`
@@ -86,11 +99,11 @@ export const LoginBt = styled.footer`
 
 export const LoginButton = styled.button`
   display: block;
-  width: 320px;
+  width: 340px;
   height: 50px;
   font-size: 20px;
   background-color: #d2ceff;
-  border: 2.5px solid #000;
+  border: none;
   border-radius: 30px;
   margin-bottom: 15px;
   letter-spacing: 4px;
@@ -99,11 +112,11 @@ export const LoginButton = styled.button`
 
 export const SigninButton = styled.button`
   display: block;
-  width: 320px;
+  width: 340px;
   height: 50px;
   font-size: 20px;
   background-color: #d2ceff;
-  border: 2.5px solid #000;
+  border: none;
   border-radius: 30px;
   letter-spacing: 2px;
   cursor: pointer;

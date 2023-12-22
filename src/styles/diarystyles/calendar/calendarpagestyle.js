@@ -18,7 +18,7 @@ export const CalendarContent = styled.div`
   // 캘린더 전체
   .react-calendar {
     width: 380px;
-    height: 480px;
+    height: 540px;
     background: #ffdbab;
     border: 2px solid #000;
     border-radius: 30px;
@@ -36,7 +36,7 @@ export const CalendarContent = styled.div`
 
   // 캘린더 상단 (년, 월)
   .react-calendar__navigation__label {
-    font-family: omyu_pretty;
+    font-family: Dovemayo_gothic;
     font-size: 17px;
     letter-spacing: 0.7px;
   }
@@ -102,19 +102,19 @@ export const CalendarContent = styled.div`
 
   // 월 선택
   .react-calendar__tile.react-calendar__year-view__months__month {
-    font-family: omyu_pretty;
+    font-family: Dovemayo_gothic;
     font-size: 16px;
   }
 
   // 년 선택
   .react-calendar__tile.react-calendar__decade-view__years__year {
-    font-family: omyu_pretty;
+    font-family: Dovemayo_gothic;
     font-size: 16px;
   }
 
   // 년 기간 선택
   .react-calendar__tile.react-calendar__century-view__decades__decade {
-    font-family: omyu_pretty;
+    font-family: Dovemayo_gothic;
     font-size: 16px;
   }
 
