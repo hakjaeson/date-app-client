@@ -13,7 +13,7 @@ import MainContents from "../../components/mainpage/MainContents";
 import MonthSelect from "../../components/mainpage/MonthSelect";
 
 // 메인페이지
-const MainPage = () => {
+const MainPage = ({ user }) => {
   // axios setting
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -23,7 +23,7 @@ const MainPage = () => {
       try {
         const res = await axios.get(`/api/diary`);
         setData(res.data);
-        console.log(res.data);
+        // console.log(res.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -57,7 +57,7 @@ const MainPage = () => {
         )}
       </SelectMonth>
       {/* Anniversary area */}
-      <AnniversaryContent data={data} />
+      <AnniversaryContent user={user} />
       {/* Content area */}
       <MainContents data={filteredData} onHashClick={handleHashClick} />
       {/* Footer area */}
