@@ -15,7 +15,7 @@ import {
   SigninButton,
 } from "../../styles/diarystyles/login/loginstyle";
 
-const Login = () => {
+const Login = ({ setUser }) => {
   const navigate = useNavigate();
   const [uid, setUid] = useState("");
   const [upw, setUpw] = useState("");
@@ -51,7 +51,9 @@ const Login = () => {
       return false;
     }
 
-    postUserLogin({ uid, upw }, successFN, failFN);
+
+    postUserLogin({ uid, upw }, successFN, failFN, setUser);
+
   };
 
   const successFN = () => {

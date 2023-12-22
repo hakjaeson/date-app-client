@@ -1,9 +1,12 @@
 import axios from "axios";
 
-export const postUserLogin = async (obj, successFN, failFN) => {
+export const postUserLogin = async (obj, successFN, failFN, setUser) => {
   try {
     const res = await axios.post("/api/user", obj);
-    console.log(res.data);
+    const userData = res.data;
+    console.log("user Data API page :", res.data);
+    setUser(userData);
+    // userLog(userData);
     successFN();
   } catch (error) {
     console.log(error);
