@@ -24,7 +24,7 @@ export const IntroTitle = styled.div`
   display: block;
   width: 100%;
   text-align: center;
-  font-family: "DNFBitBitv2";
+  font-family: "UhBeenamsoyoung";
   font-size: 26px;
   letter-spacing: 2.5px;
   color: #0f0f0f;

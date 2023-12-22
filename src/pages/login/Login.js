@@ -101,6 +101,7 @@ const Login = ({ setUser }) => {
             onClick={() => {
               handleClickLogin();
             }}
+            type="submit"
           >
             로그인
           </LoginButton>
