@@ -42,7 +42,7 @@ const MainContents = ({ data }) => {
   };
   const filteredDay = result => {
     let fDay = result.split("-")[2].split(" ")[0];
-    return fDay.startsWith("0") ? fDay.slice(1) : fDay;
+    return fDay.startsWith("0") ? fDay.slice(2) : fDay;
   };
   return (
     <div>

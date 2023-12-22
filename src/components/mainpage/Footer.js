@@ -31,7 +31,7 @@ const Footer = () => {
         </li>
 
         <li>
-          <Link to="/profile/{idx}">
+          <Link to="/profile">
             <FontAwesomeIcon icon={faUser} style={{ width: 30, height: 30 }} />
           </Link>
         </li>
