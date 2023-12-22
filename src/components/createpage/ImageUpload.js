@@ -94,9 +94,14 @@ const ImageUpload = ({ selectFile, setSelectFile }) => {
 
   const imgDelete = (idx, e) => {
     setPreviewImg(previewImg => {
-      const updatedPreviewImg = [...previewImg];
-      updatedPreviewImg[idx] = "";
+      const updatedPreviewImg = [...previewImg, ""];
+      updatedPreviewImg.splice(idx, 1);
       return updatedPreviewImg;
+    });
+    setSelectFile(selectFile => {
+      const updatedSelectFile = [...selectFile];
+      updatedSelectFile.splice(idx, 1);
+      return updatedSelectFile;
     });
   };
   return (

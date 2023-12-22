@@ -137,6 +137,13 @@ const FormDrag = ({ register, emojiName, setEmojiName, imgSave }) => {
           {...register("hashtag", {
             required:
               "해쉬태그는 필수사항입니다. 띄어쓰기 없이 작성해주세요. ex)#남친#여친",
+            validate: value => {
+              // 띄어쓰기가 있는지 확인
+              if (value && /\s/.test(value)) {
+                return "띄어쓰기는 허용되지 않습니다.";
+              }
+              return true;
+            },
           })}
           resizing={hashTagResize}
           placeholder="#해시태그 띄어쓰기 없이 적어주세요. #남친#여친"

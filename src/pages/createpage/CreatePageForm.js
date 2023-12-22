@@ -4,9 +4,7 @@ import { useNavigate } from "react-router-dom";
 import FormDrag from "./FormDrag";
 import {
   CreatePageFormTag,
-  ImageButton,
   ImageContainer,
-  ImageInput,
 } from "../../styles/diarystyles/createpage/formstyle";
 import { postCreatePage } from "../../api/create-page/createPageApi";
 import ImageUpload from "../../components/createpage/ImageUpload";
@@ -19,7 +17,6 @@ import {
   getDownloadURL,
   listAll,
 } from "../../DB/firebase";
-import { deleteObject } from "firebase/storage";
 
 const CreatePageForm = () => {
   const EMOJI = ["joy", "sadness", "angry", "surprise", "love"];
@@ -34,8 +31,6 @@ const CreatePageForm = () => {
   } = useForm();
 
   const [selectFile, setSelectFile] = useState([]);
-  const [imgList, setImgList] = useState([]);
-  const [imgUrlList, setImgUrlList] = useState([]);
 
   const path = "images/";
 
@@ -50,25 +45,36 @@ const CreatePageForm = () => {
       // 폼태그 전송
       console.log(data, imgUrl, emojiIdx, hashTag);
 
-      // postCreatePage(data, imgUrl, emojiIdx, hashTag);
+      postCreatePage(data, imgUrl, emojiIdx, hashTag);
 
       //서버 업데이트 시간 주기
       setTimeout(() => {
-        // navigate("/");
+        navigate("/");
       }, 1000);
     }
   };
   const onInValid = data => {
-    alert(`${data?.title?.message}\n${data?.content?.message}`);
+    let title = "";
+    let content = "";
+    let hashTag = "";
+    if (data?.title?.message !== undefined) {
+      title = data?.title?.message;
+    }
+    if (data?.content?.message !== undefined) {
+      content = data?.content?.message;
+    }
+    if (data?.hashtag?.message !== undefined) {
+      hashTag = data?.hashtag?.message;
+    }
+    alert(`${title}\n${content}\n${hashTag}`);
   };
 
   const upload = async () => {
-    if (!selectFile) {
+    if (selectFile.length == 0) {
       // 이미지 선택하지 않다면 안내창 출력
       alert("이미지를 선택해주세요.");
       return;
     }
-    console.log(selectFile);
     // 중복되지 않는 파일명을 생성한다.
 
     for (let i = 0; i < selectFile.length; i++) {
@@ -82,34 +88,15 @@ const CreatePageForm = () => {
         // 백엔드에서 이미지 주소를 주세요. 요청
         // 파이어베이스 이미지 url 을 파악
         const url = await getDownloadURL(fbRes.ref);
-        setImgUrl([url, ...imgUrl]);
-        console.log(imgUrl);
+        setImgUrl(imgUrl => {
+          const updatedImgUrl = [url, ...imgUrl];
+          return updatedImgUrl;
+        });
       } catch (error) {
         console.log(error);
       }
     }
   };
-
-  // 4. 삭제하기
-  const deleteImg = async idx => {
-    // 누구를 지울지 파이어베이스의 fullPath 를 알아야 합니다.
-    // 다행이도 보관해 둠.
-    try {
-      const who = imgList[idx];
-      const desertRef = ref(storage, who);
-      await deleteObject(desertRef);
-      console.log("삭제성공");
-      // 현재 삭제된 이미지를 목록에서 빼라(화면 갱신하려고)
-      const tempList = imgList.filter((item, index) => index != idx);
-      setImgList(tempList);
-      // 현재 삭제된 이미지를 목록에서 빼라(화면 갱신하려고)
-      const tempUrlList = imgUrlList.filter((item, index) => index != idx);
-      setImgUrlList(tempUrlList);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const imgSave = e => {
     e.preventDefault();
     upload();

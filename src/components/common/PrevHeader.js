@@ -6,7 +6,7 @@ const PageHeader = styled.div`
   position: relative;
   background-color: #d2ceff;
   width: 100%;
-  height: 70px;
+  height: 90px;
   display: flex;
   justify-content: left;
   align-items: center;
