@@ -112,6 +112,20 @@ export const FormHashTag = styled.textarea`
   border: none;
 `;
 
+export const FormImgButton = styled.button`
+  position: absolute;
+  bottom: 70px;
+  right: 100px;
+  width: 100px;
+  height: 40px;
+  font-size: 1.7rem;
+  background-color: #ffdbab;
+  /* border: 0.1rem solid rgba(0, 0, 0, 0.1); */
+  /* box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.13); */
+  border: 2.5 solid #000;
+  border-radius: 16px;
+`;
+
 export const FormButton = styled.button`
   position: absolute;
   bottom: 70px;

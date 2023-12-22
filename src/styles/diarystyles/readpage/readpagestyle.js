@@ -29,17 +29,6 @@ export const PageMain = styled.div`
   overflow-y: scroll;
 `;
 
-export const ReadTitle = styled.div`
-  background-color: #d2ceff;
-  height: 10%;
-  display: flex;
-  padding-left: 25px;
-  align-items: center;
-  font-size: 25px;
-  border-top: 2.5px solid #000;
-  border-bottom: 2.5px solid #000;
-`;
-
 export const ReadImage = styled.img`
   width: 100%;
   height: 40%;
@@ -102,11 +91,20 @@ export const FormEmoji = styled.input`
   border-radius: 50%;
 `;
 
-export const ReadDate = styled.div`
+export const ReadTitle = styled.div`
   width: 100%;
-  line-height: 70px;
-  font-size: 1.7rem;
+  height: 45px;
+  display: flex;
+  align-items: center;
+
   padding-left: 15px;
+  font-size: 25px;
+`;
+
+export const ReadDate = styled.div`
+  display: flex;
+  justify-content: end;
+  font-size: 1.7rem;
 `;
 
 export const ReadMid = styled.div`

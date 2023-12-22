@@ -6,6 +6,7 @@ import {
   FormEmoji,
   FormHashTag,
   FormHashTagBox,
+  FormImgButton,
   FormTitle,
   FormTop,
   Line,
@@ -29,7 +30,7 @@ const EmojiMotion = {
   close: { opacity: 0 },
 };
 
-const FormDrag = ({ register, emojiName, setEmojiName }) => {
+const FormDrag = ({ register, emojiName, setEmojiName, imgSave }) => {
   const EMOJI = ["joy", "sadness", "angry", "surprise", "love"];
   const [boxHeight, setBoxHeight] = useState(300);
   const [hashTagResize, setHashTagResize] = useState(250);
@@ -133,13 +134,17 @@ const FormDrag = ({ register, emojiName, setEmojiName }) => {
       />
       <FormHashTagBox>
         <FormHashTag
-          {...register("hashtag")}
+          {...register("hashtag", {
+            required:
+              "해쉬태그는 필수사항입니다. 띄어쓰기 없이 작성해주세요. ex)#남친#여친",
+          })}
           resizing={hashTagResize}
-          placeholder="#해시태그 띄어쓰기 없이 적어주세요. #해쉬#태그"
+          placeholder="#해시태그 띄어쓰기 없이 적어주세요. #남친#여친"
           onChange={HashTaghandleChange}
         />
       </FormHashTagBox>
-      <FormButton>저장</FormButton>
+      <FormImgButton onClick={imgSave}>이미지 저장</FormImgButton>
+      <FormButton>완료</FormButton>
     </FormContents>
   );
 };
