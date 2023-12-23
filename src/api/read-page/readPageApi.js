@@ -6,7 +6,7 @@ export const getReadPage = async (setData, diaryId, setEmojiName) => {
 
     if (res.status === 200 && res.data) {
       // 서버 응답이 성공하고 데이터가 존재할 경우
-      console.log(res.data);
+      // console.log(res.data);
       setData(res.data);
       setEmojiName(res.data.emoji);
     } else {
@@ -22,6 +22,7 @@ export const getReadPage = async (setData, diaryId, setEmojiName) => {
 export const updateReadPage = async (
   data,
   diaryId,
+  imgUrl,
   updateEmojiNum,
   hashTag,
 ) => {
@@ -30,7 +31,7 @@ export const updateReadPage = async (
       diaryId: diaryId,
       title: data.title,
       contents: data.content,
-      diaryPics: ["수정더미.jpg"],
+      diaryPics: [...imgUrl],
       hashContents: [...hashTag],
       emoji: updateEmojiNum,
     });

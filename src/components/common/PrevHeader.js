@@ -1,32 +1,45 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  BtBack,
+  BtHome,
+  Header,
+} from "../../styles/diarystyles/profilepage/headerstyle";
 
-const PageHeader = styled.div`
+const HeaderWapper = styled.div`
   position: relative;
-  background-color: #d2ceff;
-  width: 100%;
-  height: 90px;
   display: flex;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 65px;
+  background-color: #d2ceff;
 `;
 
-const PrevBtn = styled.img`
-  margin-left: 15px;
-`;
-
-const PrevHeader = () => {
+const PrevHeader = ({ edit, setEdit }) => {
   const navigate = useNavigate();
   return (
-    <PageHeader>
-      <PrevBtn
-        src={`${process.env.PUBLIC_URL}/images/bt_prev.svg`}
-        onClick={() => {
-          navigate("/");
-        }}
-      />
-    </PageHeader>
+    <HeaderWapper>
+      <Header>
+        <BtBack
+          src={`${process.env.PUBLIC_URL}/images/bt_back.svg`}
+          onClick={() => {
+            if (edit) {
+              setEdit(!edit);
+            } else {
+              navigate("/");
+            }
+          }}
+        />
+        <BtHome
+          src={`${process.env.PUBLIC_URL}/images/bt_home.svg`}
+          onClick={() => {
+            navigate("/");
+          }}
+        />
+      </Header>
+    </HeaderWapper>
   );
 };
 

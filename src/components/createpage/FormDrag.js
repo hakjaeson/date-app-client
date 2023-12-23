@@ -32,11 +32,13 @@ const EmojiMotion = {
 
 const FormDrag = ({ register, emojiName, setEmojiName, imgSave }) => {
   const EMOJI = ["joy", "sadness", "angry", "surprise", "love"];
+  const lineAreaRef = useRef(null);
   const [boxHeight, setBoxHeight] = useState(300);
   const [hashTagResize, setHashTagResize] = useState(250);
+
   const [resizing, setResizing] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const lineAreaRef = useRef(null);
+
   useEffect(() => {
     const handleTouchStart = e => {
       if (e.target === lineAreaRef.current) {
@@ -76,6 +78,7 @@ const FormDrag = ({ register, emojiName, setEmojiName, imgSave }) => {
 
     setHashTagResize(60 + hash.length * 10);
   };
+
   return (
     <FormContents height={boxHeight}>
       <LineArea ref={lineAreaRef}>
@@ -138,8 +141,11 @@ const FormDrag = ({ register, emojiName, setEmojiName, imgSave }) => {
             required:
               "해쉬태그는 필수사항입니다. 띄어쓰기 없이 작성해주세요. ex)#남친#여친",
             validate: value => {
-              // 띄어쓰기가 있는지 확인
-              if (value && /\s/.test(value)) {
+              const hashtags = value.split("#").filter(Boolean); // #을 기준으로 문자열을 나눠 배열로 만듭니다.
+              if (hashtags.length < 1) {
+                return "적어도 하나의 해시태그를 입력하세요.";
+              }
+              if (hashtags.some(tag => /\s/.test(tag))) {
                 return "띄어쓰기는 허용되지 않습니다.";
               }
               return true;
