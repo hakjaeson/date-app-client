@@ -8,7 +8,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
 
-import { storage, ref } from "../../DB/firebase";
+import moment from "moment/moment";
+import {
+  storage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+} from "../../DB/firebase";
 import { deleteObject } from "firebase/storage";
 
 import PrevHeader from "../../components/common/PrevHeader";
@@ -32,34 +39,117 @@ import {
   ReadPageButton,
   ReadTitle,
   ReadTop,
-  UlEmoji,
   Wrapper,
 } from "../../styles/diarystyles/readpage/readpagestyle";
 import ReadForm from "../../components/readpage/ReadForm";
 import { useForm } from "react-hook-form";
+import styled from "@emotion/styled";
+
+const FormImgButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 100px;
+  width: 100px;
+  height: 40px;
+  font-size: 1.7rem;
+  background-color: #ffdbab;
+  border: 2.5 solid #000;
+  border-radius: 16px;
+`;
 
 const ReadPage = () => {
+  const EMOJI = ["joy", "sadness", "angry", "surprise", "love"];
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const diaryId = searchParams.get("id");
   const navigate = useNavigate();
-  const EMOJI = ["joy", "sadness", "angry", "surprise", "love"];
-  const [isOpen, setIsOpen] = useState(false);
-  const [saved, setSaved] = useState(false);
-  const [emojiNum, setEmojiNum] = useState();
-  const [updateEmojiNum, setUpdateEmojiNum] = useState();
+  const swiperRef = useRef();
   const [data, setData] = useState(null);
-  const [edit, setEdit] = useState(false);
+  const [emojiNum, setEmojiNum] = useState();
+  const [imgUrl, setImgUrl] = useState([]);
+  const [selectFile, setSelectFile] = useState([]);
+  const [updateEmojiNum, setUpdateEmojiNum] = useState();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const swiperRef = useRef();
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [edit, setEdit] = useState(false);
+
+  const path = "images/";
 
   useEffect(() => {
     getReadPage(setData, diaryId, setEmojiNum);
   }, []);
+
+  // 삭제버튼시 데이터 삭제 (DB, 파이어베이스)
+  const ClickDelete = async () => {
+    const check = confirm("정말로 삭제하시겠습니까?");
+
+    if (check) {
+      deleteReadPage(diaryId);
+      try {
+        for (let i = 0; i < data.pics.length; i++) {
+          const picName = data.pics[i];
+          const desertRef = ref(storage, picName);
+          await deleteObject(desertRef);
+          console.log("삭제성공");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      //서버 업데이트 시간 주기
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
+    }
+  };
+  // 수정 클릭시 데이터 삭제 및 재업로드(DB, 파이어베이스)
+  const ClickUpdateDelete = async () => {
+    try {
+      for (let i = 0; i < data.pics.length; i++) {
+        const picName = data.pics[i];
+        const desertRef = ref(storage, picName);
+        await deleteObject(desertRef);
+        console.log("삭제성공");
+      }
+      upload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const upload = async () => {
+    if (selectFile.length == 0) {
+      // 이미지 선택하지 않다면 안내창 출력
+      alert("이미지를 선택해주세요.");
+      return;
+    }
+    // 중복되지 않는 파일명을 생성한다.
+
+    setSaved(true);
+    for (let i = 0; i < selectFile.length; i++) {
+      const tempName = moment().format("YYYYMMDDhhmmss");
+      const fileName = `${path}${tempName}_${selectFile[i].name}`;
+      try {
+        const imageRef = ref(storage, fileName);
+        const fbRes = await uploadBytes(imageRef, selectFile[i]);
+        console.log("업로드 성공", fbRes);
+
+        // 백엔드에서 이미지 주소를 주세요. 요청
+        // 파이어베이스 이미지 url 을 파악
+        const url = await getDownloadURL(fbRes.ref);
+        setImgUrl(imgUrl => {
+          const updatedImgUrl = [url, ...imgUrl];
+          return updatedImgUrl;
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   const onValid = data => {
     // console.log(data, diaryId, updateEmojiNum);
@@ -70,8 +160,8 @@ const ReadPage = () => {
       //해쉬태그 구분
       const hashTag = data.hashtag.split("#").filter(Boolean);
       // 폼태그 전송
-      updateReadPage(data, diaryId, updateEmojiNum, hashTag);
-
+      updateReadPage(data, diaryId, imgUrl, updateEmojiNum, hashTag);
+      // console.log(data, diaryId, updateEmojiNum, hashTag);
       //서버 업데이트 시간 주기
       setTimeout(() => {
         navigate("/");
@@ -97,42 +187,32 @@ const ReadPage = () => {
   const ClickEdit = () => {
     setEdit(!edit);
   };
-
-  const ClickDelete = async () => {
-    const check = confirm("정말로 삭제하시겠습니까?");
-
-    if (check) {
-      deleteReadPage(diaryId);
-      try {
-        for (let i = 0; i < data.pics.length; i++) {
-          const picName = data.pics[i];
-          const desertRef = ref(storage, picName);
-          await deleteObject(desertRef);
-          console.log("삭제성공");
-        }
-      } catch (error) {
-        console.log(error);
-      }
-      //서버 업데이트 시간 주기
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
+  const imgSave = e => {
+    e.preventDefault();
+    if (saved) {
+      alert("이미지 저장이 되어있습니다.");
+      return;
+    } else {
+      ClickUpdateDelete();
     }
   };
 
   return (
     <Wrapper>
       <Device>
-        <PrevHeader />
+        <PrevHeader edit={edit} setEdit={setEdit} />
         {edit ? (
           <ReadForm
             data={data}
+            diaryId={diaryId}
             isOpen={isOpen}
             EMOJI={EMOJI}
             setUpdateEmojiNum={setUpdateEmojiNum}
             setSaved={setSaved}
             setIsOpen={setIsOpen}
             register={register}
+            selectFile={selectFile}
+            setSelectFile={setSelectFile}
           />
         ) : data ? (
           <PageMain>
@@ -177,9 +257,12 @@ const ReadPage = () => {
         )}
         <ReadFooter>
           {edit ? (
-            <ReadPageButton onClick={handleSubmit(onValid, onInValid)}>
-              완료
-            </ReadPageButton>
+            <>
+              <FormImgButton onClick={imgSave}>이미지 저장</FormImgButton>
+              <ReadPageButton onClick={handleSubmit(onValid, onInValid)}>
+                완료
+              </ReadPageButton>
+            </>
           ) : (
             <>
               <ReadPageButton onClick={ClickEdit}>수정</ReadPageButton>

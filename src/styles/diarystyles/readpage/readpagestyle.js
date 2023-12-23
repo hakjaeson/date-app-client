@@ -25,7 +25,7 @@ export const Device = styled.div`
 export const PageMain = styled.div`
   position: relative;
   width: 100%;
-  height: 80%;
+  height: 100%;
   overflow-y: scroll;
 `;
 
@@ -132,8 +132,9 @@ export const ReadHashTag = styled.span`
 `;
 
 export const ReadFooter = styled.div`
+  position: relative;
   width: 100%;
-  height: 10%;
+  height: 5%;
   display: flex;
   justify-content: right;
   padding: 10px 10px 0 0;

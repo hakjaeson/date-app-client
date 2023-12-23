@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import CreatePageForm from "./CreatePageForm";
+import CreatePageForm from "../../components/createpage/CreatePageForm";
 import PrevHeader from "../../components/common/PrevHeader";
 import {
   CreatePageMain,

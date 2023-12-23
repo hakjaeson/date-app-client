@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 
-import moment from "moment/moment";
 import {
   FormEmoji,
   LlEmoji,
@@ -14,13 +13,21 @@ import {
   UlEmoji,
 } from "../../styles/diarystyles/readpage/readpagestyle";
 import ImageUpload from "../createpage/ImageUpload";
-import { ImageContainer } from "../../styles/diarystyles/createpage/formstyle";
 
 const PageMainForm = styled.div`
   position: relative;
   width: 100%;
-  height: 80%;
+  height: 100%;
   overflow-y: scroll;
+`;
+
+const ImageContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50vh;
 `;
 
 const ReadTitleInput = styled.input`
@@ -72,14 +79,12 @@ const ReadForm = ({
   isOpen,
   EMOJI,
   setUpdateEmojiNum,
-  setSaved,
   setIsOpen,
   register,
+  selectFile,
+  setSelectFile,
 }) => {
   const [emojiNum, setEmojiNum] = useState(data.emoji);
-  const [selectFile, setSelectFile] = useState([]);
-
-  const path = "images/";
 
   useEffect(() => {
     setUpdateEmojiNum(data.emoji);
@@ -88,40 +93,6 @@ const ReadForm = ({
   const handleClick = event => {
     event.preventDefault();
     setIsOpen(!isOpen);
-  };
-
-  // const upload = async () => {
-  //   if (selectFile.length == 0) {
-  //     // 이미지 선택하지 않다면 안내창 출력
-  //     alert("이미지를 선택해주세요.");
-  //     return;
-  //   }
-  //   // 중복되지 않는 파일명을 생성한다.
-
-  //   for (let i = 0; i < selectFile.length; i++) {
-  //     const tempName = moment().format("YYYYMMDDhhmmss");
-  //     const fileName = `${path}${tempName}_${selectFile[i].name}`;
-  //     try {
-  //       const imageRef = ref(storage, fileName);
-  //       const fbRes = await uploadBytes(imageRef, selectFile[i]);
-  //       console.log("업로드 성공", fbRes);
-
-  //       // 백엔드에서 이미지 주소를 주세요. 요청
-  //       // 파이어베이스 이미지 url 을 파악
-  //       const url = await getDownloadURL(fbRes.ref);
-  //       setImgUrl(imgUrl => {
-  //         const updatedImgUrl = [url, ...imgUrl];
-  //         return updatedImgUrl;
-  //       });
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  // };
-  const imgSave = e => {
-    e.preventDefault();
-    // upload();
-    setSaved(true);
   };
 
   return (
@@ -180,10 +151,22 @@ const ReadForm = ({
           />
           <ReadBottom>
             <ReadHashTagInput
-              {...register("hashTag", {
-                required: "해쉬태그는 필수사항입니다.",
+              {...register("hashtag", {
+                required:
+                  "해쉬태그는 필수사항입니다. 띄어쓰기 없이 작성해주세요. ex)#남친#여친",
+                validate: value => {
+                  const hashtags = value.split("#").filter(Boolean); // #을 기준으로 문자열을 나눠 배열로 만듭니다.
+                  if (hashtags.length < 1) {
+                    return "적어도 하나의 해시태그를 입력하세요.";
+                  }
+                  if (hashtags.some(tag => /\s/.test(tag))) {
+                    return "띄어쓰기는 허용되지 않습니다.";
+                  }
+                  return true;
+                },
               })}
-              defaultValue={data?.hashContents}
+              placeholder="#해시태그 띄어쓰기 없이 적어주세요. #남친#여친"
+              defaultValue={data?.hashContents.map(item => `#${item}`).join("")}
             />
           </ReadBottom>
         </ReadContent>

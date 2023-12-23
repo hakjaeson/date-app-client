@@ -104,6 +104,7 @@ const ImageUpload = ({ selectFile, setSelectFile }) => {
       return updatedSelectFile;
     });
   };
+
   return (
     <ImageArea>
       <ImageButton>
