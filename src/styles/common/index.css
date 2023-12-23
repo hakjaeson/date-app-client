@@ -24,11 +24,18 @@
   font-style: normal;
 }
 
+/* Reset CSS */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  outline-style: none;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  font-size: 10px;
 }
 ul,
 li {
@@ -42,18 +49,28 @@ img {
   vertical-align: middle;
   border: 0;
 }
-html {
-  font-size: 10px;
+
+body {
+  font-family: Pretendard-Regular, sans-serif;
+  background-color: #fff;
+  color: #000;
 }
-@media only screen and (max-width: 390px) {
-  body {
-    font-family: "Noto Sans KR", sans-serif;
-    font-size: 1rem;
+
+/* Mobile */
+@media screen and (max-width: 390px) {
+  html,
+  body,
+  #root {
+    background: #fefdfb;
     line-height: 1.25;
     letter-spacing: -0.23px;
     color: #000000;
     background: #fefdfb;
-    width: 390px;
-    height: 844px;
+    width: 100%;
+    max-width: 390px;
+    height: 100%;
+    max-height: 844px;
+    margin: 0 auto;
+    overflow-x: hidden;
   }
 }
