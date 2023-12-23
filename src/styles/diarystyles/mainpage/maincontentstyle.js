@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const MainPageContent = styled.div`
   border: 2px solid black;
-  margin-top: 70px;
+  margin-top: 80px;
   margin-bottom: 20px;
   margin-left: 10px;
   margin-right: 10px;

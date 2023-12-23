@@ -4,12 +4,14 @@ export const MonthDropDown = styled.div`
   position: relative;
   display: block;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 export const NowMonthBt = styled.button`
   background-color: transparent;
   color: black;
-  padding: 16px;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 700;
   border: none;
   letter-spacing: 0.2rem;
@@ -23,17 +25,18 @@ export const DropDownYearMonth = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 100px;
-  left: 50px;
+  top: 70px;
+  left: 40px;
   transform: translate(-50%, -6.5%);
   line-height: 2;
   background-color: white;
   border: 0.2rem solid black;
-  width: 300px;
+  width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   border-radius: 2rem;
   padding: 0 2rem;
   z-index: 1;
+  font-size: 1.5rem;
 `;
 export const YearDropDown = styled.div`
   position: absolute;
@@ -42,7 +45,7 @@ export const YearDropDown = styled.div`
   background: #ffdbab;
   border: 0.2rem solid black;
   height: 5rem;
-  width: 300px;
+  width: 200px;
   border-radius: 2rem 2rem 0 0;
   z-index: 2;
 `;
@@ -81,17 +84,9 @@ export const MonthArray = styled.div`
   &:hover {
     background-color: #ececed;
   }
-  // 체크이미지 만드는 것인데 보류
-  // &:hover::before {
-  //   content: "";
-  //   position: absolute;
-  //   width: 50px;
-  //   height: 50px;
-  //   background-image: url(${props => props.checkIcon});
-  // }
 `;
 export const MonthArrayWrapper = styled.div`
-  padding-top: 7rem;
+  padding-top: 5rem;
 `;
 
 // Prev, Next month button
