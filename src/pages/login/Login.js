@@ -56,7 +56,7 @@ const Login = ({ setUser }) => {
   const successFN = () => {
     console.log("로그인 성공!");
     // 메인페이지 이동
-    navigate("/");
+    navigate("/main");
   };
 
   const failFN = () => {

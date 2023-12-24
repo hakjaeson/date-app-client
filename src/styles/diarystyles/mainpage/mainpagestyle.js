@@ -7,14 +7,13 @@ export const MainPageWrapper = styled.div`
   font-family: Pretendard-Regular;
   padding-bottom: 80px;
 `;
-
 export const Anniversary = styled.div`
   display: flex;
   /* margin-top: 20px; */
   margin-bottom: 15px;
   justify-content: center;
   align-items: center;
-  background-color: #ffdbab;
+  background-color: #d2ceff;
   font-weight: 500;
   height: 80px;
   border: 2px solid black;

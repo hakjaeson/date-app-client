@@ -17,8 +17,8 @@ function App() {
   return (
     <Routes className="App">
       {/* <Route path="/" element={<Navigate to="/intro" />} /> */}
-      <Route path="/intro" element={<Intro />} />
-      <Route path="/" element={<MainPage user={user} />} />
+      <Route path="/" element={<Intro />} />
+      <Route path="/main" element={<MainPage user={user} />} />
       <Route path="/login" element={<Login setUser={setUser} />} />
       <Route path="/calendar" element={<CalendarPage />} />
       <Route path="/createpage" element={<CreatePage />} />
@@ -26,7 +26,7 @@ function App() {
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/profile/partner" element={<ProfilePartner />} />
       <Route path="/profile/modify" element={<ProfileModify />} />
-
+      <Route path="/hashtag/:hashtag" element={<MainPage />} />
       <Route path="/*" element={<NotFound />} />
     </Routes>
   );
