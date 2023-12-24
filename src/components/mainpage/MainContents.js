@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,7 +21,7 @@ import {
 
 const MainContents = ({ data }) => {
   const swiperRef = useRef();
-
+  const navigate = useNavigate();
   // 데이터 emoji 값에 따라 이모지(기분) 그림 출력
   const EmojiFuc = emoji => {
     let result;
@@ -104,7 +104,20 @@ const MainContents = ({ data }) => {
             <HashTag>
               {/* 해시태그 출력 */}
               {item.hashContents.map((hashContents, index) => (
-                <HashTagBt key={index}>#{hashContents}</HashTagBt>
+                <HashTagBt key={index} onClick={() => {}}>
+                  #{hashContents}
+                </HashTagBt>
+              ))}
+              {/* test hash */}
+              {item.hashContents.map((hashContents, index) => (
+                <HashTagBt
+                  key={index}
+                  onClick={() => {
+                    navigate(`/hashtag/${hashContents}`);
+                  }}
+                >
+                  #{hashContents}
+                </HashTagBt>
               ))}
             </HashTag>
           </ContentBody>
