@@ -41,7 +41,7 @@ const CreatePageForm = () => {
       return;
     }
     // 중복되지 않는 파일명을 생성한다.
-    setSaved(true);
+
     for (let i = 0; i < selectFile.length; i++) {
       const tempName = moment().format("YYYYMMDDhhmmss");
       const fileName = `${path}${tempName}_${selectFile[i].name}`;
@@ -61,11 +61,14 @@ const CreatePageForm = () => {
         console.log(error);
       }
     }
+    setTimeout(() => {
+      setSaved(true);
+    }, 1000);
   };
 
   const onValid = data => {
     if (saved === false) {
-      alert("이미지 저장을 눌러주세요.");
+      alert("이미지 저장을 하지않았거나 이미지가 저장되고 있습니다.");
     } else {
       //이모지 인덱스값 찾기
       const emojiIdx = EMOJI.indexOf(emojiName);

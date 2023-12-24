@@ -86,10 +86,6 @@ const ReadForm = ({
 }) => {
   const [emojiNum, setEmojiNum] = useState(data.emoji);
 
-  useEffect(() => {
-    setUpdateEmojiNum(data.emoji);
-  });
-
   const handleClick = event => {
     event.preventDefault();
     setIsOpen(!isOpen);

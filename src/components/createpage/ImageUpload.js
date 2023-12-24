@@ -82,6 +82,7 @@ const ImageUpload = ({ selectFile, setSelectFile }) => {
   const handleChangeFile = e => {
     // 파일을 변수에 담아서 코드 를 수월하게 보려고
     const file = e.target.files[0];
+    console.log(e.target.files[0].status);
     if (file) {
       // 나의 웹브라우저에서 URL 을 임시로 생성
       const tempUrl = URL.createObjectURL(file);

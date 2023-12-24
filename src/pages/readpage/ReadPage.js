@@ -161,7 +161,6 @@ const ReadPage = () => {
       const hashTag = data.hashtag.split("#").filter(Boolean);
       // 폼태그 전송
       updateReadPage(data, diaryId, imgUrl, updateEmojiNum, hashTag);
-      // console.log(data, diaryId, updateEmojiNum, hashTag);
       //서버 업데이트 시간 주기
       setTimeout(() => {
         navigate("/");
