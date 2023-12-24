@@ -11,12 +11,23 @@ import AnniversaryContent from "../../components/mainpage/AnniversaryContent";
 import Footer from "../../components/mainpage/Footer";
 import MainContents from "../../components/mainpage/MainContents";
 import MonthSelect from "../../components/mainpage/MonthSelect";
+import { useNavigate } from "react-router";
 
 // 메인페이지
 const MainPage = ({ user }) => {
+  const navigate = useNavigate();
   // axios setting
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const firstVisit = sessionStorage.getItem("firstVisit");
+
+    if (!firstVisit) {
+      sessionStorage.setItem("firstVisit", "no");
+      navigate("/intro");
+    }
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {

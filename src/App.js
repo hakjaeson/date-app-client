@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 import CalendarPage from "./pages/calendar/CalendarPage";
 import CreatePage from "./pages/createpage/CreatePage";
 import Intro from "./pages/intro/Intro";
@@ -16,8 +16,9 @@ function App() {
 
   return (
     <Routes className="App">
-      <Route path="/mainpage" element={<MainPage user={user} />} />
-      <Route path="/" element={<Intro />} />
+      {/* <Route path="/" element={<Navigate to="/intro" />} /> */}
+      <Route path="/intro" element={<Intro />} />
+      <Route path="/" element={<MainPage user={user} />} />
       <Route path="/login" element={<Login setUser={setUser} />} />
       <Route path="/calendar" element={<CalendarPage />} />
       <Route path="/createpage" element={<CreatePage />} />
