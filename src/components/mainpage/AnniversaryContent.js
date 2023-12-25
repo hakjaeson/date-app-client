@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Anniversary } from "../../styles/diarystyles/mainpage/mainpagestyle";
+import {
+  Anniversary,
+  MainPageLogo,
+  MainPageLogoWrapper,
+  StartAtWrapper,
+} from "../../styles/diarystyles/mainpage/mainpagestyle";
+import { HeaderWapper } from "../../styles/diarystyles/profilepage/headerstyle";
 
 const AnniversaryContent = ({ user }) => {
   const [days, setDays] = useState(-1);
@@ -33,7 +39,12 @@ const AnniversaryContent = ({ user }) => {
 
   return (
     <Anniversary>
-      <span>우리 사귄지 : {days}일</span>
+      <MainPageLogoWrapper>
+        <MainPageLogo src={`${process.env.PUBLIC_URL}/images/logo.svg`} />
+      </MainPageLogoWrapper>
+      <StartAtWrapper>
+        <span>D + {days}</span>
+      </StartAtWrapper>
     </Anniversary>
   );
 };

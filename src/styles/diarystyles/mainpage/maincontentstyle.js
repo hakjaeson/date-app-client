@@ -1,12 +1,14 @@
 import styled from "@emotion/styled";
 
 export const MainPageContent = styled.div`
-  border: 2px solid black;
-  margin-top: 80px;
+  border: 0.5px solid #e9e9e9;
+  margin: 8rem 1rem 2rem 1rem;
+  /* margin-top: 80px;
   margin-bottom: 20px;
   margin-left: 10px;
-  margin-right: 10px;
+  margin-right: 10px; */
   border-radius: 30px;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
 `;
 export const ContentHeader = styled.div`
   position: relative;
@@ -28,14 +30,16 @@ export const ContentNameTitle = styled.div`
   line-height: 2rem;
   margin-right: auto;
   span {
+    font-family: "SOYOMapleBoldTTF";
     font-size: 1.2rem;
-    font-weight: 700;
+    font-weight: 400;
   }
 `;
 export const WriteingDate = styled.div`
+  font-family: "SOYOMapleBoldTTF";
   margin-right: 10px;
   position: relative;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 3rem;
   height: 3rem;
   padding: 5px;
@@ -49,12 +53,10 @@ export const WriteingDate = styled.div`
 `;
 
 // Content Slide
-export const ContentSlide = styled.div`
-  /* border: 1px solid blue; */
-`;
+export const ContentSlide = styled.div``;
 
 export const ContentSlideImage = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   img {
     width: 100%;
   }
@@ -71,7 +73,6 @@ export const ContentData = styled.div`
   margin-bottom: 10px;
   margin-left: 5px;
   line-height: 1.5rem;
-  // 줄 끊는거 필요함 ... 요거
   img {
     width: 48px;
     height: 48px;
@@ -80,6 +81,8 @@ export const ContentData = styled.div`
     margin-right: 10px;
   }
   span {
+    font-family: "SeoulNamsanM";
+    font-size: 1.2rem;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -88,6 +91,7 @@ export const ContentData = styled.div`
   }
 `;
 export const ContentMoreView = styled.div`
+  font-family: "SeoulNamsanM";
   float: right;
   margin-right: 1rem;
   margin-top: -1rem;
@@ -96,6 +100,7 @@ export const ContentMoreView = styled.div`
 
 // hashTag CSS
 export const HashTag = styled.div`
+  font-family: "SeoulHangangM";
   margin-left: 2rem;
   padding-bottom: 5px;
 `;

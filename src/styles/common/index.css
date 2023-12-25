@@ -23,7 +23,54 @@
   font-weight: normal;
   font-style: normal;
 }
-
+/* TvN 즐거운 이야기체 */
+@font-face {
+  font-family: "OTEnjoystoriesBA";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/OTEnjoystoriesBA.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+/* 서울남산체 */
+@font-face {
+  font-family: "SeoulNamsanM";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+/* 서울 한강체 */
+@font-face {
+  font-family: "SeoulHangangM";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulHangangM.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+/* 소요 단풍체 */
+@font-face {
+  font-family: "SOYOMapleBoldTTF";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/SOYOMapleBoldTTF.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+/* 달의 궤도 */
+@font-face {
+  font-family: "Orbit_of_moon";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_09@1.0/Orbit_of_moon.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+/* 이서윤체 */
+@font-face {
+  font-family: "LeeSeoyun";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 /* Reset CSS */
 * {
   box-sizing: border-box;

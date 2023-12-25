@@ -15,18 +15,18 @@ import {
 const MonthSelect = ({ data, setFilteredData }) => {
   // 월을 영어로 표현하기 위한 배열
   const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "JANUARY",
+    "FEBRUARY",
+    "MARCH",
+    "APRIL",
+    "MAY",
+    "JUNE",
+    "JULY",
+    "AUGUST",
+    "SEPTEMBER",
+    "OCTOBER",
+    "NOVEMBER",
+    "DECEMBER",
   ];
 
   // 필터링된 데이터와 선택된 년도 및 월을 저장하는 state
