@@ -5,7 +5,11 @@ import {
   FooterList,
 } from "../../styles/diarystyles/mainpage/mainpagestyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarDays, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCalendarDays,
+  faPlus,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => {
   return (
@@ -16,23 +20,26 @@ const Footer = () => {
           <Link to="/calendar">
             <FontAwesomeIcon
               icon={faCalendarDays}
-              style={{ width: 25, height: 25 }}
+              style={{ width: 30, height: 30, color: "ffc2c0" }}
             />
           </Link>
         </li>
 
         <li>
           <Link to="/createpage">
-            <img
-              src={process.env.PUBLIC_URL + "/images/icon_plus.svg"}
-              alt=""
+            <FontAwesomeIcon
+              icon={faPlus}
+              style={{ width: 30, height: 30, color: "ffc2c0" }}
             />
           </Link>
         </li>
 
         <li>
           <Link to="/profile">
-            <FontAwesomeIcon icon={faUser} style={{ width: 30, height: 30 }} />
+            <FontAwesomeIcon
+              icon={faUser}
+              style={{ width: 30, height: 30, color: "ffc2c0" }}
+            />
           </Link>
         </li>
       </FooterList>

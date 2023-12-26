@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const MainPageWrapper = styled.div`
-  font-family: "Pretendard-Regular";
+  font-family: "Dovemayo_gothic";
   margin: 0 auto;
   width: 390px;
   min-height: 100vh;
@@ -9,30 +9,30 @@ export const MainPageWrapper = styled.div`
 `;
 
 export const Anniversary = styled.div`
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #ffc2c0;
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;
+
   height: 65px;
+  gap: 1rem;
 `;
-export const MainPageLogoWrapper = styled.div`
-  padding-top: 1rem;
-  text-align: center;
+export const MainPageLogoWrapper = styled.div``;
+export const MainPageLogo = styled.img`
+  width: 3rem;
+  height: 3rem;
 `;
 export const StartAtWrapper = styled.div`
-  font-family: "OTEnjoystoriesBA";
-  position: absolute;
-  right: 3rem;
-  top: 4rem;
-  margin-left: auto;
-  font-size: 2rem;
-  color: white;
+  span {
+    color: white;
+    font-size: 2.5rem;
+  }
 `;
 
-export const MainPageLogo = styled.img`
-  width: 5rem;
-  height: 5rem;
-`;
 export const SelectMonth = styled.div`
-  font-family: "LeeSeoyun";
+  /* font-family: "LeeSeoyun"; */
   display: flex;
   border-radius: 20px;
   float: right;
@@ -51,7 +51,7 @@ export const FooterBar = styled.div`
   height: 65px;
   padding: 10px;
   background-color: #ffc2c0;
-  border: 0.1rem solid black;
+
   z-index: 100;
 `;
 export const FooterList = styled.ul`
@@ -64,15 +64,8 @@ export const FooterList = styled.ul`
     width: 40px;
     height: 40px;
     text-align: center;
-    border: 2px solid black;
-    background-color: transparent;
+    /* border: 2px solid black; */
+    background-color: white;
     border-radius: 50%;
-    img {
-      width: 25px;
-      height: 25px;
-    }
-  }
-  li:nth-of-type(2) {
-    background: #ffb5b6;
   }
 `;

@@ -26,7 +26,7 @@ export const DropDownYearMonth = styled.div`
   flex-direction: column;
   position: absolute;
   top: 70px;
-  left: 40px;
+  left: 30px;
   transform: translate(-50%, -6.5%);
   line-height: 2;
   background-color: white;

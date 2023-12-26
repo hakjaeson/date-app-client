@@ -40,10 +40,11 @@ const AnniversaryContent = ({ user }) => {
   return (
     <Anniversary>
       <MainPageLogoWrapper>
-        <MainPageLogo src={`${process.env.PUBLIC_URL}/images/logo.svg`} />
+        <MainPageLogo src={`${process.env.PUBLIC_URL}/images/logo_white.svg`} />
       </MainPageLogoWrapper>
+
       <StartAtWrapper>
-        <span>D + {days}</span>
+        <span>+ {days}</span>
       </StartAtWrapper>
     </Anniversary>
   );

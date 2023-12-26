@@ -110,8 +110,8 @@ body {
   #root {
     background: #fefdfb;
     line-height: 1.25;
-    letter-spacing: -0.23px;
-    color: #000000;
+    letter-spacing: 0;
+    color: #49454f;
     background: #fefdfb;
     width: 100%;
     max-width: 390px;
