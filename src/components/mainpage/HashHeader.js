@@ -1,29 +1,25 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { BtBack } from "../../styles/diarystyles/profilepage/headerstyle";
+import {
+  BtBackWrapper,
+  HashHeaderWapper,
+  HashTagHeader,
+} from "../../styles/diarystyles/mainpage/hashcontentstyle";
 
 const HashHeader = ({ onBackClick, hashTag }) => {
-  const HeaderWapper = styled.div`
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 65px;
-    background-color: #d2ceff;
-  `;
   return (
-    <HeaderWapper>
-      <div>
+    <HashHeaderWapper>
+      <BtBackWrapper>
         <BtBack
           onClick={onBackClick}
           src={`${process.env.PUBLIC_URL}/images/bt_back.svg`}
         />
-      </div>
-      <div>
+      </BtBackWrapper>
+      <HashTagHeader>
         <span>#{hashTag}</span>
-      </div>
-    </HeaderWapper>
+      </HashTagHeader>
+    </HashHeaderWapper>
   );
 };
 
