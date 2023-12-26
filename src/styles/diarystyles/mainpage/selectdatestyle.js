@@ -30,7 +30,7 @@ export const DropDownYearMonth = styled.div`
   transform: translate(-50%, -6.5%);
   line-height: 2;
   background-color: white;
-  border: 0.2rem solid black;
+  border: 0.1rem solid #c9c9c9;
   width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   border-radius: 2rem;
@@ -43,7 +43,7 @@ export const YearDropDown = styled.div`
   top: -0.5%;
   right: -0.5%;
   background: #ffb5b6;
-  border: 0.2rem solid black;
+  border: 0.1rem solid #c9c9c9;
   height: 5rem;
   width: 200px;
   border-radius: 2rem 2rem 0 0;

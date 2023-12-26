@@ -46,10 +46,10 @@ const Login = ({ setUser }) => {
       return false;
     }
 
-    if (usersPassword(upw) === false) {
-      setErrorMg("비밀번호는 특수문자 포함, 4~8자여야 합니다.");
-      return false;
-    }
+    // if (usersPassword(upw) === false) {
+    //   setErrorMg("비밀번호는 특수문자 포함, 4~8자여야 합니다.");
+    //   return false;
+    // }
     postUserLogin({ uid, upw }, successFN, failFN, setUser);
   };
 
