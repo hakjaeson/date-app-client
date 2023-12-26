@@ -1,12 +1,15 @@
 import styled from "@emotion/styled";
 
-export const CalendarWapper = styled.div``;
+export const CalendarWapper = styled.div`
+  position: relative;
+  margin: 0 auto;
+  width: 390px;
+`;
 
 export const CalendarTop = styled.header`
   position: relative;
   display: block;
   width: 100%;
-  padding-top: 55px;
   padding-left: 23px;
   padding-bottom: 9px;
 `;
@@ -14,13 +17,13 @@ export const CalendarTop = styled.header`
 export const CalendarContent = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 60px;
+
   // 캘린더 전체
   .react-calendar {
     width: 380px;
     height: 540px;
-    background: #ffdbab;
-    border: 2px solid #000;
+    background: #ffeeed;
+    border: none;
     border-radius: 30px;
     font-family: Pretendard-Regular;
     line-height: 35px;
@@ -84,7 +87,7 @@ export const CalendarContent = styled.div`
 
   // 일 선택 (오늘 및 선택 되는 일자, active)
   .react-calendar__tile.react-calendar__tile--now.react-calendar__month-view__days__day {
-    background-color: #ffb5b6;
+    background-color: #d2ceff;
     border-radius: 70%;
     abbr {
       color: #000;
@@ -93,7 +96,7 @@ export const CalendarContent = styled.div`
 
   // 일 선택 (선택 일자 변경 시 오늘 일자, active)
   .react-calendar__tile.react-calendar__tile--active.react-calendar__tile--range.react-calendar__tile--rangeStart.react-calendar__tile--rangeEnd.react-calendar__tile--rangeBothEnds.react-calendar__month-view__days__day {
-    background-color: #d2ceff;
+    background-color: #ffc2c0;
     border-radius: 70%;
     abbr {
       color: #000;
