@@ -21,7 +21,7 @@ export const ProfileMain = styled.main`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0 36px;
+  /* padding: 0 36px; */
   width: 100%;
 `;
 
@@ -58,13 +58,16 @@ export const ProfilePicPartner = styled.div`
 
 export const ProfileInfo = styled.div`
   position: relative;
-  width: 100%;
+  width: 340px;
   padding-top: 50px;
   font-family: Pretendard-Regular;
+  letter-spacing: 0.5px;
 `;
 
 export const ProfileDetail = styled.div`
   position: relative;
+  /* padding-top: 50px; */
+
   hr {
     background-color: #ffeeed;
     height: 5px;

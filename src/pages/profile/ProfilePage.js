@@ -87,7 +87,7 @@ const ProfilePage = () => {
 
           <ProfileBt>
             <Link to="/profile/modify">
-              <ProfileModifyBt>프로필 수정</ProfileModifyBt>
+              <ProfileModifyBt>수정하기</ProfileModifyBt>
             </Link>
             <ProfileLogoutBt onClick={handleLogoutClcik}>
               로그아웃
