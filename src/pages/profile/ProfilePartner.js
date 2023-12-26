@@ -48,7 +48,7 @@ const ProfilePartner = () => {
     <ProfileWrapper>
       <ProfileContent>
         {/* 상단 영역 */}
-        <ProfileHeader link="/profile">PROFILE PARTNER</ProfileHeader>
+        <ProfileHeader link="/profile">PARTNER PROFILE</ProfileHeader>
 
         {/* 메인 영역 */}
         <ProfileMain>

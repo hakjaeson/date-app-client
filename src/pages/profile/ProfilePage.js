@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {
+  ProfileBt,
   ProfileContent,
   ProfileDetail,
   ProfileInfo,
+  ProfileLogoutBt,
   ProfileMain,
   ProfileModifyBt,
   ProfilePic,
@@ -26,9 +28,17 @@ const initialProfie = {
 const ProfilePage = () => {
   // 처음 사용자 프로필 정보
   const [profileData, setProfileData] = useState(initialProfie);
+  const navigate = useNavigate();
+
   // 처음 사용자 프로필 가져오기
   const getUserInfo = () => {
     getUserProfile(setProfileData);
+  };
+
+  const handleLogoutClcik = () => {
+    sessionStorage.clear();
+    navigate("/");
+    alert("로그아웃이 완료 되었습니다.");
   };
 
   // 날짜 필터링
@@ -48,13 +58,12 @@ const ProfilePage = () => {
     <ProfileWrapper>
       <ProfileContent>
         {/* 상단 영역 */}
-        <ProfileHeader link="/">PROFILE</ProfileHeader>
+        <ProfileHeader link="/main">PROFILE</ProfileHeader>
 
         {/* 메인 영역 */}
         <ProfileMain>
           <ProfileVisual>
             {/* 사진 영역 */}
-            {/* <p>{profileData.pic}</p> */}
             <ProfilePic src={profileData.pic} />
             <ProfilePicPartner>
               <Link to="/profile/partner">
@@ -76,11 +85,14 @@ const ProfilePage = () => {
             </ProfileDetail>
           </ProfileInfo>
 
-          <ProfileModifyBt>
+          <ProfileBt>
             <Link to="/profile/modify">
-              <button>프로필 수정</button>
+              <ProfileModifyBt>프로필 수정</ProfileModifyBt>
             </Link>
-          </ProfileModifyBt>
+            <ProfileLogoutBt onClick={handleLogoutClcik}>
+              로그아웃
+            </ProfileLogoutBt>
+          </ProfileBt>
         </ProfileMain>
       </ProfileContent>
     </ProfileWrapper>

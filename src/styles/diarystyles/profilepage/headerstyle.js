@@ -9,6 +9,8 @@ export const HeaderWapper = styled.div`
   height: 65px;
   background-color: #ffc2c0;
   margin-bottom: 50px;
+  font-size: 13px;
+  letter-spacing: 1px;
 `;
 
 export const Header = styled.header`

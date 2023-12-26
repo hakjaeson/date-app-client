@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 export const ProfileForm = styled.form`
   position: relative;
   width: 100%;
-  padding-top: 35px;
 `;
 
 export const ProfileDetailForm = styled.div`
@@ -11,36 +10,33 @@ export const ProfileDetailForm = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  padding: 18px 0px;
+  padding: 16px 0px;
   font-size: 17px;
+  font-family: Pretendard-Regular;
+
   label {
     padding-right: 5px;
     color: #49454f;
-    // background: #d2ceff;
   }
   input {
     flex: 1;
     width: 100%;
     border: none;
     outline: none;
-    background: #ffdbab;
+    background: #ffeeed;
     color: #49454f;
-    /* user-select: all; */
   }
 `;
 
-export const ProfileSummitBt = styled.div`
+export const ProfileSummitBt = styled.button`
   position: relative;
-  padding-top: 58px;
-
-  button {
-    background-color: #d2ceff;
-    border: 2.5px none #000;
-    border-radius: 30px;
-    padding: 18px 105px;
-    font-size: 20px;
-    white-space: nowrap;
-    cursor: pointer;
-    color: #fff;
-  }
+  width: 340px;
+  margin-top: 50px;
+  background-color: #ffc2c0;
+  border: 2.5px none #000;
+  border-radius: 30px;
+  padding: 13px 0px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
 `;
