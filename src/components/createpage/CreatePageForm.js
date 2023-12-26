@@ -81,7 +81,7 @@ const CreatePageForm = () => {
 
       //서버 업데이트 시간 주기
       setTimeout(() => {
-        navigate("/");
+        navigate("/main");
       }, 1000);
     }
   };
