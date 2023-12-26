@@ -2,21 +2,21 @@ import styled from "@emotion/styled";
 
 export const MainPageContent = styled.div`
   border: 0.5px solid #e9e9e9;
-  margin: 8rem 1rem 2rem 1rem;
-  /* margin-top: 80px;
-  margin-bottom: 20px;
-  margin-left: 10px;
-  margin-right: 10px; */
-  border-radius: 30px;
+  margin: 5rem 1rem 2rem 1rem;
+  border-radius: 1.5rem;
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+  &:nth-of-type(1) {
+    margin: 8rem 1rem 2rem 1rem;
+  }
 `;
 export const ContentHeader = styled.div`
   position: relative;
   height: 50px;
   display: flex;
   align-items: center;
-  border-radius: 30px 30px 0 0;
-  background-color: #d2ceff;
+  border-radius: 1.5rem 1.5rem 0 0;
+  background-color: #ffeeed;
+  /* background-color: #df5d7d; */
 
   img {
     border: 1px solid black;
@@ -30,25 +30,31 @@ export const ContentNameTitle = styled.div`
   line-height: 2rem;
   margin-right: auto;
   span {
-    font-family: "SOYOMapleBoldTTF";
     font-size: 1.2rem;
     font-weight: 400;
   }
 `;
 export const WriteingDate = styled.div`
   font-family: "SOYOMapleBoldTTF";
-  margin-right: 10px;
+  margin-right: 5rem;
   position: relative;
-  /* border: 1px solid black; */
   width: 3rem;
   height: 3rem;
   padding: 5px;
   line-height: 1.5rem;
-  border-radius: 50%;
-  background-color: white;
+  /* border-radius: 50%; */
+  /* background-color: white; */
   text-align: center;
   span {
     font-weight: 700;
+  }
+`;
+
+export const ProfileImage = styled.div`
+  img {
+    width: 3.5rem;
+    height: 3.5rem;
+    border: none;
   }
 `;
 
@@ -64,7 +70,8 @@ export const ContentSlideImage = styled.div`
 
 export const ContentBody = styled.div`
   background-color: white;
-  border-radius: 0 0 30px 30px;
+  border-radius: 0 0 1.5rem 1.5rem;
+  padding: 1rem;
 `;
 export const ContentData = styled.div`
   display: flex;
@@ -73,15 +80,16 @@ export const ContentData = styled.div`
   margin-bottom: 10px;
   margin-left: 5px;
   line-height: 1.5rem;
+
   img {
     width: 48px;
     height: 48px;
-    border: 1px solid black;
+    border: 1px solid #ffc2c0;
     border-radius: 28px;
-    margin-right: 10px;
+    margin-right: 1rem;
   }
   span {
-    font-family: "SeoulNamsanM";
+    /* font-family: "SeoulNamsanM"; */
     font-size: 1.2rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -91,10 +99,9 @@ export const ContentData = styled.div`
   }
 `;
 export const ContentMoreView = styled.div`
-  font-family: "SeoulNamsanM";
   float: right;
-  margin-right: 1rem;
-  margin-top: -1rem;
+  font-size: 1rem;
+  padding-right: 1rem;
   color: #c9c9c9;
 `;
 

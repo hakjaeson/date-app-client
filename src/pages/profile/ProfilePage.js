@@ -10,7 +10,7 @@ import {
   ProfileVisual,
   ProfileWrapper,
 } from "../../styles/diarystyles/profilepage/profilepagestyle";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUserProfile } from "../../api/user/userprofileapi";
 import ProfileHeader from "../../components/profile/ProfileHeader";
 
@@ -26,7 +26,6 @@ const initialProfie = {
 const ProfilePage = () => {
   // 처음 사용자 프로필 정보
   const [profileData, setProfileData] = useState(initialProfie);
-
   // 처음 사용자 프로필 가져오기
   const getUserInfo = () => {
     getUserProfile(setProfileData);

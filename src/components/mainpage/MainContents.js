@@ -16,6 +16,8 @@ import {
   HashTag,
   HashTagBt,
   MainPageContent,
+  ProfileImage,
+  ProfileImageDa,
   WriteingDate,
 } from "../../styles/diarystyles/mainpage/maincontentstyle";
 
@@ -40,18 +42,25 @@ const MainContents = ({ data, onHashTagClick }) => {
     }
     return result;
   };
+
   const filteredDay = result => {
-    let fDay = result.split("-")[2].split(" ")[0];
+    let fDay =
+      result.split("-")[0].split(" ")[0] +
+      "." +
+      result.split("-")[1].split(" ")[0] +
+      "." +
+      result.split("-")[2].split(" ")[0];
     return fDay.startsWith("0") ? fDay.slice(2) : fDay;
   };
+
   return (
     <div>
       {data.map(item => (
         <MainPageContent key={item.diaryId}>
           <ContentHeader>
-            <div className="profile-image">
-              <img src="https://picsum.photos/40/40" alt="" />
-            </div>
+            <ProfileImage>
+              <img src={item.pic} alt="profile" />
+            </ProfileImage>
             {/* Content title */}
             <ContentNameTitle>
               {/* User name */}
