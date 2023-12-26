@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
+  ImgAddBt,
   ProfileDetailForm,
   ProfileForm,
+  ProfileModifyDetail,
   ProfileSummitBt,
 } from "../../styles/diarystyles/profilepage/profilemodifiystyle";
 import {
@@ -67,9 +69,6 @@ const ProfileModify = () => {
   };
 
   // onChange할 타겟 설정
-  // const handleChangePic = e => {
-  //   setPic(e.target.value);
-  // };
   const handleChangeName = e => {
     setName(e.target.value);
   };
@@ -93,8 +92,7 @@ const ProfileModify = () => {
     getUserProfile(setProfileData);
   };
 
-  const initPreview = profileData.pic;
-  const [previewImg, setPreviewImg] = useState(initPreview);
+  const [previewImg, setPreviewImg] = useState();
 
   // 파이어베이스 업로드 될 이미지
   const [selectFile, setSelectFile] = useState(null);
@@ -200,28 +198,28 @@ const ProfileModify = () => {
 
           {/* 정보 수정 영역 */}
           <ProfileForm>
-            <ProfileDetail>
+            <ProfileModifyDetail>
               <ProfileDetailForm>
-                <label>사진 : </label>
+                <label htmlFor="inputprofilepic">
+                  <ImgAddBt
+                    type="button"
+                    onClick={() => {
+                      document.getElementById("inputprofilepic").click();
+                    }}
+                    className="imgaddbt"
+                  >
+                    +
+                  </ImgAddBt>
+                </label>
                 <input
                   type="file"
-                  // defaultValue={profileData.pic}
-                  // value={pic}
                   accept="image/png, image/gif, image/jpeg"
                   onChange={e => {
                     handleChangeFile(e);
                   }}
-                />
-                {/* <input
-                  type="text"
-                  name="pic"
-                  defaultValue={profileData.pic}
-                  value={pic}
-                  placeholder="이미지 경로를 입력하세요."
-                  onChange={e => {
-                    handleChangePic(e);
-                  }}
-                ></input> */}
+                  id="inputprofilepic"
+                  style={{ display: "none" }}
+                ></input>
               </ProfileDetailForm>
 
               <ProfileDetailForm>
@@ -263,7 +261,7 @@ const ProfileModify = () => {
                   }}
                 ></input>
               </ProfileDetailForm>
-            </ProfileDetail>
+            </ProfileModifyDetail>
 
             <ProfileSummitBt
               type="button"
@@ -271,7 +269,7 @@ const ProfileModify = () => {
                 handleSubmitProfileForm(e);
               }}
             >
-              프로필 수정 완료
+              수정완료
             </ProfileSummitBt>
           </ProfileForm>
         </ProfileMain>
