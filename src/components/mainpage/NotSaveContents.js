@@ -1,12 +1,12 @@
 import React from "react";
 import { EmptyWrapper } from "../../styles/diarystyles/mainpage/mainpagestyle";
 
-const EmptyContent = () => {
+const NotSaveContents = () => {
   return (
     <EmptyWrapper>
-      <img src={process.env.PUBLIC_URL + `/images/empty_contents.png`} />
+      <img src={process.env.PUBLIC_URL + `/images/non_save.png`} />
     </EmptyWrapper>
   );
 };
 
-export default EmptyContent;
+export default NotSaveContents;
