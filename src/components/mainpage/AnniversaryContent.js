@@ -5,7 +5,6 @@ import {
   MainPageLogoWrapper,
   StartAtWrapper,
 } from "../../styles/diarystyles/mainpage/mainpagestyle";
-import { HeaderWapper } from "../../styles/diarystyles/profilepage/headerstyle";
 
 const AnniversaryContent = ({ user }) => {
   const [days, setDays] = useState(-1);

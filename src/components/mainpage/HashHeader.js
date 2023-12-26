@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { BtBack } from "../../styles/diarystyles/profilepage/headerstyle";
+import { BtBack } from "../../styles/common/headerstyle";
 
 const HashHeader = ({ onBackClick, hashTag }) => {
   const HeaderWapper = styled.div`

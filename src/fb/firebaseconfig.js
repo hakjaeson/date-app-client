@@ -16,9 +16,7 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_APP_ID,
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// Initialize Cloud Storage and get a reference to the service
 const storage = getStorage(app);
 
 export { app, storage, ref, uploadBytes, listAll, getDownloadURL };

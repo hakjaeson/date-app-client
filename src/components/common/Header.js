@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 import {
   BtBack,
   BtHome,
-  Header,
   HeaderTitle,
   HeaderWapper,
-} from "../../styles/diarystyles/profilepage/headerstyle";
+  TopBar,
+} from "../../styles/common/headerstyle";
 
-const ProfileHeader = props => {
+const Header = props => {
   return (
     <HeaderWapper>
-      <Header>
+      <TopBar>
         {/* 이전 페이지 버튼 */}
         <Link to={props.link}>
           <BtBack src={`${process.env.PUBLIC_URL}/images/bt_back.svg`} />
@@ -21,9 +21,9 @@ const ProfileHeader = props => {
         <Link to="/mainpage">
           <BtHome src={`${process.env.PUBLIC_URL}/images/bt_home.svg`} />
         </Link>
-      </Header>
+      </TopBar>
     </HeaderWapper>
   );
 };
 
-export default ProfileHeader;
+export default Header;

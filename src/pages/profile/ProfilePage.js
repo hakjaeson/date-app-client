@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {
+  ProfileBt,
   ProfileContent,
   ProfileDetail,
   ProfileInfo,
+  ProfileLogoutBt,
   ProfileMain,
   ProfileModifyBt,
   ProfilePic,
@@ -10,9 +12,9 @@ import {
   ProfileVisual,
   ProfileWrapper,
 } from "../../styles/diarystyles/profilepage/profilepagestyle";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUserProfile } from "../../api/user/userprofileapi";
-import ProfileHeader from "../../components/profile/ProfileHeader";
+import Header from "../../components/common/Header";
 
 // 사용자 정보 데이터 형식
 const initialProfie = {
@@ -26,10 +28,17 @@ const initialProfie = {
 const ProfilePage = () => {
   // 처음 사용자 프로필 정보
   const [profileData, setProfileData] = useState(initialProfie);
+  const navigate = useNavigate();
 
   // 처음 사용자 프로필 가져오기
   const getUserInfo = () => {
     getUserProfile(setProfileData);
+  };
+
+  const handleLogoutClcik = () => {
+    sessionStorage.clear();
+    navigate("/");
+    alert("로그아웃이 완료 되었습니다.");
   };
 
   // 날짜 필터링
@@ -49,13 +58,12 @@ const ProfilePage = () => {
     <ProfileWrapper>
       <ProfileContent>
         {/* 상단 영역 */}
-        <ProfileHeader link="/">PROFILE</ProfileHeader>
+        <Header link="/main">PROFILE</Header>
 
         {/* 메인 영역 */}
         <ProfileMain>
           <ProfileVisual>
             {/* 사진 영역 */}
-            {/* <p>{profileData.pic}</p> */}
             <ProfilePic src={profileData.pic} />
             <ProfilePicPartner>
               <Link to="/profile/partner">
@@ -77,11 +85,14 @@ const ProfilePage = () => {
             </ProfileDetail>
           </ProfileInfo>
 
-          <ProfileModifyBt>
+          <ProfileBt>
             <Link to="/profile/modify">
-              <button>프로필 수정</button>
+              <ProfileModifyBt>프로필 수정</ProfileModifyBt>
             </Link>
-          </ProfileModifyBt>
+            <ProfileLogoutBt onClick={handleLogoutClcik}>
+              로그아웃
+            </ProfileLogoutBt>
+          </ProfileBt>
         </ProfileMain>
       </ProfileContent>
     </ProfileWrapper>

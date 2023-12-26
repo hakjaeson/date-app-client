@@ -7,11 +7,13 @@ export const HeaderWapper = styled.div`
   align-items: center;
   width: 100%;
   height: 65px;
-  background-color: #d2ceff;
+  background-color: #ffc2c0;
   margin-bottom: 50px;
+  font-size: 13px;
+  letter-spacing: 1px;
 `;
 
-export const Header = styled.header`
+export const TopBar = styled.header`
   position: relative;
   display: flex;
   justify-content: space-between;

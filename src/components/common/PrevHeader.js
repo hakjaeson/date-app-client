@@ -1,11 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-  BtBack,
-  BtHome,
-  Header,
-} from "../../styles/diarystyles/profilepage/headerstyle";
+import Header from "./Header";
+import { BtBack, BtHome } from "../../styles/common/headerstyle";
 
 const HeaderWapper = styled.div`
   position: relative;

@@ -11,7 +11,7 @@ import {
 } from "../../styles/diarystyles/profilepage/profilepagestyle";
 import { Link } from "react-router-dom";
 import { getUserProfile } from "../../api/user/userprofileapi";
-import ProfileHeader from "../../components/profile/ProfileHeader";
+import Header from "../../components/common/Header";
 
 // 사용자 정보 데이터 형식
 const initialProfie = {
@@ -48,7 +48,7 @@ const ProfilePartner = () => {
     <ProfileWrapper>
       <ProfileContent>
         {/* 상단 영역 */}
-        <ProfileHeader link="/profile">PROFILE PARTNER</ProfileHeader>
+        <Header link="/profile">PARTNER PROFILE</Header>
 
         {/* 메인 영역 */}
         <ProfileMain>
