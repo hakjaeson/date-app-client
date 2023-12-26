@@ -9,7 +9,6 @@ export const MainPageWrapper = styled.div`
 `;
 
 export const Anniversary = styled.div`
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,5 +66,17 @@ export const FooterList = styled.ul`
     /* border: 2px solid black; */
     background-color: white;
     border-radius: 50%;
+  }
+`;
+
+export const EmptyWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  img {
+    width: 300px;
+    height: 300px;
   }
 `;

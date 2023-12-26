@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
 export const Wrapper = styled.div`
+  font-family: "Dovemayo_gothic";
   position: relative;
   width: 100%;
   min-width: 320px;
