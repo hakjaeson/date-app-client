@@ -9,11 +9,13 @@ export const MainPageWrapper = styled.div`
 `;
 
 export const Anniversary = styled.div`
+
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #ffc2c0;
   margin-bottom: 1.5rem;
+
   height: 65px;
   gap: 1rem;
 `;
@@ -35,7 +37,7 @@ export const SelectMonth = styled.div`
   border-radius: 20px;
   float: right;
   margin-right: 20px;
-  background-color: #ffb5b6;
+  background-color: #ffc2c0;
   padding: 10px;
   font-weight: 700;
   height: 50px;
@@ -49,6 +51,7 @@ export const FooterBar = styled.div`
   height: 65px;
   padding: 10px;
   background-color: #ffc2c0;
+
   z-index: 100;
 `;
 export const FooterList = styled.ul`

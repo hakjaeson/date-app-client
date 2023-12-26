@@ -14,8 +14,7 @@ export const FormContents = styled.div`
   height: ${props => props.height}px;
   padding: 0 0 15px 15px;
 
-  border: 2.5px solid #000;
-  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.13);
+  box-shadow: 0 -1px 3px -1px #333;
   border-radius: 50px 50px 0 0;
 `;
 
@@ -97,7 +96,7 @@ export const FormHashTagBox = styled.div`
 `;
 
 export const FormHashTag = styled.textarea`
-  background-color: #ffb5b6;
+  background-color: #ffc2c0;
   max-width: 350px;
   min-width: 250px;
   max-height: 50px;
@@ -119,11 +118,10 @@ export const FormImgButton = styled.button`
   width: 100px;
   height: 40px;
   font-size: 1.7rem;
-  background-color: #ffdbab;
-  /* border: 0.1rem solid rgba(0, 0, 0, 0.1); */
-  /* box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.13); */
-  border: 2.5 solid #000;
+  background-color: #ffc2c0;
+  border: none;
   border-radius: 16px;
+  color: #ffeeed;
 `;
 
 export const FormButton = styled.button`
@@ -133,9 +131,10 @@ export const FormButton = styled.button`
   width: 70px;
   height: 40px;
   font-size: 1.7rem;
-  background-color: #ffdbab;
+  background-color: #ffc2c0;
+  color: #ffeeed;
   /* border: 0.1rem solid rgba(0, 0, 0, 0.1); */
   /* box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.13); */
-  border: 2.5 solid #000;
+  border: none;
   border-radius: 16px;
 `;

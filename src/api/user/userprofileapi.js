@@ -7,6 +7,7 @@ export const getUserProfile = async setProfileData => {
     const res = await axios.get(`/api/user/profile`);
     res.data.pic.replace("^", "&");
     setProfileData(res.data);
+    console.log(res.data);
   } catch (error) {
     console.log(error);
     alert("서버가 불안정합니다.");
@@ -44,12 +45,10 @@ export const getUserProfile = async setProfileData => {
 // };
 
 // 프로필 수정하기
-export const patchUserProfile = async ({ nm, pic, birth, startedAt }, fn) => {
+export const patchUserProfile = async (item, fn) => {
   console.log("패치 실행");
   try {
-    const res = await axios.patch(
-      `/api/user/profile?nm=${nm}&pic=${pic}&birth=${birth}&startedAt=${startedAt}`,
-    );
+    const res = await axios.patch(`/api/user/profile`, item);
     console.log(res.data);
     fn(res.data.result);
   } catch (error) {

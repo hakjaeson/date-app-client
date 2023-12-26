@@ -78,9 +78,9 @@ export const LoginLabel = styled.label`
   justify-content: center;
   width: 95px;
   height: 43px;
-  font-size: 15px;
+  font-size: 13px;
   letter-spacing: 1px;
-  background-color: #ffdbab;
+  background-color: #ffeeed;
   border-radius: 16px;
 `;
 
@@ -88,6 +88,7 @@ export const LoginError = styled.p`
   display: block;
   width: 100%;
   text-align: center;
+  font-family: Pretendard-Regular;
   font-size: 14px;
   color: #ff4244;
   margin-bottom: 37px;
@@ -102,7 +103,8 @@ export const LoginButton = styled.button`
   width: 340px;
   height: 50px;
   font-size: 20px;
-  background-color: #d2ceff;
+  color: #fff;
+  background-color: #ffc2c0;
   border: none;
   border-radius: 30px;
   margin-bottom: 15px;
@@ -115,7 +117,8 @@ export const SigninButton = styled.button`
   width: 340px;
   height: 50px;
   font-size: 20px;
-  background-color: #d2ceff;
+  color: #fff;
+  background-color: #ffc2c0;
   border: none;
   border-radius: 30px;
   letter-spacing: 2px;

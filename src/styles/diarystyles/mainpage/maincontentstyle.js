@@ -14,9 +14,11 @@ export const ContentHeader = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
+
   border-radius: 1.5rem 1.5rem 0 0;
   background-color: #ffeeed;
   /* background-color: #df5d7d; */
+
 
   img {
     border: 1px solid black;

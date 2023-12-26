@@ -14,7 +14,7 @@ const HeaderWapper = styled.div`
   align-items: center;
   width: 100%;
   height: 65px;
-  background-color: #d2ceff;
+  background-color: #ffc2c0;
 `;
 
 const PrevHeader = ({ edit, setEdit }) => {
@@ -28,14 +28,14 @@ const PrevHeader = ({ edit, setEdit }) => {
             if (edit) {
               setEdit(!edit);
             } else {
-              navigate("/");
+              navigate("/main");
             }
           }}
         />
         <BtHome
           src={`${process.env.PUBLIC_URL}/images/bt_home.svg`}
           onClick={() => {
-            navigate("/");
+            navigate("/main");
           }}
         />
       </Header>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import styled from "@emotion/styled";
@@ -36,7 +36,7 @@ const ImageButton = styled.div`
 
   grid-column: 1 / 5;
 
-  border: 2.5px solid #000;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 `;
 
@@ -49,7 +49,7 @@ const ImageBox = styled.div`
   height: 100%;
   margin-bottom: 10px;
 
-  border: 1px solid #000;
+  box-shadow: 0 5px 5px -5px #333;
 
   &:nth-of-type(2),
   &:nth-of-type(4) {
@@ -82,7 +82,6 @@ const ImageUpload = ({ selectFile, setSelectFile }) => {
   const handleChangeFile = e => {
     // 파일을 변수에 담아서 코드 를 수월하게 보려고
     const file = e.target.files[0];
-    console.log(e.target.files[0].status);
     if (file) {
       // 나의 웹브라우저에서 URL 을 임시로 생성
       const tempUrl = URL.createObjectURL(file);
@@ -118,7 +117,7 @@ const ImageUpload = ({ selectFile, setSelectFile }) => {
         />
         <FontAwesomeIcon
           icon={faPlus}
-          style={{ width: 30, height: 30, color: "#000" }}
+          style={{ width: 20, height: 20, color: "#000" }}
         />
       </ImageButton>
       {previewImg.map((img, idx) => {
