@@ -17,17 +17,13 @@ import {
   ProfileVisual,
   ProfileWrapper,
 } from "../../styles/diarystyles/profilepage/profilepagestyle";
-import ProfileHeader from "../../components/profile/ProfileHeader";
 import moment from "moment/moment";
-import {
-  getDownloadURL,
-  ref,
-  storage,
-  uploadBytes,
-} from "../../api/firebase/firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from "../../DB/firebase";
+import ProfileHeader from "../../components/profile/ProfileHeader";
 
 // 사용자 정보 데이터 형식
-const initialProfie = {
+const initialProfile = {
   pic: "",
   nm: "",
   birth: "",
@@ -36,31 +32,32 @@ const initialProfie = {
 
 const ProfileModify = () => {
   // 처음 사용자 프로필 정보 초기값에 담기
-  const [profileData, setProfileData] = useState(initialProfie);
-  const navigate = useNavigate();
-  const [pic, setPic] = useState("");
+  const [profileData, setProfileData] = useState(initialProfile);
+
+  // const [pic, setPic] = useState("");
   const [name, setName] = useState("");
   const [birth, setBirth] = useState("");
   const [startedAt, setStartedAt] = useState("");
 
-  // 미리보기 이미지 초기값
-  const initPreview = profileData.pic;
+  const navigate = useNavigate();
 
-  // 미리보기 이미지 state
-  const [previewImg, setPreviewImg] = useState(initPreview);
+  // 날짜 필터링
+  const filterDate = result => {
+    // console.log(result);
+    let filterData = result.split(" ")[0];
+    // console.log(filterData);
+    return filterData;
+  };
 
-  // 파이어베이스 업로드된 이미지
-  const [selectFile, setSelectFile] = useState(null);
-
-  // 프로필 정보 수정
+  // petch 시 돌아오는 값에 대한 결과(프로필 정보 수정)
   const patchUserProfileAction = result => {
     if (result === 1) {
-      alert("수정 완료");
+      alert("수정에 성공했습니다.");
       navigate("/profile");
       return;
     }
     if (result === 0) {
-      alert("수정에 실패했습니다.");
+      alert("수정에 실패했습니다. 다시 시도해주세요.");
       return;
     }
     if (result === -500) {
@@ -69,9 +66,10 @@ const ProfileModify = () => {
     }
   };
 
-  const handleChangePic = e => {
-    setPic(e.target.value);
-  };
+  // onChange할 타겟 설정
+  // const handleChangePic = e => {
+  //   setPic(e.target.value);
+  // };
   const handleChangeName = e => {
     setName(e.target.value);
   };
@@ -82,16 +80,9 @@ const ProfileModify = () => {
     setStartedAt(e.target.value);
   };
 
-  // 날짜 필터링
-  const filterDate = result => {
-    // console.log(result);
-    let filterData = result.split(" ")[0];
-    // console.log(filterData);
-    return filterData;
-  };
-
+  // 변화를 감지하고 업데이트
   useEffect(() => {
-    setPic(profileData.pic);
+    // setPic(profileData.pic);
     setName(profileData.nm);
     setBirth(filterDate(profileData.birth));
     setStartedAt(filterDate(profileData.startedAt));
@@ -102,7 +93,13 @@ const ProfileModify = () => {
     getUserProfile(setProfileData);
   };
 
-  // 선택된 이미지 파일 미리보기
+  const initPreview = profileData.pic;
+  const [previewImg, setPreviewImg] = useState(initPreview);
+
+  // 파이어베이스 업로드 될 이미지
+  const [selectFile, setSelectFile] = useState(null);
+
+  // 이미지 파일이 선택되는 이벤트가 일어나면 : 미리보기 실행
   const handleChangeFile = e => {
     const file = e.target.files[0];
     if (file) {
@@ -110,16 +107,17 @@ const ProfileModify = () => {
       const tempUrl = URL.createObjectURL(file);
       // 미리보기 state
       setPreviewImg(tempUrl);
+
       // FB 파일 보관
       setSelectFile(file);
     }
   };
 
   // 파이어베이스에 업로드 및 정보 관리
-  const [fbImgUrl, setFbImgUrl] = useState("");
+  const [FbImgUrl, setFbImgUrl] = useState();
 
   // 입력 값 보내기
-  const handleSumitProfileForm = () => {
+  const handleSubmitProfileForm = () => {
     if (name === "") {
       alert("이름은 필수 항목입니다.");
       return;
@@ -133,21 +131,21 @@ const ProfileModify = () => {
 
   const patchProfile = _url => {
     console.log("주소보기 : ", _url);
-    const reUrl = _url.replace("&", "^");
     const item = {
-      pic: reUrl,
+      pic: _url,
       nm: name,
       birth: birth,
       startedAt: startedAt,
     };
-    console.log(item);
+    console.log("패치?", item);
     patchUserProfile(item, patchUserProfileAction);
   };
 
+  // 중복되지 않는 임시 파일명 생성
   const upload = () => {
     if (!selectFile) {
       // 이미지 선택하지 않다면 안내창 출력
-      alert("이미지를 선택해주세요.");
+      alert("이미지는 필수 항목입니다.");
       return;
     }
     // 중복되지 않는 파일명을 생성
@@ -157,7 +155,7 @@ const ProfileModify = () => {
     return fileName;
   };
 
-  // 실제 이미지 업로드를 실행 함수
+  // 실제 이미지 업로드를 실행하는 함수
   const uploadImage = async _fileName => {
     // 3. 시도한다.
     try {
@@ -170,7 +168,6 @@ const ProfileModify = () => {
       // 파이어베이스 이미지 url 을 파악
       const url = await getDownloadURL(fbRes.ref);
       setFbImgUrl(url);
-
       // 4. 실제 데이터 받아서 백엔드 전달
       patchProfile(url);
     } catch (error) {
@@ -208,6 +205,8 @@ const ProfileModify = () => {
                 <label>사진 : </label>
                 <input
                   type="file"
+                  // defaultValue={profileData.pic}
+                  // value={pic}
                   accept="image/png, image/gif, image/jpeg"
                   onChange={e => {
                     handleChangeFile(e);
@@ -266,15 +265,13 @@ const ProfileModify = () => {
               </ProfileDetailForm>
             </ProfileDetail>
 
-            <ProfileSummitBt>
-              <button
-                type="button"
-                onClick={e => {
-                  handleSumitProfileForm(e);
-                }}
-              >
-                프로필 수정 완료
-              </button>
+            <ProfileSummitBt
+              type="button"
+              onClick={e => {
+                handleSubmitProfileForm(e);
+              }}
+            >
+              프로필 수정 완료
             </ProfileSummitBt>
           </ProfileForm>
         </ProfileMain>

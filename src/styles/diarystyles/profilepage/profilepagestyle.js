@@ -6,7 +6,7 @@ export const ProfileWrapper = styled.div`
   margin: 0 auto;
   width: 390px;
   height: 844px;
-  font-family: Pretendard-Regular;
+  font-family: Dovemayo_gothic;
 `;
 
 export const ProfileContent = styled.div`
@@ -21,7 +21,7 @@ export const ProfileMain = styled.main`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0 23px;
+  padding: 0 36px;
   width: 100%;
 `;
 
@@ -59,34 +59,51 @@ export const ProfilePicPartner = styled.div`
 export const ProfileInfo = styled.div`
   position: relative;
   width: 100%;
-  padding-top: 37px;
+  padding-top: 50px;
+  font-family: Pretendard-Regular;
 `;
 
 export const ProfileDetail = styled.div`
   position: relative;
   hr {
-    background-color: #ffdbab;
+    background-color: #ffeeed;
     height: 5px;
     border: none;
   }
   li {
-    padding: 16px 0px;
+    padding: 15px 0px;
     font-size: 17px;
     color: #49454f;
   }
 `;
 
-export const ProfileModifyBt = styled.div`
+export const ProfileBt = styled.div`
   position: relative;
-  padding-top: 58px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 155px;
+  width: 340px;
+  padding-top: 50px;
   button {
-    background-color: #d2ceff;
+    background-color: #ffc2c0;
     border: 2.5px none #000;
     border-radius: 30px;
-    padding: 18px 125px;
+    width: 340px;
+    padding: 13px 0px;
     font-size: 20px;
-    white-space: nowrap;
     cursor: pointer;
     color: #fff;
   }
+`;
+
+export const ProfileModifyBt = styled.button`
+  position: relative;
+  letter-spacing: 2px;
+`;
+
+export const ProfileLogoutBt = styled.button`
+  position: relative;
+  letter-spacing: 2px;
 `;
