@@ -2,13 +2,10 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   position: relative;
-  width: 100%;
-  min-width: 320px;
-  max-width: 600px;
-  max-height: 900px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-family: "Dovemayo_gothic";
+  margin: 0 auto;
+  width: 390px;
+  height: 100%;
 `;
 
 export const Device = styled.div`
@@ -19,7 +16,7 @@ export const Device = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 900px;
+  height: 100%;
 `;
 
 export const CreatePageMain = styled.div`

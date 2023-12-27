@@ -28,15 +28,15 @@ const MainContents = ({ data, onHashTagClick }) => {
   const EmojiFuc = emoji => {
     let result;
     if (emoji == 0) {
-      result = "images/joy.jpeg";
+      result = "images/joy.png";
     } else if (emoji == 1) {
-      result = "images/sadness.jpeg";
+      result = "images/sadness.png";
     } else if (emoji == 2) {
-      result = "images/angry.jpeg";
+      result = "images/angry.png";
     } else if (emoji == 3) {
-      result = "images/surprise.jpeg";
+      result = "images/surprise.png";
     } else if (emoji == 4) {
-      result = "images/love.jpeg";
+      result = "images/love.png";
     } else {
       console.log("not-found-emoji");
     }

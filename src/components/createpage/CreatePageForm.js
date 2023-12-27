@@ -61,9 +61,7 @@ const CreatePageForm = () => {
         console.log(error);
       }
     }
-    setTimeout(() => {
-      setSaved(true);
-    }, 1000);
+    setSaved(true);
   };
 
   const onValid = data => {

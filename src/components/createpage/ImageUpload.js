@@ -6,10 +6,10 @@ import styled from "@emotion/styled";
 const ImageArea = styled.div`
   position: relative;
   display: grid;
-  grid-gap: 10px;
+  grid-row-gap: 10px;
   justify-content: center;
   align-items: center;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 90px);
   grid-template-rows: 60px repeat(2, 1fr);
   width: 100%;
   height: 100%;
@@ -25,19 +25,18 @@ const ImageInput = styled.input`
 `;
 
 const ImageButton = styled.div`
-  background-color: #eeeeee;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 95%;
+  margin-left: 2.5%;
   height: 40px;
-  color: grey;
+  background-color: #ffeeed;
 
   grid-column: 1 / 5;
 
-  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+  border-radius: 5px;
 `;
 
 const ImageBox = styled.div`
@@ -45,11 +44,11 @@ const ImageBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 90%;
   height: 100%;
-  margin-bottom: 10px;
-
-  box-shadow: 0 5px 5px -5px #333;
+  margin-left: 5%;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px #c9c9c9;
 
   &:nth-of-type(2),
   &:nth-of-type(4) {
@@ -117,7 +116,7 @@ const ImageUpload = ({ selectFile, setSelectFile }) => {
         />
         <FontAwesomeIcon
           icon={faPlus}
-          style={{ width: 20, height: 20, color: "#000" }}
+          style={{ width: 20, height: 20, color: "#fff" }}
         />
       </ImageButton>
       {previewImg.map((img, idx) => {

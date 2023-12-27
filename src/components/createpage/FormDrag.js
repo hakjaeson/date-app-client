@@ -103,7 +103,7 @@ const FormDrag = ({ register, emojiName, setEmojiName, imgSave }) => {
                 >
                   <FormEmoji
                     type="image"
-                    src={`${process.env.PUBLIC_URL}/images/${emoji}.jpeg`}
+                    src={`${process.env.PUBLIC_URL}/images/${emoji}.png`}
                     alt={emoji}
                   />
                 </LlEmoji>
@@ -113,7 +113,7 @@ const FormDrag = ({ register, emojiName, setEmojiName, imgSave }) => {
         )}
         <FormEmoji
           type="image"
-          src={`${process.env.PUBLIC_URL}/images/${emojiName}.jpeg`}
+          src={`${process.env.PUBLIC_URL}/images/${emojiName}.png`}
           alt="Image 1"
           onClick={handleClick}
         />
