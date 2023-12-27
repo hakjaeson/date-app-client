@@ -113,7 +113,7 @@ export const FormHashTag = styled.textarea`
 
 export const FormImgButton = styled.button`
   position: absolute;
-  bottom: 70px;
+  bottom: 20px;
   right: 100px;
   width: 100px;
   height: 40px;
@@ -126,7 +126,7 @@ export const FormImgButton = styled.button`
 
 export const FormButton = styled.button`
   position: absolute;
-  bottom: 70px;
+  bottom: 20px;
   right: 20px;
   width: 70px;
   height: 40px;

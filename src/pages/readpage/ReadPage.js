@@ -52,8 +52,9 @@ const FormImgButton = styled.button`
   width: 100px;
   height: 40px;
   font-size: 1.7rem;
-  background-color: #ffdbab;
-  border: 2.5 solid #000;
+  background-color: #ffc2c0;
+  color: #ffeeed;
+  border: none;
   border-radius: 16px;
 `;
 
@@ -236,7 +237,7 @@ const ReadPage = () => {
                 <ReadTop>
                   <ReadEmoji
                     type="image"
-                    src={`${process.env.PUBLIC_URL}/images/${EMOJI[emojiNum]}.jpeg`}
+                    src={`${process.env.PUBLIC_URL}/images/${EMOJI[emojiNum]}.png`}
                     alt={EMOJI[emojiNum]}
                   />
                   <ReadTitle>{data?.title}</ReadTitle>

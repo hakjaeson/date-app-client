@@ -53,9 +53,10 @@ const ReadMidInput = styled.textarea`
 `;
 
 const ReadHashTagInput = styled.input`
-  background-color: #ffb5b6;
+  background-color: #ffc2c0;
   padding: 10px;
   font-size: 1.7rem;
+  border: none;
   border-radius: 16px;
 `;
 
@@ -117,7 +118,7 @@ const ReadForm = ({
                     >
                       <FormEmoji
                         type="image"
-                        src={`${process.env.PUBLIC_URL}/images/${emoji}.jpeg`}
+                        src={`${process.env.PUBLIC_URL}/images/${emoji}.png`}
                         alt={emoji}
                       />
                     </LlEmoji>
@@ -127,7 +128,7 @@ const ReadForm = ({
             )}
             <ReadEmoji
               type="image"
-              src={`${process.env.PUBLIC_URL}/images/${EMOJI[emojiNum]}.jpeg`}
+              src={`${process.env.PUBLIC_URL}/images/${EMOJI[emojiNum]}.png`}
               alt={emojiNum}
               onClick={handleClick}
             />

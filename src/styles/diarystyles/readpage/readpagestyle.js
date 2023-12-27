@@ -2,15 +2,11 @@ import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
 export const Wrapper = styled.div`
-  font-family: "Dovemayo_gothic";
   position: relative;
-  width: 100%;
-  min-width: 320px;
-  max-width: 600px;
-  max-height: 844px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-family: "Dovemayo_gothic";
+  margin: 0 auto;
+  width: 390px;
+  height: 100%;
 `;
 
 export const Device = styled.div`
@@ -20,7 +16,7 @@ export const Device = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 844px;
+  height: 100%;
 `;
 
 export const PageMain = styled.div`
@@ -126,7 +122,7 @@ export const ReadBottom = styled.div`
 `;
 
 export const ReadHashTag = styled.span`
-  background-color: #ffb5b6;
+  background-color: #ffc2c0;
   padding: 10px;
   font-size: 1.7rem;
   border-radius: 16px;
@@ -135,7 +131,7 @@ export const ReadHashTag = styled.span`
 export const ReadFooter = styled.div`
   position: relative;
   width: 100%;
-  height: 5%;
+  height: 10%;
   display: flex;
   justify-content: right;
   padding: 10px 10px 0 0;
@@ -145,8 +141,9 @@ export const ReadPageButton = styled.button`
   width: 70px;
   height: 40px;
   font-size: 1.7rem;
-  background-color: #ffdbab;
-  border: 2.5 solid #000;
+  background-color: #ffc2c0;
+  color: #ffeeed;
+  border: none;
   border-radius: 16px;
   margin-right: 5px;
 `;
