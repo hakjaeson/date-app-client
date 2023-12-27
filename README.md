@@ -1,69 +1,75 @@
-<div align= "center">
-    <img src="https://capsule-render.vercel.app/api?type=waving&color=ffc3c1&height=180&text=찌리릿%20(date-todo-app)&animation=twinkling&fontColor=ffffff&fontSize=60" />
-    </div>
-    <div style="text-align: left;"> 
-    <h2 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 프로젝트 소개 </h2>  
-    <div style="font-weight: 700; font-size: 15px; text-align: left; color: d8dee4;"> KDT 1차 협업 프로젝트 <br/></li>프론트엔드(FE) 프로젝트입니다. <br/></li>연인과의 데이트 내용을 기록하고, 추억을 공유할 수있는 웹입니다.</li> </div> 
-    </div>
-    <hr/>
-    시연 영상
-    팀원소개 및 분배 배포 노션 figma canva vercel
-    <hr/>
-    프로젝트 정도 의도
-    팀원소개 및 분배
-    <hr/>
-    후기
-    <div style="text-align: left;">
-    <h2 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🛠️ Tech Stacks </h2> <br> 
-    <div  align= "center"> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
-          <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
-          <img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white">
-          <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white">
+<h1>찌리릿 (Date-app)
+</h1> <br>
+
+### 프로젝트 로고
+
+<img src='https://github.com/hakjaeson/date-app-client/assets/148872772/6d2081c8-6e21-47fe-82f1-6879ff64a575' width="200" height ="200"/>
+
+## 시연 영상
+
+시연연상 자리
+
+## 프로젝트 소개
+
+이 프로젝트는 연인들간의 추억을 공유하는 웹입니다.
+
+✓ 로그인을 통한 추억(게시물) 공유<br>
+✓ 게시물(추억)을 쓰기, 읽기, 수정 및 삭제<br>
+✓ 해시태그(#), 년,월을 이용한 추억 모아보기<br>
+✓ 프로필을 통한 서로의 정보 확인
+
+### 개발기간
+
+- 12/8 ~ 12.29
+
+## 팀 소개
+
+### 😃 FE (Frontend)
+
+- #### 손재학(팀장) : 메인페이지, 캘린더 <br>
+
+- #### 곽민성(팀원) : 글 추가, 상세보기, 수정 및 삭제<br>
+
+- #### 최지은(팀원) : 프로필 및 수정, 파트너 프로필<br>
+
+- #### 김 솔(팀원) : 인트로, 로그인<br>
+
+### 🙂 BE (Backend)
+
+#### 이주영(팀장), 양애영(팀원), 배환(팀원), 우승민(팀원)
+
+### 개발 버전
+
+- React : 18.2.0
+
+### 협업 및 프로젝트 관리
+
+<img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white">
+<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white">
+<img src="https://img.shields.io/badge/slack-purple?style=for-the-badge&logo=slack&logoColor=white">
+<img src="https://img.shields.io/badge/swagger-green?style=for-the-badge&logo=Swagger&logoColor=white">
+
+### 화면 구성
+
+<!-- 피그마 -->
+<a href="https://www.figma.com/file/vMoph4vOIA1DbXlGGJ5Q5X/date-app-structure?type=design&node-id=9%3A52&mode=design&t=HfYBky7R9xJd11mp-1">
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white">
+</a>
+
+<br>
+
+### Stack
+
+ <div  align= "left"> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
           <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white">
           <br/><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
           <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white">
-          <img src="https://img.shields.io/badge/StyledComponents-DB7093?style=for-the-badge&logo=StyledComponents&logoColor=white">
+          <img src="https://img.shields.io/badge/Emotion-DB7093?style=for-the-badge&logo=Emotion&logoColor=white">
           <img src="https://img.shields.io/badge/Eslint-4B32C3?style=for-the-badge&logo=Eslint&logoColor=white">
           <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=Prettier&logoColor=white">
           <br/></div>
-    </div>
-    <div style="text-align: left;">
-    <h2 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🧑‍💻 Contact me </h2> <br> 
-    <div align= "center"> <a href=https://neighborly-enthusiasm-e8a.notion.site/261bfcb63f5f4bf9920016b7726322f2?v=134f67b1b61446df967aed932a5e0eab&pvs=4> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white&link=https://neighborly-enthusiasm-e8a.notion.site/261bfcb63f5f4bf9920016b7726322f2?v=134f67b1b61446df967aed932a5e0eab&pvs=4"> </a>
-          </div>  <br> 
-    <div align= "center">  </div> 
-    </div>
-    <div style="text-align: left;"> 
-    <h2 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 
-    </div>
-<h3>
-module version :
-</h3>
-<span style="font-size : 15px">
-"@ant-design/icons": "^5.2.6", <br>
-"@emotion/react": "^11.11.1",<br>
-"@emotion/styled": "^11.11.0",<br>
-"@fortawesome/react-fontawesome": "^0.2.0",<br>
-"@nivo/line": "^0.84.0",<br>
-"antd": "^5.12.4",<br>
-"axios": "^1.6.2",<br>
-"dayjs": "^1.11.10",<br>
-"eslint-config-prettier": "^9.1.0",<br>
-"firebase": "^10.7.1",<br>
-"framer-motion": "^10.16.16",<br>
-"moment": "^2.29.4",<br>
-"normalize.css": "^8.0.1",<br>
-"react": "^18.2.0",<br>
-"react-beautiful-dnd": "^13.1.1",<br>
-"react-calendar": "^4.7.0",<br>
-"react-datepicker": "^4.24.0",<br>
-"react-dnd": "^16.0.1",<br>
-"react-dom": "^18.2.0",<br>
-"react-draggable": "^4.4.6",<br>
-"react-hook-form": "^7.48.2",<br>
-"react-router": "^6.20.1",<br>
-"react-router-dom": "^6.20.1",<br>
-"react-scripts": "5.0.1",<br>
-"react-select": "^5.8.0",<br>
-"swiper": "^11.0.4"<br>
-</span>
+
+
+## 이 후 추가 예정 
+후기나..
