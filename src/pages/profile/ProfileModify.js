@@ -45,9 +45,7 @@ const ProfileModify = () => {
 
   // 날짜 필터링
   const filterDate = result => {
-    // console.log(result);
     let filterData = result.split(" ")[0];
-    // console.log(filterData);
     return filterData;
   };
 
@@ -81,7 +79,6 @@ const ProfileModify = () => {
 
   // 변화를 감지하고 업데이트
   useEffect(() => {
-    // setPic(profileData.pic);
     setName(profileData.nm);
     setBirth(filterDate(profileData.birth));
     setStartedAt(filterDate(profileData.startedAt));
@@ -128,14 +125,12 @@ const ProfileModify = () => {
   };
 
   const patchProfile = _url => {
-    console.log("주소보기 : ", _url);
     const item = {
       pic: _url,
       nm: name,
       birth: birth,
       startedAt: startedAt,
     };
-    console.log("패치?", item);
     patchUserProfile(item, patchUserProfileAction);
   };
 
@@ -160,7 +155,6 @@ const ProfileModify = () => {
       //https://firebase.google.com/docs/storage/web/upload-files?hl=ko
       const imageRef = ref(storage, _fileName);
       const fbRes = await uploadBytes(imageRef, selectFile);
-      console.log("업로드 성공", fbRes);
 
       // 백엔드에서 이미지 주소를 주세요. 요청
       // 파이어베이스 이미지 url 을 파악

@@ -2,7 +2,6 @@ import axios from "axios";
 
 // 프로필 정보 불러오기
 export const getUserProfile = async setProfileData => {
-  console.log("겟 실행");
   try {
     const res = await axios.get(`/api/user/profile`);
     setProfileData(res.data);
@@ -22,10 +21,9 @@ export const getUserProfile = async setProfileData => {
 
 // 프로필 수정하기
 export const patchUserProfile = async (item, fn) => {
-  console.log("패치 실행");
   try {
     const res = await axios.patch(`/api/user/profile`, item);
-    console.log(res.data);
+
     fn(res.data.result);
   } catch (error) {
     console.log(error);

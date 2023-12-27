@@ -8,12 +8,11 @@ import {
 
 const AnniversaryContent = ({ data }) => {
   const test = new Date(data[0]?.startedAt);
-  console.log("test임 : ", test);
+
   const nowDate = new Date();
 
   const timeDiff = Math.abs(nowDate.getTime() - test.getTime()); // 밀리초 단위로 날짜 차이 계산
   const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // 일
-  console.log("days : ", days);
 
   return (
     <Anniversary>

@@ -15,6 +15,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { getUserProfile } from "../../api/user/userprofileapi";
 import ProfileHeader from "../../components/profile/ProfileHeader";
+import axios from "axios";
 
 // 사용자 정보 데이터 형식
 const initialProfie = {
@@ -35,10 +36,15 @@ const ProfilePage = () => {
     getUserProfile(setProfileData);
   };
 
-  const handleLogoutClcik = () => {
-    sessionStorage.clear();
-    navigate("/");
-    alert("로그아웃이 완료 되었습니다.");
+  const handleLogoutClcik = async () => {
+    try {
+      const res = await axios.get(`/api/user/logout`);
+      navigate("/");
+      alert("로그아웃이 완료 되었습니다.");
+    } catch (error) {
+      console.error(error);
+      alert("로그아웃 중 오류가 발생되었습니다.");
+    }
   };
 
   // 날짜 필터링
