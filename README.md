@@ -1,13 +1,15 @@
 <h1>찌리릿 (Date-app)
 </h1> <br>
 
-### 프로젝트 로고
+### 프로젝트
 
-<img src='https://github.com/hakjaeson/date-app-client/assets/148872772/6d2081c8-6e21-47fe-82f1-6879ff64a575' width="200" height ="200"/>
+<img src='https://github.com/hakjaeson/date-app-client/assets/148872772/4daafa66-c950-4bf1-b4dd-62d24fd83d67' width="500" height ="200"/>
 
 ## 시연 영상
 
-시연연상 자리
+<video width="390px" height ="844px" controls>
+<source src="https://github.com/hakjaeson/date-app-client/assets/148872772/15c197be-9f5b-4ade-a3b7-33e1f06720d5" type="video/mp4"/>
+</video>
 
 ## 프로젝트 소개
 
@@ -70,6 +72,12 @@
           <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=Prettier&logoColor=white">
           <br/></div>
 
-## 이 후 추가 예정
+## 후기
 
-후기나..
+#### 손재학 : 좋은 프론트, 백 팀원분들 덕분에 재미있게 진행하였습니다. 협업을 통해 깨달은 점이 많았던 것같습니다. 부족한 팀장 따라와주느라 고생 많으셨습니다.
+
+#### 곽민성 : 매번 개인 프로젝트만 하다가 단체로 협업을 해보니까 협업을 할때 중요한 점을 깨달을 수 있어서 좋았습니다.
+
+#### 김 솔 : 리액트에 대한 흥미가 상승했다. 협업에 있어서 백엔드가 하는 작업에 대한 이해도를 좀 더 올리고 싶다.
+
+#### 최지은 : 프로젝트를 구현하기 위한 소통의 중요함과 배웠던 이론을 실제 코드에 적용하며 성장함을 느꼈다.
