@@ -1,15 +1,13 @@
 <h1>찌리릿 (Date-app)
 </h1> <br>
 
-### 프로젝트
+### 프로젝트 로고
 
-<img src='https://github.com/hakjaeson/date-app-client/assets/148872772/4daafa66-c950-4bf1-b4dd-62d24fd83d67' width="500" height ="200"/>
+<img src='https://github.com/hakjaeson/date-app-client/assets/148872772/6d2081c8-6e21-47fe-82f1-6879ff64a575' width="200" height ="200"/>
 
 ## 시연 영상
 
-<video width="390px" height ="844px" controls>
-<source src="https://github.com/hakjaeson/date-app-client/assets/148872772/15c197be-9f5b-4ade-a3b7-33e1f06720d5" type="video/mp4"/>
-</video>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-n116VzZ49I?si=9NC-UHb8k5MAozuL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## 프로젝트 소개
 
@@ -28,13 +26,13 @@
 
 ### 😃 FE (Frontend)
 
-- #### 손재학(팀장) : 메인페이지, 캘린더 <br>
+- #### 손재학(팀장) : 메인페이지 <br>
 
 - #### 곽민성(팀원) : 글 추가, 상세보기, 수정 및 삭제<br>
 
 - #### 최지은(팀원) : 프로필 및 수정, 파트너 프로필<br>
 
-- #### 김 솔(팀원) : 인트로, 로그인<br>
+- #### 김 솔(팀원) : 인트로, 로그인, 캘린더<br>
 
 ### 🙂 BE (Backend)
 
